@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany</groupId>
-    <artifactId>RestaurantePresentacion_262757_247427_262804</artifactId>
+    <artifactId>RestaurantePresentacion_262757_262804_247427</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
@@ -30,6 +30,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>25</maven.compiler.release>
-        <exec.mainClass>com.mycompany.restaurantepresentacion_262757_247427_262804.RestaurantePresentacion_262757_247427_262804</exec.mainClass>
+        <exec.mainClass>com.mycompany.restaurantepresentacion_262757_262804_247427.RestaurantePresentacion_262757_262804_247427</exec.mainClass>
     </properties>
 </project>
