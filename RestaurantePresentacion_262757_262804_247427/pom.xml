@@ -13,6 +13,11 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>RestaurantePersistencia_262757_247427_262804</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>RestauranteDtos_262757_247427_262804</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -21,15 +26,10 @@
             <artifactId>RestauranteNegocio_262757_247427_262804</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>RestaurantePersistencia_262757_247427_262804</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>25</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.mycompany.restaurantepresentacion_262757_262804_247427.RestaurantePresentacion_262757_262804_247427</exec.mainClass>
     </properties>
 </project>
