@@ -7,6 +7,7 @@ import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import com.mycompany.restaurantepersistencia.ClienteFrecuenteDAO;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,12 +30,48 @@ public class ClientesFrecuentesDAOTEST {
 
     @Test
     public void crearClienteFrecuenteSiLoCreaTest() {
-        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO("diegoNavarro", "6442262864", "diegoPro@gmail.com");
+        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO("enrique", "6442262865", "enriquePro@gmail.com");
 
-         assertDoesNotThrow(() -> {
+        assertDoesNotThrow(() -> {
             ClienteFrecuente clienteBueno = dao.crearClienteFrecuente(cliente);
             clienteBueno.getId();
         });
-        
+
     }
+
+    @Test
+    public void consultarClienteFrecuentePorNombreFuncionaOKTest() {
+        assertDoesNotThrow(() -> {
+            String nombre = "enrique";           
+            ClienteFrecuente cliente1 = dao.consultarClienteFrecuentePorNombre(nombre);
+            assertEquals(cliente1.getId(), 2);
+            assertEquals(nombre, cliente1.getNombreCompleto());
+            System.out.println(cliente1);
+        });
+    }
+    
+    @Test
+    public void consultarClienteFrecuentePorTelefonoFuncionaOKTest() {
+        assertDoesNotThrow(() -> {
+            String telefono = "6442262865";           
+            ClienteFrecuente cliente1 = dao.consultarClienteFrecuentePorTelefono(telefono);
+            assertEquals(cliente1.getId(), 2);
+            assertEquals(telefono, cliente1.getTelefono());
+            System.out.println(cliente1);
+        });
+    }
+    
+    @Test
+    public void consultarClienteFrecuentePorCorreoFuncionaOKTest() {
+        assertDoesNotThrow(() -> {
+            String correo = "enriquePro@gmail.com";           
+            ClienteFrecuente cliente1 = dao.consultarClienteFrecuentePorCorreo(correo);
+            assertEquals(cliente1.getId(), 2);
+            assertEquals(correo, cliente1.getCorreoElectronico());
+            System.out.println(cliente1);
+        });
+    }
+    
+    
+
 }
