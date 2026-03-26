@@ -5,7 +5,6 @@
 package com.mycompany.restaurantedominio_262757_247427_262804;
 
 import java.time.LocalDate;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
