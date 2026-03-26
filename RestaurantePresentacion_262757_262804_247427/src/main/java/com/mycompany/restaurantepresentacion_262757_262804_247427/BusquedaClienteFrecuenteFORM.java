@@ -19,7 +19,10 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         this.control = control;
         initComponents();
         inicializarComboBox();
-        cargarTodosLosClientes();
+        java.awt.EventQueue.invokeLater(() -> {
+            cargarTodosLosClientes();
+        });
+//        cargarTodosLosClientes();
     }
 
     private void inicializarComboBox() {
@@ -187,7 +190,6 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         String texto = busquedaTextField.getText();
         String filtro = (String) filtrosComboBox.getSelectedItem();
 
-        
         if (texto.isEmpty()) {
             control.BuscarClientesFrecuentes("", "");
         } else {

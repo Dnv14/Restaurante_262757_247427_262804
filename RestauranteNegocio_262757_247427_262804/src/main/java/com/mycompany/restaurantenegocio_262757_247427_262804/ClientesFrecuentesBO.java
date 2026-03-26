@@ -51,7 +51,7 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
     public List<ClienteFrecuente> validarBarraBusqueda(String textoBusqueda, String tipoFiltro) throws NegocioException {
         try {
 
-            if (textoBusqueda == null || textoBusqueda.trim().isEmpty()) {
+            if (textoBusqueda == null) {
                 return clientesFrecuentesDAO.consultarTodosClientesFrecuentes();
             }
             List<ClienteFrecuente> listaResultado = new ArrayList<>();
