@@ -19,6 +19,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         this.control = control;
         initComponents();
         inicializarComboBox();
+        
         java.awt.EventQueue.invokeLater(() -> {
             cargarTodosLosClientes();
         });
@@ -32,7 +33,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
     }
 
     private void cargarTodosLosClientes() {
-        control.BuscarClientesFrecuentes("", "");
+        control.BuscarClientesFrecuentes(null, null);
     }
 
     public void mostrarResultados(List<ClienteFrecuente> clientes) {
@@ -202,7 +203,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         String filtro = (String) filtrosComboBox.getSelectedItem();
 
         if (texto.isEmpty()) {
-            control.BuscarClientesFrecuentes("", "");
+            control.BuscarClientesFrecuentes(null, null);
         } else {
             control.BuscarClientesFrecuentes(texto, filtro);
         }

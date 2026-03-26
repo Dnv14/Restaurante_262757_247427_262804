@@ -23,7 +23,6 @@ public class ControlForms {
     private MenuReportes menuReportes;
     private FiltroReportesClientes filtroReportesClientes;
     private FiltroReportesComandas filtroReporteComandas;
-    
 
     public ControlForms() {
         this.objetosBO = new ObjetosBO();
@@ -75,7 +74,7 @@ public class ControlForms {
     public void BuscarClientesFrecuentes(String filtro, String tipoFiltro) {
         try {
             List<ClienteFrecuente> lista = objetosBO.getClientesFrecuentesBO().validarBarraBusqueda(filtro, tipoFiltro);
-            
+
             if (frameActual instanceof BusquedaClienteFrecuenteFORM) {
                 ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
             }
@@ -84,16 +83,16 @@ public class ControlForms {
         }
 
     }
-    
-    public void MenuReportes(){
-    menuReportes.setVisible(true);
+
+    public void MenuReportes() {
+        menuReportes.setVisible(true);
     }
-    
-    public void friltroComandas(){
-    filtroReporteComandas.setVisible(true);
+
+    public void friltroComandas() {
+        filtroReporteComandas.setVisible(true);
     }
-    
-    public void filtroClientes(){
-    filtroReportesClientes.setVisible(true);
+
+    public void filtroClientes() {
+        filtroReportesClientes.setVisible(true);
     }
 }

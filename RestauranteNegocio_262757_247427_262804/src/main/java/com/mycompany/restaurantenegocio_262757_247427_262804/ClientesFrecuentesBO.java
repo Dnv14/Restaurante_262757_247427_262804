@@ -29,8 +29,11 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
             throw new NegocioException("El nombre completo es obligatorio");
         }
 
-        if (!clienteFrecuente.getCorreoElectronico().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            throw new NegocioException("Correo no válido, use este formato: {diegoPro@gmail.com}.");
+        String correo = clienteFrecuente.getCorreoElectronico();
+        if (correo != null && !correo.isEmpty()) {
+            if (!correo.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                throw new NegocioException("Correo no válido, use este formato: {diegoPro@gmail.com}.");
+            }
         }
 
         if (clienteFrecuente.getTelefono() == null || !clienteFrecuente.getTelefono().matches("\\d{10}")) {
@@ -51,7 +54,7 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
     public List<ClienteFrecuente> validarBarraBusqueda(String textoBusqueda, String tipoFiltro) throws NegocioException {
         try {
 
-            if (textoBusqueda == null) {
+            if (textoBusqueda == null || textoBusqueda.trim().isEmpty()) {
                 return clientesFrecuentesDAO.consultarTodosClientesFrecuentes();
             }
             List<ClienteFrecuente> listaResultado = new ArrayList<>();
