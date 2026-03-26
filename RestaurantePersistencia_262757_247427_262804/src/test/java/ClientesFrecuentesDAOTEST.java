@@ -29,8 +29,7 @@ public class ClientesFrecuentesDAOTEST {
 
     @Test
     public void crearClienteFrecuenteSiLoCreaTest() {
-        List<String> direcciones = new ArrayList<>();
-        direcciones.add("itson nainari");
+        
         
     }
 }
