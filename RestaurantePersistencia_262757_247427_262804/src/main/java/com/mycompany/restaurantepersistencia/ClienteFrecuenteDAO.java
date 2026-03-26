@@ -4,7 +4,8 @@
  */
 package com.mycompany.restaurantepersistencia;
 
-import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
+import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteDTO;
 
 /**
  *
@@ -13,22 +14,22 @@ import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteD
 public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO{
 
     @Override
-    public void crearClienteFrecuente(NuevoClienteFrecuenteDTO nuevoClienteFrecuente) throws PersistenciaException {
+    public void crearClienteFrecuente(NuevoClienteDTO nuevoClienteFrecuente) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public NuevoClienteFrecuenteDTO consultarClienteFrecuentePorNombre(String nombreCompleto) throws PersistenciaException {
+    public ClienteFrecuente consultarClienteFrecuentePorNombre(String nombreCompleto) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public NuevoClienteFrecuenteDTO consultarClienteFrecuentePorTelefono(String telefono) throws PersistenciaException {
+    public ClienteFrecuente consultarClienteFrecuentePorTelefono(String telefono) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public NuevoClienteFrecuenteDTO consultarClienteFrecuentePorCorreo(String correoElectronico) throws PersistenciaException {
+    public ClienteFrecuente consultarClienteFrecuentePorCorreo(String correoElectronico) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
