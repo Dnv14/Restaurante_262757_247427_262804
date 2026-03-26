@@ -20,12 +20,6 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "id_cliente")
 public class ClienteFrecuente extends Cliente {
 
-    @Column(name = "datos_facturacion", length = 100)
-    private String datosFacturacion;
-
-    @Column(name = "direcciones", length = 100, nullable = true)
-    private List<String> direcciones;
-
     @Column(name = "conteo_visitas", nullable = false)
     private Integer conteoVisitas = 0;
 
@@ -37,36 +31,23 @@ public class ClienteFrecuente extends Cliente {
 
     public ClienteFrecuente() {
     }
-    
-    public ClienteFrecuente(String datosFacturacion, List<String> direcciones, String nombreCompleto, String telefono, LocalDate fechaRegistro, String correoElectronico) {
-        super(nombreCompleto, telefono, fechaRegistro, correoElectronico);
-        this.datosFacturacion = datosFacturacion;
-        this.direcciones = direcciones;
+
+    public ClienteFrecuente(String nombre, String telefono, String correo) {
+        super(nombre, telefono, LocalDate.now(), correo);
+        this.conteoVisitas = 0;
+        this.puntosAcumulables = 0.0;
+        this.gastoTotal = 0.0; 
     }
-    
+
     @Override
-    public void registrarPuntos(double monto){
+    public void registrarPuntos(double monto) {
         this.gastoTotal += monto;
         this.conteoVisitas++;
         this.puntosAcumulables += (monto / 20);
+        
     }
     
-    public String getDatosFacturacion() {
-        return datosFacturacion;
-    }
-
-    public void setDatosFacturacion(String datosFacturacion) {
-        this.datosFacturacion = datosFacturacion;
-    }
-
-    public List<String> getDirecciones() {
-        return direcciones;
-    }
-
-    public void setDirecciones(List<String> direcciones) {
-        this.direcciones = direcciones;
-    }
-
+    
     public Integer getConteoVisitas() {
         return conteoVisitas;
     }
@@ -90,7 +71,5 @@ public class ClienteFrecuente extends Cliente {
     public void setGastoTotal(double gastoTotal) {
         this.gastoTotal = gastoTotal;
     }
-    
-    
 
 }

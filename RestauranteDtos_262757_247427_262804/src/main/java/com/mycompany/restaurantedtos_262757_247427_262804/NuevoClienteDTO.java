@@ -20,7 +20,8 @@ public class NuevoClienteDTO {
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
     }
-
+    
+    
     public String getNombreCompleto() {
         return nombreCompleto;
     }

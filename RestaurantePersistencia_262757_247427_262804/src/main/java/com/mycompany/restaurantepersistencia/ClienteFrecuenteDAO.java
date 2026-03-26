@@ -15,10 +15,9 @@ import javax.persistence.PersistenceException;
  *
  * @author BALAMRUSH
  */
-public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO{
+public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ClienteFrecuenteDAO.class.getName());
-    
 
     @Override
     public ClienteFrecuente crearClienteFrecuente(NuevoClienteDTO nuevoClienteFrecuente) throws PersistenciaException {
@@ -27,13 +26,15 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO{
         clienteFrecuente.setCorreoElectronico(nuevoClienteFrecuente.getCorreoElectronico());
         clienteFrecuente.setTelefono(nuevoClienteFrecuente.getTelefono());
         clienteFrecuente.setFechaRegistro(LocalDate.now());
-        try{
-            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+
+        try {
+            EntityManager entityManager = ManejadorConexiones.crearEntityManager(); 
             entityManager.getTransaction().begin();
             entityManager.persist(clienteFrecuente);
             entityManager.getTransaction().commit();
             return clienteFrecuente;
-        }catch(PersistenceException ex){
+
+        } catch (PersistenceException ex) {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("No fue posbile crear el cliente");
         }
@@ -53,5 +54,5 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO{
     public ClienteFrecuente consultarClienteFrecuentePorCorreo(String correoElectronico) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }
