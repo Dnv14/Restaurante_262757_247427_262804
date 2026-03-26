@@ -51,17 +51,13 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
     public List<ClienteFrecuente> validarBarraBusqueda(String textoBusqueda, String tipoFiltro) throws NegocioException {
         try {
 
-            if (textoBusqueda == null) {
+            if (textoBusqueda == null || textoBusqueda.trim().isEmpty()) {
                 return clientesFrecuentesDAO.consultarTodosClientesFrecuentes();
             }
             List<ClienteFrecuente> listaResultado = new ArrayList<>();
 
             switch (tipoFiltro) {
                 case "Nombre":
-
-                    if (textoBusqueda == null || textoBusqueda.trim().isEmpty()) {
-                        return clientesFrecuentesDAO.consultarTodosClientesFrecuentes();
-                    }
                     if (textoBusqueda.equals("")) {
                         throw new NegocioException("Campo de busqueda vacío");
                     }
