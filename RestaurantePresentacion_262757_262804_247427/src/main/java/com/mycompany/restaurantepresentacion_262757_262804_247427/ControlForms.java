@@ -20,31 +20,29 @@ public class ControlForms {
         this.objetosBO = new ObjetosBO();
     }
 
-    //cambiar de pantallas 
-    public void navegarMenuPrincipal() {
+    //metodo q ahorra codigo
+    private void mostrarPantalla(JFrame nuevoFrame) {
         if (this.frameActual != null) {
             this.frameActual.dispose();
         }
-        frameActual = new MenuPrincipalFORM(this);
-        frameActual.setVisible(true);
-        frameActual.setLocationRelativeTo(null);
+        
+        this.frameActual = nuevoFrame;
+        this.frameActual.setResizable(false);
+        this.frameActual.setLocationRelativeTo(null);
+        this.frameActual.setVisible(true);
+
+    }
+     
+    //cambiar de pantallas
+    public void navegarMenuPrincipal() {
+        mostrarPantalla(new MenuPrincipalFORM(this));
     }
 
     public void navegarAgregarCliente() {
-        if (this.frameActual != null) {
-            this.frameActual.dispose();
-        }
-        frameActual = new AgregarClienteFrecuenteFORM(this);
-        frameActual.setVisible(true);
-        frameActual.setLocationRelativeTo(null);
+        mostrarPantalla(new AgregarClienteFrecuenteFORM(this));
     }
 
     public void navegarMenuClientesFrecuentes() {
-        if (this.frameActual != null) {
-            this.frameActual.dispose();
-        }
-        frameActual = new MenuClientesFrecuentesFORM(this);
-        frameActual.setVisible(true);
-        frameActual.setLocationRelativeTo(null);
+        mostrarPantalla(new MenuClientesFrecuentesFORM(this));
     }
 }

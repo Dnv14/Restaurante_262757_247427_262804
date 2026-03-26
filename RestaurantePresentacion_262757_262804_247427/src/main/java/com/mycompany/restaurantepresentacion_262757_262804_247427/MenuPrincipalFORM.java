@@ -14,6 +14,7 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
 
     public MenuPrincipalFORM(ControlForms control) {
         this.control = control;
+        this.setTitle("Menú Principal");
         initComponents();
     }
 

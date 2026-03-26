@@ -14,6 +14,7 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
 
     public MenuClientesFrecuentesFORM(ControlForms control) {
         this.control = control;
+        this.setTitle("Menú Clientes Frecuentes");
         initComponents();
     }
 
@@ -127,7 +128,7 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
     public void volverAtras() {
-
+        control.navegarMenuPrincipal();
     }
 
     private void btnBuscarFrecuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFrecuentesActionPerformed
@@ -135,7 +136,7 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarFrecuentesActionPerformed
 
     private void btnRegistrarClienteFrecuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteFrecuenteActionPerformed
-        // TODO add your handling code here:
+        control.navegarAgregarCliente();
     }//GEN-LAST:event_btnRegistrarClienteFrecuenteActionPerformed
 
 

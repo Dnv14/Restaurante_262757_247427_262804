@@ -14,6 +14,7 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
 
     public AgregarClienteFrecuenteFORM(ControlForms control) {
         this.control = control;
+        this.setTitle("Agregar Cliente Frecuente");
         initComponents();
     }
 
@@ -199,7 +200,7 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
     public void volverAtras() {
-
+        control.navegarMenuClientesFrecuentes();
     }
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
