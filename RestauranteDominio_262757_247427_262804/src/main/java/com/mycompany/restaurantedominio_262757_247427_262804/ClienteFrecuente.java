@@ -27,26 +27,30 @@ public class ClienteFrecuente extends Cliente {
     private List<String> direcciones;
 
     @Column(name = "conteo_visitas", nullable = false)
-    private Integer conteoVisitas;
+    private Integer conteoVisitas = 0;
 
     @Column(name = "puntos_acumulables", nullable = false)
-    private double puntosAcumulables;
+    private double puntosAcumulables = 0.0;
 
     @Column(name = "gasto_total", nullable = false)
-    private double gastoTotal;
+    private double gastoTotal = 0.0;
 
     public ClienteFrecuente() {
     }
     
-    public ClienteFrecuente(String datosFacturacion, List<String> direcciones, Integer conteoVisitas, double puntosAcumulables, double gastoTotal, String nombreCompleto, String telefono, LocalDate fechaRegistro, String correoElectronico) {
+    public ClienteFrecuente(String datosFacturacion, List<String> direcciones, String nombreCompleto, String telefono, LocalDate fechaRegistro, String correoElectronico) {
         super(nombreCompleto, telefono, fechaRegistro, correoElectronico);
         this.datosFacturacion = datosFacturacion;
         this.direcciones = direcciones;
-        this.conteoVisitas = conteoVisitas;
-        this.puntosAcumulables = puntosAcumulables;
-        this.gastoTotal = gastoTotal;
     }
-
+    
+    @Override
+    public void registrarPuntos(double monto){
+        this.gastoTotal += monto;
+        this.conteoVisitas++;
+        this.puntosAcumulables += (monto / 20);
+    }
+    
     public String getDatosFacturacion() {
         return datosFacturacion;
     }

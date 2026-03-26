@@ -40,6 +40,10 @@ public class Cliente implements Serializable {
 
     @Column(name = "correo_electronico", nullable = true, length = 50)
     private String correoElectronico;
+    
+    public void registrarPuntos(double monto){
+      
+    }
 
     public Cliente() {
     }
