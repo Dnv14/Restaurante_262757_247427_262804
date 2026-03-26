@@ -19,25 +19,23 @@ public class NuevoClienteFrecuenteDTO extends NuevoClienteDTO {
     private double puntosAcumulables;
     private double gastoTotal;
 
-    public NuevoClienteFrecuenteDTO( String nombre, String telefono, String correo, LocalDate fechaRegistro, Integer visitas, double puntos, double gastoTotal) {
+    public NuevoClienteFrecuenteDTO(String nombre, String telefono, String correo) {
         super(nombre, telefono, correo);
-        this.fechaRegistro = fechaRegistro;
-        this.conteoVisitas = visitas;
-        this.puntosAcumulables = puntos;
-        this.gastoTotal = gastoTotal;
+        this.fechaRegistro = LocalDate.now();
+        this.conteoVisitas = 0;
+        this.puntosAcumulables = 0.0;
+        this.gastoTotal = 0.0;
     }
 
-    public NuevoClienteFrecuenteDTO(Long id, String nombre, String telefono, String correo, LocalDate fechaRegistro, Integer visitas, double puntos, double gastoTotal) {
+    public NuevoClienteFrecuenteDTO(Long id, String nombre, String telefono, String correo) {
         super(nombre, telefono, correo);
         this.id = id;
-        this.fechaRegistro = fechaRegistro;
-        this.conteoVisitas = visitas;
-        this.puntosAcumulables = puntos;
-        this.gastoTotal = gastoTotal;
+        this.fechaRegistro = LocalDate.now();
+        this.conteoVisitas = 0;
+        this.puntosAcumulables = 0.0;
+        this.gastoTotal = 0.0;
     }
-    
-    
-    
+
     public Long getId() {
         return id;
     }

@@ -3,11 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
 
+import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import com.mycompany.restaurantepersistencia.ClienteFrecuenteDAO;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,12 @@ public class ClientesFrecuentesDAOTEST {
 
     @Test
     public void crearClienteFrecuenteSiLoCreaTest() {
-        
+        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO("diegoNavarro", "6442262864", "diegoPro@gmail.com");
+
+         assertDoesNotThrow(() -> {
+            ClienteFrecuente clienteBueno = dao.crearClienteFrecuente(cliente);
+            clienteBueno.getId();
+        });
         
     }
 }
