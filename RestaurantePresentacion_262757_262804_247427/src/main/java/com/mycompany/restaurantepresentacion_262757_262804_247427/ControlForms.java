@@ -4,8 +4,13 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
+import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
 import com.mycompany.restaurantenegocio_262757_247427_262804.ObjetosBO;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,32 +29,60 @@ public class ControlForms {
         this.objetosBO = new ObjetosBO();
     }
 
-    //cambiar de pantallas 
-    public void navegarMenuPrincipal() {
+    //metodo q ahorra codigo
+    private void mostrarPantalla(JFrame nuevoFrame) {
         if (this.frameActual != null) {
             this.frameActual.dispose();
         }
-        frameActual = new MenuPrincipalFORM(this);
-        frameActual.setVisible(true);
-        frameActual.setLocationRelativeTo(null);
+
+        this.frameActual = nuevoFrame;
+        this.frameActual.setResizable(false);
+        this.frameActual.setLocationRelativeTo(null);
+        this.frameActual.setVisible(true);
+
+    }
+
+    //cambiar de pantallas
+    public void navegarMenuPrincipal() {
+        mostrarPantalla(new MenuPrincipalFORM(this));
     }
 
     public void navegarAgregarCliente() {
-        if (this.frameActual != null) {
-            this.frameActual.dispose();
-        }
-        frameActual = new AgregarClienteFrecuenteFORM(this);
-        frameActual.setVisible(true);
-        frameActual.setLocationRelativeTo(null);
+        mostrarPantalla(new AgregarClienteFrecuenteFORM(this));
     }
 
     public void navegarMenuClientesFrecuentes() {
-        if (this.frameActual != null) {
-            this.frameActual.dispose();
+        mostrarPantalla(new MenuClientesFrecuentesFORM(this));
+    }
+
+    public void navegarConsultaClientes() {
+        mostrarPantalla(new BusquedaClienteFrecuenteFORM(this));
+    }
+
+    //logica de botones 
+    public void registrarCliente(String nombre, String telefono, String correo) {
+        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO(nombre, telefono, correo);
+        try {
+            objetosBO.getClientesFrecuentesBO().validarRegistroCliente(cliente);
+            JOptionPane.showMessageDialog(frameActual, "Cliente registrado con éxito");
+            navegarMenuClientesFrecuentes();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
-        frameActual = new MenuClientesFrecuentesFORM(this);
-        frameActual.setVisible(true);
-        frameActual.setLocationRelativeTo(null);
+
+    }
+
+    public void BuscarClientesFrecuentes(String filtro, String tipoFiltro) {
+        try {
+            List<ClienteFrecuente> lista = objetosBO.getClientesFrecuentesBO().validarBarraBusqueda(filtro, tipoFiltro);
+            
+            if (frameActual instanceof BusquedaClienteFrecuenteFORM) {
+                ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
+            }
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
     
     public void MenuReportes(){
