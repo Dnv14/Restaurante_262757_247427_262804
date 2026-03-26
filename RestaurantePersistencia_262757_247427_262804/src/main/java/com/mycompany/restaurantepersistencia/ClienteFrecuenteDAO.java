@@ -43,7 +43,8 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
             throw new PersistenciaException("No fue posbile crear el cliente.");
         }
     }
-
+    // TODO: los 3 métodos Juntarlos creando dtoFiltros y juntarlo en 1 metodo
+    //con validadores  y agregar el like para que traia coincidencias
     @Override
     public ClienteFrecuente consultarClienteFrecuentePorNombre(String nombreCompleto) throws PersistenciaException {
         try {

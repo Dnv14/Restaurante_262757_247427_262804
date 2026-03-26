@@ -23,7 +23,9 @@ import javax.persistence.Table;
 @Table(name = "clientes")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente implements Serializable {
-
+    
+    //TODO separar apellido y nombre 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente", nullable = false)

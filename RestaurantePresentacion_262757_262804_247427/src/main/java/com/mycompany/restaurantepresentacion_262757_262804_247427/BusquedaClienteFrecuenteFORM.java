@@ -103,6 +103,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
             }
         });
         clientesFrecuentesTable.setAutoscrolls(false);
+        clientesFrecuentesTable.getTableHeader().setResizingAllowed(false);
         clientesFrecuentesTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(clientesFrecuentesTable);
 

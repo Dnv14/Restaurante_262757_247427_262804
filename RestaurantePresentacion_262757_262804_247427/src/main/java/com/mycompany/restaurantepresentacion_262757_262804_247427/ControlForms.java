@@ -75,9 +75,11 @@ public class ControlForms {
         try {
             List<ClienteFrecuente> lista = objetosBO.getClientesFrecuentesBO().validarBarraBusqueda(filtro, tipoFiltro);
 
-            if (frameActual instanceof BusquedaClienteFrecuenteFORM) {
-                ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
-            }
+            ((BusquedaClienteFrecuenteFORM)frameActual).mostrarResultados(lista);
+            
+//            if (frameActual instanceof BusquedaClienteFrecuenteFORM) {
+//                ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
+//            }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
