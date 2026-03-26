@@ -6,6 +6,7 @@
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import com.mycompany.restaurantepersistencia.ClienteFrecuenteDAO;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -72,6 +73,13 @@ public class ClientesFrecuentesDAOTEST {
         });
     }
     
+    @Test
+    public void consultarTodosClienteFrecuenteFuncionaOKTest() {
+        assertDoesNotThrow(() -> {
+           List<ClienteFrecuente> listaClientes = dao.consultarTodosClientesFrecuentes();
+           assertEquals(listaClientes.size(), 2);
+        });       
+    }
     
 
 }
