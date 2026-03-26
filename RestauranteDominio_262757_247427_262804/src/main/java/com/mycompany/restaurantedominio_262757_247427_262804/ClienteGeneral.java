@@ -5,24 +5,13 @@
 package com.mycompany.restaurantedominio_262757_247427_262804;
 
 import java.time.LocalDate;
+import javax.persistence.Entity;
 
 /**
  *
  * @author MrGam
  */
+@Entity
 public class ClienteGeneral extends Cliente {
 
-    private static ClienteGeneral instance;
-
-    private ClienteGeneral() {
-        super("Cliente General", "0000000000", LocalDate.now(), "clienteGeneral@gmail.com");
-        this.setId(1L);
-    }
-
-    public static ClienteGeneral getInstancia() {
-        if (instance == null) {
-            instance = new ClienteGeneral();
-        }
-        return instance;
-    }
 }
