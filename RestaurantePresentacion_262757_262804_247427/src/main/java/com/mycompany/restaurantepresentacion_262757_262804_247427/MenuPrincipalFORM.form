@@ -46,11 +46,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnComandas2" min="-2" pref="187" max="-2" attributes="0"/>
+                      <Component id="btnComandas" min="-2" pref="187" max="-2" attributes="0"/>
                       <Component id="btnReportes" min="-2" pref="187" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="212" max="32767" attributes="0"/>
-                  <Component id="btnIngredientes1" min="-2" pref="187" max="-2" attributes="0"/>
+                  <Component id="btnClientesFrecuentes" min="-2" pref="187" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -69,7 +69,7 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="483" max="32767" attributes="0"/>
-                      <Component id="btnIngredientes3" min="-2" pref="187" max="-2" attributes="0"/>
+                      <Component id="btnIngredientes" min="-2" pref="187" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -80,20 +80,20 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="84" max="32767" attributes="0"/>
-                  <Component id="btnComandas2" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="btnComandas" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="btnProductos" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnReportes" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
-                      <Component id="btnIngredientes1" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="btnClientesFrecuentes" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                      <Component id="btnIngredientes3" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="btnIngredientes" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace pref="267" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -131,7 +131,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnComandas2">
+        <Component class="javax.swing.JButton" name="btnComandas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -150,10 +150,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComandas2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComandasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnIngredientes1">
+        <Component class="javax.swing.JButton" name="btnClientesFrecuentes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -172,7 +172,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngredientes1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesFrecuentesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnProductos">
@@ -197,7 +197,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnIngredientes3">
+        <Component class="javax.swing.JButton" name="btnIngredientes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -216,7 +216,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngredientes3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngredientesActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

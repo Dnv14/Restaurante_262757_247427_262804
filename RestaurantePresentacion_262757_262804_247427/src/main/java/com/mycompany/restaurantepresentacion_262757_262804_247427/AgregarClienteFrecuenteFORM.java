@@ -10,10 +10,10 @@ package com.mycompany.restaurantepresentacion_262757_262804_247427;
  */
 public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AgregarClienteFrecuenteFORM
-     */
-    public AgregarClienteFrecuenteFORM() {
+    private ControlForms control;
+
+    public AgregarClienteFrecuenteFORM(ControlForms control) {
+        this.control = control;
         initComponents();
     }
 
@@ -197,11 +197,11 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
-    
-    public void volverAtras(){
-        
+
+    public void volverAtras() {
+
     }
-    
+
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
@@ -225,7 +225,6 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregar1ActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

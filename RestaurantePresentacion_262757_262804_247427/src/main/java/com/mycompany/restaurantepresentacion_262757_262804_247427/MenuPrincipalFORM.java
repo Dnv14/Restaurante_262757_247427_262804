@@ -10,10 +10,10 @@ package com.mycompany.restaurantepresentacion_262757_262804_247427;
  */
 public class MenuPrincipalFORM extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuPrincipalFORM
-     */
-    public MenuPrincipalFORM() {
+    private ControlForms control;
+
+    public MenuPrincipalFORM(ControlForms control) {
+        this.control = control;
         initComponents();
     }
 
@@ -29,10 +29,10 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         btnReportes = new javax.swing.JButton();
-        btnComandas2 = new javax.swing.JButton();
-        btnIngredientes1 = new javax.swing.JButton();
+        btnComandas = new javax.swing.JButton();
+        btnClientesFrecuentes = new javax.swing.JButton();
         btnProductos = new javax.swing.JButton();
-        btnIngredientes3 = new javax.swing.JButton();
+        btnIngredientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,25 +52,25 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
             }
         });
 
-        btnComandas2.setBackground(new java.awt.Color(51, 51, 51));
-        btnComandas2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnComandas2.setForeground(new java.awt.Color(255, 255, 255));
-        btnComandas2.setText("Comandas");
-        btnComandas2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnComandas2.addActionListener(new java.awt.event.ActionListener() {
+        btnComandas.setBackground(new java.awt.Color(51, 51, 51));
+        btnComandas.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnComandas.setForeground(new java.awt.Color(255, 255, 255));
+        btnComandas.setText("Comandas");
+        btnComandas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnComandas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComandas2ActionPerformed(evt);
+                btnComandasActionPerformed(evt);
             }
         });
 
-        btnIngredientes1.setBackground(new java.awt.Color(51, 51, 51));
-        btnIngredientes1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnIngredientes1.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngredientes1.setText("Clientes Frecuentes");
-        btnIngredientes1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnIngredientes1.addActionListener(new java.awt.event.ActionListener() {
+        btnClientesFrecuentes.setBackground(new java.awt.Color(51, 51, 51));
+        btnClientesFrecuentes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnClientesFrecuentes.setForeground(new java.awt.Color(255, 255, 255));
+        btnClientesFrecuentes.setText("Clientes Frecuentes");
+        btnClientesFrecuentes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnClientesFrecuentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngredientes1ActionPerformed(evt);
+                btnClientesFrecuentesActionPerformed(evt);
             }
         });
 
@@ -85,14 +85,14 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
             }
         });
 
-        btnIngredientes3.setBackground(new java.awt.Color(51, 51, 51));
-        btnIngredientes3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnIngredientes3.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngredientes3.setText("Ingredientes");
-        btnIngredientes3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnIngredientes3.addActionListener(new java.awt.event.ActionListener() {
+        btnIngredientes.setBackground(new java.awt.Color(51, 51, 51));
+        btnIngredientes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnIngredientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngredientes.setText("Ingredientes");
+        btnIngredientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnIngredientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngredientes3ActionPerformed(evt);
+                btnIngredientesActionPerformed(evt);
             }
         });
 
@@ -103,10 +103,10 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnComandas2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComandas, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addComponent(btnIngredientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnClientesFrecuentes, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -120,7 +120,7 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(483, Short.MAX_VALUE)
-                    .addComponent(btnIngredientes3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(58, 58, 58)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,18 +128,18 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(btnComandas2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnComandas, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngredientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnClientesFrecuentes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(91, 91, 91))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(123, 123, 123)
-                    .addComponent(btnIngredientes3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(267, Short.MAX_VALUE)))
         );
 
@@ -158,70 +158,33 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-       
+
     }//GEN-LAST:event_btnReportesActionPerformed
 
-    private void btnComandas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComandas2ActionPerformed
+    private void btnComandasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComandasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnComandas2ActionPerformed
+    }//GEN-LAST:event_btnComandasActionPerformed
 
-    private void btnIngredientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngredientes1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngredientes1ActionPerformed
+    private void btnClientesFrecuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesFrecuentesActionPerformed
+        control.navegarMenuClientesFrecuentes();
+    }//GEN-LAST:event_btnClientesFrecuentesActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProductosActionPerformed
 
-    private void btnIngredientes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngredientes3ActionPerformed
+    private void btnIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngredientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngredientes3ActionPerformed
+    }//GEN-LAST:event_btnIngredientesActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalFORM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalFORM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalFORM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalFORM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipalFORM().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnComandas1;
-    private javax.swing.JButton btnComandas2;
-    private javax.swing.JButton btnIngredientes1;
-    private javax.swing.JButton btnIngredientes3;
+    private javax.swing.JButton btnClientesFrecuentes;
+    private javax.swing.JButton btnComandas;
+    private javax.swing.JButton btnIngredientes;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnReportes;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTitulo1;
     // End of variables declaration//GEN-END:variables
 }
