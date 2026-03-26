@@ -4,9 +4,11 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
 import com.mycompany.restaurantenegocio_262757_247427_262804.ObjetosBO;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -48,7 +50,7 @@ public class ControlForms {
     public void navegarMenuClientesFrecuentes() {
         mostrarPantalla(new MenuClientesFrecuentesFORM(this));
     }
-    
+
     public void navegarConsultaClientes() {
         mostrarPantalla(new BusquedaClienteFrecuenteFORM(this));
     }
@@ -60,6 +62,19 @@ public class ControlForms {
             objetosBO.getClientesFrecuentesBO().validarRegistroCliente(cliente);
             JOptionPane.showMessageDialog(frameActual, "Cliente registrado con éxito");
             navegarMenuClientesFrecuentes();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    public void BuscarClientesFrecuentes(String filtro, String tipoFiltro) {
+        try {
+            List<ClienteFrecuente> lista = objetosBO.getClientesFrecuentesBO().validarBarraBusqueda(filtro, tipoFiltro);
+            
+            if (frameActual instanceof BusquedaClienteFrecuenteFORM) {
+                ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
+            }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }

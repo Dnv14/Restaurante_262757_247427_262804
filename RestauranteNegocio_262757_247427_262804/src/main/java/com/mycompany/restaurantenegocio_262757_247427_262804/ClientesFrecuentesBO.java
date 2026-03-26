@@ -58,6 +58,10 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
 
             switch (tipoFiltro) {
                 case "Nombre":
+
+                    if (textoBusqueda == null || textoBusqueda.trim().isEmpty()) {
+                        return clientesFrecuentesDAO.consultarTodosClientesFrecuentes();
+                    }
                     if (textoBusqueda.equals("")) {
                         throw new NegocioException("Campo de busqueda vacío");
                     }

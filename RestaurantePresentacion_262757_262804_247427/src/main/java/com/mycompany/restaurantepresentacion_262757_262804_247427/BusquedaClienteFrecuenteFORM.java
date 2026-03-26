@@ -4,6 +4,9 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import java.util.List;
+
 /**
  *
  * @author BALAMRUSH
@@ -14,8 +17,36 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
 
     public BusquedaClienteFrecuenteFORM(ControlForms control) {
         this.control = control;
-        this.setTitle("Buscar Cliente Frecuente");
         initComponents();
+        inicializarComboBox();
+        cargarTodosLosClientes();
+    }
+
+    private void inicializarComboBox() {
+        filtrosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[]{"Nombre", "Teléfono", "Correo Electrónico"}
+        ));
+    }
+
+    private void cargarTodosLosClientes() {
+        control.BuscarClientesFrecuentes("", "");
+    }
+
+    public void mostrarResultados(List<ClienteFrecuente> clientes) {
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) clientesFrecuentesTable.getModel();
+        modelo.setRowCount(0);
+
+        for (ClienteFrecuente c : clientes) {
+            modelo.addRow(new Object[]{
+                c.getId(),
+                c.getNombreCompleto(),
+                c.getCorreoElectronico(),
+                c.getTelefono(),
+                c.getConteoVisitas(),
+                String.format("$%.2f", c.getGastoTotal()),
+                c.getPuntosAcumulables()
+            });
+        }
     }
 
     /**
@@ -143,20 +174,27 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
     private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
         volverAtras();
     }//GEN-LAST:event_atrasButtonActionPerformed
-    
+
     public void volverAtras() {
         control.navegarMenuClientesFrecuentes();
     }
-    
+
     private void busquedaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_busquedaTextFieldActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        // TODO add your handling code here:
+        String texto = busquedaTextField.getText();
+        String filtro = (String) filtrosComboBox.getSelectedItem();
+
+        
+        if (texto.isEmpty()) {
+            control.BuscarClientesFrecuentes("", "");
+        } else {
+            control.BuscarClientesFrecuentes(texto, filtro);
+        }
     }//GEN-LAST:event_botonBuscarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atrasButton;
