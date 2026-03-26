@@ -4,8 +4,11 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
+import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
 import com.mycompany.restaurantenegocio_262757_247427_262804.ObjetosBO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,14 +28,14 @@ public class ControlForms {
         if (this.frameActual != null) {
             this.frameActual.dispose();
         }
-        
+
         this.frameActual = nuevoFrame;
         this.frameActual.setResizable(false);
         this.frameActual.setLocationRelativeTo(null);
         this.frameActual.setVisible(true);
 
     }
-     
+
     //cambiar de pantallas
     public void navegarMenuPrincipal() {
         mostrarPantalla(new MenuPrincipalFORM(this));
@@ -44,5 +47,18 @@ public class ControlForms {
 
     public void navegarMenuClientesFrecuentes() {
         mostrarPantalla(new MenuClientesFrecuentesFORM(this));
+    }
+
+    //logica de botones 
+    public void registrarCliente(String nombre, String telefono, String correo) {
+        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO(nombre, telefono, correo);
+        try {
+            objetosBO.getClientesFrecuentesBO().validarRegistroCliente(cliente);
+            JOptionPane.showMessageDialog(frameActual, "Cliente registrado con éxito");
+            navegarMenuClientesFrecuentes();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 }

@@ -27,24 +27,17 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNombreCompleto1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblNombreCompleto = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         btnVolverAtras = new javax.swing.JButton();
         txtCorreo = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
-        txtNombreCompleto2 = new javax.swing.JTextField();
-        lblTelefono1 = new javax.swing.JLabel();
-        txtTelefono1 = new javax.swing.JTextField();
+        txtNombreCompleto = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnAgregar1 = new javax.swing.JButton();
-
-        txtNombreCompleto1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreCompleto1ActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,18 +68,18 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
         lblCorreo.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         lblCorreo.setText("Correo Electrónico (Opcional):");
 
-        txtNombreCompleto2.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreCompleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreCompleto2ActionPerformed(evt);
+                txtNombreCompletoActionPerformed(evt);
             }
         });
 
-        lblTelefono1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        lblTelefono1.setText("Número Telefónico:");
+        lblTelefono.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        lblTelefono.setText("Número Telefónico:");
 
-        txtTelefono1.addActionListener(new java.awt.event.ActionListener() {
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefono1ActionPerformed(evt);
+                txtTelefonoActionPerformed(evt);
             }
         });
 
@@ -125,9 +118,9 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreCompleto)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblTelefono1)
+                                .addComponent(lblTelefono)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(44, 44, 44))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -142,7 +135,7 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(246, Short.MAX_VALUE)
-                    .addComponent(txtNombreCompleto2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(58, 58, 58)))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -160,8 +153,8 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
                 .addComponent(lblNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,7 +165,7 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(136, 136, 136)
-                    .addComponent(txtNombreCompleto2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(342, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -207,24 +200,23 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void txtNombreCompleto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCompleto1ActionPerformed
+    private void txtNombreCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCompletoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCompleto1ActionPerformed
+    }//GEN-LAST:event_txtNombreCompletoActionPerformed
 
-    private void txtNombreCompleto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCompleto2ActionPerformed
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCompleto2ActionPerformed
-
-    private void txtTelefono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefono1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefono1ActionPerformed
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        // TODO add your handling code here:
+        String nombre = txtNombreCompleto.getText();
+        String telefono = txtTelefono.getText();
+        String correo = txtCorreo.getText();
+        control.registrarCliente(nombre, telefono, correo);
     }//GEN-LAST:event_btnAgregar1ActionPerformed
 
 
@@ -235,11 +227,10 @@ public class AgregarClienteFrecuenteFORM extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombreCompleto;
-    private javax.swing.JLabel lblTelefono1;
+    private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtNombreCompleto1;
-    private javax.swing.JTextField txtNombreCompleto2;
-    private javax.swing.JTextField txtTelefono1;
+    private javax.swing.JTextField txtNombreCompleto;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

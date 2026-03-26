@@ -33,8 +33,8 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
             throw new NegocioException("Correo no válido, use este formato: {diegoPro@gmail.com}.");
         }
 
-        if (clienteFrecuente.getTelefono() == null || !clienteFrecuente.getTelefono().matches("\\d{8}")) {
-            throw new NegocioException("El teléfono debe tener 8 dígitos.");
+        if (clienteFrecuente.getTelefono() == null || !clienteFrecuente.getTelefono().matches("\\d{10}")) {
+            throw new NegocioException("El teléfono debe tener 10 dígitos.");
         }
         try {
             ClienteFrecuente cliente = clientesFrecuentesDAO.crearClienteFrecuente(clienteFrecuente);
@@ -69,8 +69,8 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
                     if (textoBusqueda.equals("")) {
                         throw new NegocioException("Campo de busqueda vacío");
                     }
-                    if (!textoBusqueda.matches("\\d{8}")) {
-                        throw new NegocioException("El teléfono debe ser contener 8 dígitos");
+                    if (!textoBusqueda.matches("\\d{10}")) {
+                        throw new NegocioException("El teléfono debe ser contener 10 dígitos");
                     }
                     ClienteFrecuente clienteTelefono = clientesFrecuentesDAO.consultarClienteFrecuentePorTelefono(textoBusqueda);
                     listaResultado.add(clienteTelefono);

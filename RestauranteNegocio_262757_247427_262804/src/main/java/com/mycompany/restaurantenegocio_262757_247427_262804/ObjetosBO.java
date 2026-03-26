@@ -4,6 +4,8 @@
  */
 package com.mycompany.restaurantenegocio_262757_247427_262804;
 
+import com.mycompany.restaurantepersistencia.ClienteFrecuenteDAO;
+
 /**
  *
  * @author MrGam
@@ -11,12 +13,10 @@ package com.mycompany.restaurantenegocio_262757_247427_262804;
 public class ObjetosBO {
 
     private IClientesFrecuentesBO clientesFrecuentesBO;
-
+    
     public ObjetosBO() {
-    }
-
-    public ObjetosBO(IClientesFrecuentesBO clientesFrecuentesBO) {
-        this.clientesFrecuentesBO = clientesFrecuentesBO;
+        
+        this.clientesFrecuentesBO = new ClientesFrecuentesBO(new ClienteFrecuenteDAO());
     }
 
     public IClientesFrecuentesBO getClientesFrecuentesBO() {

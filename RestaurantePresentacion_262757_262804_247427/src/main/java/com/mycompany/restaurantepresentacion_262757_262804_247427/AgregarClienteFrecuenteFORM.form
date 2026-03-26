@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.JTextField" name="txtNombreCompleto1">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreCompleto1ActionPerformed"/>
-      </Events>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -62,9 +55,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblNombreCompleto" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblTelefono1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtTelefono1" min="-2" pref="276" max="-2" attributes="0"/>
+                                  <Component id="txtTelefono" min="-2" pref="276" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -86,7 +79,7 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="246" max="32767" attributes="0"/>
-                      <Component id="txtNombreCompleto2" min="-2" pref="276" max="-2" attributes="0"/>
+                      <Component id="txtNombreCompleto" min="-2" pref="276" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -110,8 +103,8 @@
                   <Component id="lblNombreCompleto" min="-2" pref="47" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lblTelefono1" min="-2" pref="47" max="-2" attributes="0"/>
-                      <Component id="txtTelefono1" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="lblTelefono" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="txtTelefono" min="-2" pref="47" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -125,7 +118,7 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                      <Component id="txtNombreCompleto2" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="txtNombreCompleto" min="-2" pref="47" max="-2" attributes="0"/>
                       <EmptySpace pref="342" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -188,12 +181,12 @@
             <Property name="text" type="java.lang.String" value="Correo Electr&#xf3;nico (Opcional):"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNombreCompleto2">
+        <Component class="javax.swing.JTextField" name="txtNombreCompleto">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreCompleto2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreCompletoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblTelefono1">
+        <Component class="javax.swing.JLabel" name="lblTelefono">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="20" style="1"/>
@@ -201,9 +194,9 @@
             <Property name="text" type="java.lang.String" value="N&#xfa;mero Telef&#xf3;nico:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono1">
+        <Component class="javax.swing.JTextField" name="txtTelefono">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefono1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
