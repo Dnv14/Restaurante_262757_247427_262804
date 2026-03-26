@@ -132,7 +132,7 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
     }
 
     private void btnBuscarFrecuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFrecuentesActionPerformed
-        // TODO add your handling code here:
+        control.navegarConsultaClientes();
     }//GEN-LAST:event_btnBuscarFrecuentesActionPerformed
 
     private void btnRegistrarClienteFrecuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteFrecuenteActionPerformed

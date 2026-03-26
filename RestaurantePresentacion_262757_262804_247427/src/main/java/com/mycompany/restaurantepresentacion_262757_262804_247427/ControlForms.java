@@ -48,6 +48,10 @@ public class ControlForms {
     public void navegarMenuClientesFrecuentes() {
         mostrarPantalla(new MenuClientesFrecuentesFORM(this));
     }
+    
+    public void navegarConsultaClientes() {
+        mostrarPantalla(new BusquedaClienteFrecuenteFORM(this));
+    }
 
     //logica de botones 
     public void registrarCliente(String nombre, String telefono, String correo) {
