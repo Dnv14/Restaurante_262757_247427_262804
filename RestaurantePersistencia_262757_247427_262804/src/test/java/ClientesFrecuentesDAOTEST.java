@@ -31,7 +31,7 @@ public class ClientesFrecuentesDAOTEST {
 
 //    @Test
 //    public void crearClienteFrecuenteSiLoCreaTest() {
-//        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO("enrique", "6442262865", "enriquePro@gmail.com");
+//        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO("enrique", "Madrid" ,"6442262865", "enriquePro@gmail.com");
 //
 //        assertDoesNotThrow(() -> {
 //            ClienteFrecuente clienteBueno = dao.crearClienteFrecuente(cliente);

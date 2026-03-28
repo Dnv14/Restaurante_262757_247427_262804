@@ -23,16 +23,17 @@ import javax.persistence.Table;
 @Table(name = "clientes")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente implements Serializable {
-    
-    //TODO separar apellido y nombre 
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente", nullable = false)
     private Long id;
 
-    @Column(name = "nombre_completo", nullable = false, length = 50)
-    private String nombreCompleto;
+    @Column(name = "nombres", nullable = false, length = 20)
+    private String nombres;
+
+    @Column(name = "apellidos", nullable = false, length = 20)
+    private String apellidos;
 
     @Column(name = "telefono", nullable = false, length = 10, unique = true)
     private String telefono;
@@ -42,35 +43,53 @@ public class Cliente implements Serializable {
 
     @Column(name = "correo_electronico", nullable = true, length = 50)
     private String correoElectronico;
-    
-    public void registrarPuntos(double monto){
-      
+
+    public void registrarPuntos(double monto) {
+
     }
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nombreCompleto, String telefono, LocalDate fechaRegistro, String correoElectronico) {
+    public Cliente(Long id, String nombres, String apellidos, String telefono, LocalDate fechaRegistro, String correoElectronico) {
         this.id = id;
-        this.nombreCompleto = nombreCompleto;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.telefono = telefono;
         this.fechaRegistro = fechaRegistro;
         this.correoElectronico = correoElectronico;
     }
 
-    public Cliente(String nombreCompleto, String telefono, LocalDate fechaRegistro, String correoElectronico) {
-        this.nombreCompleto = nombreCompleto;
+    public Cliente(String nombres, String apellidos, String telefono, LocalDate fechaRegistro, String correoElectronico) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.telefono = telefono;
         this.fechaRegistro = fechaRegistro;
         this.correoElectronico = correoElectronico;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public Long getId() {
+        return id;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getTelefono() {
@@ -97,13 +116,7 @@ public class Cliente implements Serializable {
         this.correoElectronico = correoElectronico;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
 
     @Override
     public int hashCode() {

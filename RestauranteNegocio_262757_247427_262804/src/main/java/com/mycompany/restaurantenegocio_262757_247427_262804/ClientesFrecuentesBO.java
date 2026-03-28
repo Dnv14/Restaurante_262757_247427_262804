@@ -5,10 +5,10 @@
 package com.mycompany.restaurantenegocio_262757_247427_262804;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import com.mycompany.restaurantepersistencia.IClienteFrecuenteDAO;
 import com.mycompany.restaurantepersistencia.PersistenciaException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,8 +25,12 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
 
     @Override
     public ClienteFrecuente validarRegistroCliente(NuevoClienteFrecuenteDTO clienteFrecuente) throws NegocioException {
-        if (clienteFrecuente.getNombreCompleto() == null || clienteFrecuente.getNombreCompleto().isEmpty()) {
+        if (clienteFrecuente.getNombres() == null || clienteFrecuente.getNombres().isEmpty()) {
             throw new NegocioException("El nombre completo es obligatorio");
+        }
+
+        if (clienteFrecuente.getApellidos() == null || clienteFrecuente.getNombres().isEmpty()) {
+            throw new NegocioException("El apellido es obligatorio");
         }
 
         String correo = clienteFrecuente.getCorreoElectronico();
@@ -51,47 +55,28 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
     }
 
     @Override
-    public List<ClienteFrecuente> validarBarraBusqueda(String textoBusqueda, String tipoFiltro) throws NegocioException {
+    public List<ClienteFrecuente> validarBarraBusqueda(String texto, String tipoFiltro) throws NegocioException {
         try {
-
-            if (textoBusqueda == null || textoBusqueda.trim().isEmpty()) {
+            if (texto == null || texto.isEmpty()) {
                 return clientesFrecuentesDAO.consultarTodosClientesFrecuentes();
             }
-            List<ClienteFrecuente> listaResultado = new ArrayList<>();
-
+            
+            FiltrosDTO filtros = new FiltrosDTO(null, null, null);
             switch (tipoFiltro) {
                 case "Nombre":
-                    if (textoBusqueda.equals("")) {
-                        throw new NegocioException("Campo de busqueda vacío");
-                    }
-                    ClienteFrecuente clienteNombre = clientesFrecuentesDAO.consultarClienteFrecuentePorNombre(textoBusqueda);
-                    listaResultado.add(clienteNombre);
+                    filtros.setNombre(texto);
                     break;
 
                 case "Teléfono":
-                    if (textoBusqueda.equals("")) {
-                        throw new NegocioException("Campo de busqueda vacío");
-                    }
-                    if (!textoBusqueda.matches("\\d{10}")) {
-                        throw new NegocioException("El teléfono debe ser contener 10 dígitos");
-                    }
-                    ClienteFrecuente clienteTelefono = clientesFrecuentesDAO.consultarClienteFrecuentePorTelefono(textoBusqueda);
-                    listaResultado.add(clienteTelefono);
+                    filtros.setTelefono(texto);
                     break;
 
                 case "Correo Electrónico":
-                    if (textoBusqueda.equals("")) {
-                        throw new NegocioException("Campo de busqueda vacío");
-                    }
-
-                    if (!textoBusqueda.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-                        throw new NegocioException("El formato del correo ingresado no es válido.");
-                    }
-                    ClienteFrecuente clienteCorreo = clientesFrecuentesDAO.consultarClienteFrecuentePorCorreo(textoBusqueda);
-                    listaResultado.add(clienteCorreo);
+                    filtros.setCorreo(texto);
                     break;
             }
-            return listaResultado;
+
+            return clientesFrecuentesDAO.consultarClientesFiltros(filtros);
 
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al buscar: " + ex.getMessage());

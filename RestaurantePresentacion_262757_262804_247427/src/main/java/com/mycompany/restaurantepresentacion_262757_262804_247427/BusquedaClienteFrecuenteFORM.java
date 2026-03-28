@@ -5,6 +5,7 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         this.control = control;
         initComponents();
         inicializarComboBox();
-        
+        this.setSize(800, 521);
         java.awt.EventQueue.invokeLater(() -> {
             cargarTodosLosClientes();
         });
@@ -33,7 +34,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
     }
 
     private void cargarTodosLosClientes() {
-        control.BuscarClientesFrecuentes(null, null);
+        control.BuscarClientesFrecuentes("","");
     }
 
     public void mostrarResultados(List<ClienteFrecuente> clientes) {
@@ -43,7 +44,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         for (ClienteFrecuente c : clientes) {
             modelo.addRow(new Object[]{
                 c.getId(),
-                c.getNombreCompleto(),
+                c.getNombres() + " " + c.getApellidos(),
                 c.getCorreoElectronico(),
                 c.getTelefono(),
                 c.getConteoVisitas(),
@@ -138,11 +139,11 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(busquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(busquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,7 +168,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(atrasButton)
                 .addGap(115, 115, 115)
@@ -200,14 +201,10 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_busquedaTextFieldActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        String texto = busquedaTextField.getText();
-        String filtro = (String) filtrosComboBox.getSelectedItem();
-
-        if (texto.isEmpty()) {
-            control.BuscarClientesFrecuentes(null, null);
-        } else {
-            control.BuscarClientesFrecuentes(texto, filtro);
-        }
+        String texto = busquedaTextField.getText().trim();
+        String tipoFiltro = (String) filtrosComboBox.getSelectedItem();
+        
+        control.BuscarClientesFrecuentes(texto,tipoFiltro);
     }//GEN-LAST:event_botonBuscarActionPerformed
 
 

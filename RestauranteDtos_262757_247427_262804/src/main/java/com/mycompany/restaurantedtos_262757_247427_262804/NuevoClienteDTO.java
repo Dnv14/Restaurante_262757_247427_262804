@@ -11,19 +11,32 @@ import java.time.LocalDate;
  * @author BALAMRUSH
  */
 public class NuevoClienteDTO {
-    private String nombreCompleto;
+    private String nombres;
+    private String apellidos;
     private String telefono;
     private String correoElectronico;
 
-    public NuevoClienteDTO(String nombreCompleto, String telefono, String correoElectronico) {
-        this.nombreCompleto = nombreCompleto;
+    public NuevoClienteDTO(String nombres, String apellidos ,String telefono, String correoElectronico) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
     }
     
-    
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getTelefono() {

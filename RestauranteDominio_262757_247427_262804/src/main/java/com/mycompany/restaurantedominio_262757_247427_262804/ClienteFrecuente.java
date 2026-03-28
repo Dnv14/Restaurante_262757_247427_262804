@@ -23,16 +23,16 @@ public class ClienteFrecuente extends Cliente {
     private Integer conteoVisitas = 0;
 
     @Column(name = "puntos_acumulables", nullable = false)
-    private double puntosAcumulables = 0.0;
+    private Double puntosAcumulables = 0.0;
 
     @Column(name = "gasto_total", nullable = false)
-    private double gastoTotal = 0.0;
+    private Double gastoTotal = 0.0;
 
     public ClienteFrecuente() {
     }
 
-    public ClienteFrecuente(String nombre, String telefono, String correo) {
-        super(nombre, telefono, LocalDate.now(), correo);
+    public ClienteFrecuente(String nombres, String apellidos ,String telefono, String correo) {
+        super(nombres, apellidos ,telefono, LocalDate.now(), correo);
         this.conteoVisitas = 0;
         this.puntosAcumulables = 0.0;
         this.gastoTotal = 0.0; 
@@ -59,11 +59,11 @@ public class ClienteFrecuente extends Cliente {
         return puntosAcumulables;
     }
 
-    public void setPuntosAcumulables(double puntosAcumulables) {
+    public void setPuntosAcumulables(Double puntosAcumulables) {
         this.puntosAcumulables = puntosAcumulables;
     }
 
-    public double getGastoTotal() {
+    public Double getGastoTotal() {
         return gastoTotal;
     }
 

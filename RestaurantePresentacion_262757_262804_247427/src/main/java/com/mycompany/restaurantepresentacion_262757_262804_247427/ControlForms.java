@@ -5,6 +5,7 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
 import com.mycompany.restaurantenegocio_262757_247427_262804.ObjetosBO;
@@ -59,8 +60,8 @@ public class ControlForms {
     }
 
     //logica de botones 
-    public void registrarCliente(String nombre, String telefono, String correo) {
-        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO(nombre, telefono, correo);
+    public void registrarCliente(String nombre, String apellidos, String telefono, String correo) {
+        NuevoClienteFrecuenteDTO cliente = new NuevoClienteFrecuenteDTO(nombre, apellidos, telefono, correo);
         try {
             objetosBO.getClientesFrecuentesBO().validarRegistroCliente(cliente);
             JOptionPane.showMessageDialog(frameActual, "Cliente registrado con éxito");
@@ -68,18 +69,13 @@ public class ControlForms {
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
-    public void BuscarClientesFrecuentes(String filtro, String tipoFiltro) {
+    public void BuscarClientesFrecuentes(String texto, String tipoFiltro) {
         try {
-            List<ClienteFrecuente> lista = objetosBO.getClientesFrecuentesBO().validarBarraBusqueda(filtro, tipoFiltro);
+            List<ClienteFrecuente> lista = objetosBO.getClientesFrecuentesBO().validarBarraBusqueda(texto, tipoFiltro);
+            ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
 
-            ((BusquedaClienteFrecuenteFORM)frameActual).mostrarResultados(lista);
-            
-//            if (frameActual instanceof BusquedaClienteFrecuenteFORM) {
-//                ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
-//            }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }

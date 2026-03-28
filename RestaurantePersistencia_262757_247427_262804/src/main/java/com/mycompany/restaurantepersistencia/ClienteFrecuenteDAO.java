@@ -5,8 +5,10 @@
 package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteDTO;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.criteria.Predicate;
 import java.util.logging.Logger;
@@ -28,7 +30,8 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
     @Override
     public ClienteFrecuente crearClienteFrecuente(NuevoClienteDTO nuevoClienteFrecuente) throws PersistenciaException {
         ClienteFrecuente clienteFrecuente = new ClienteFrecuente();
-        clienteFrecuente.setNombreCompleto(nuevoClienteFrecuente.getNombreCompleto());
+        clienteFrecuente.setNombres(nuevoClienteFrecuente.getNombres());
+        clienteFrecuente.setApellidos(nuevoClienteFrecuente.getApellidos());
         clienteFrecuente.setCorreoElectronico(nuevoClienteFrecuente.getCorreoElectronico());
         clienteFrecuente.setTelefono(nuevoClienteFrecuente.getTelefono());
         clienteFrecuente.setFechaRegistro(LocalDate.now());
@@ -43,55 +46,40 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
             throw new PersistenciaException("No fue posbile crear el cliente.");
         }
     }
-    // TODO: los 3 métodos Juntarlos creando dtoFiltros y juntarlo en 1 metodo
-    //con validadores  y agregar el like para que traia coincidencias
-    @Override
-    public ClienteFrecuente consultarClienteFrecuentePorNombre(String nombreCompleto) throws PersistenciaException {
-        try {
-            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
-            CriteriaBuilder cBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<ClienteFrecuente> cQuery = cBuilder.createQuery(ClienteFrecuente.class);
-            Root<ClienteFrecuente> root = cQuery.from(ClienteFrecuente.class);
-            Predicate predicado = cBuilder.equal(root.get("nombreCompleto"), nombreCompleto);
-            cQuery.select(root).where(predicado);
-            return entityManager.createQuery(cQuery).getSingleResult();
-        } catch (PersistenceException ex) {
-            LOGGER.severe(ex.getMessage());
-            throw new PersistenciaException("No se pudo consultar el cliente frecuente por el nombre");
-        }
-    }
 
     @Override
-    public ClienteFrecuente consultarClienteFrecuentePorTelefono(String telefono) throws PersistenciaException {
-        try {
-            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
-            CriteriaBuilder cBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<ClienteFrecuente> cQuery = cBuilder.createQuery(ClienteFrecuente.class);
-            Root<ClienteFrecuente> root = cQuery.from(ClienteFrecuente.class);
-            Predicate predicado = cBuilder.equal(root.get("telefono"), telefono);
-            cQuery.select(root).where(predicado);
-            return entityManager.createQuery(cQuery).getSingleResult();
-        } catch (PersistenceException ex) {
-            LOGGER.severe(ex.getMessage());
-            throw new PersistenciaException("No se pudo consultar el cliente frecuente por el nombre");
+    public List<ClienteFrecuente> consultarClientesFiltros(FiltrosDTO Tipofiltro) throws PersistenciaException {
+        EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+        CriteriaBuilder cBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<ClienteFrecuente> cQuery = cBuilder.createQuery(ClienteFrecuente.class);
+        Root<ClienteFrecuente> root = cQuery.from(ClienteFrecuente.class);
+
+        List<Predicate> predicados = new LinkedList<>();
+
+        if (Tipofiltro.getNombre() != null && !Tipofiltro.getNombre().isEmpty()) {
+            String filtro = "%" + Tipofiltro.getNombre() + "%";
+            Predicate pNombre = cBuilder.like(root.get("nombres"), filtro);
+            Predicate pApellido = cBuilder.like(root.get("apellidos"), filtro);
+            predicados.add(cBuilder.or(pNombre, pApellido)); 
         }
+
+        if (Tipofiltro.getTelefono() != null && !Tipofiltro.getTelefono().isEmpty()) {
+            predicados.add(cBuilder.like(root.get("telefono"), "%" + Tipofiltro.getTelefono() + "%"));
+        }
+
+        if (Tipofiltro.getCorreo() != null && !Tipofiltro.getCorreo().isEmpty()) {
+            predicados.add(cBuilder.like(root.get("correo_electronico"), "%" + Tipofiltro.getCorreo() + "%"));
+        }
+
+        if (!predicados.isEmpty()) {
+            //aqui usamos el arreglo pq con las listas tira error :p
+            Predicate[] filtrosFinales = predicados.toArray(new Predicate[predicados.size()]);
+            cQuery.where(cBuilder.and(filtrosFinales));
+        }
+        return entityManager.createQuery(cQuery).getResultList();
     }
 
-    @Override
-    public ClienteFrecuente consultarClienteFrecuentePorCorreo(String correoElectronico) throws PersistenciaException {
-        try {
-            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
-            CriteriaBuilder cBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<ClienteFrecuente> cQuery = cBuilder.createQuery(ClienteFrecuente.class);
-            Root<ClienteFrecuente> root = cQuery.from(ClienteFrecuente.class);
-            Predicate predicado = cBuilder.equal(root.get("correoElectronico"), correoElectronico);
-            cQuery.select(root).where(predicado);
-            return entityManager.createQuery(cQuery).getSingleResult();
-        } catch (PersistenceException ex) {
-            LOGGER.severe(ex.getMessage());
-            throw new PersistenciaException("No se pudo consultar el cliente frecuente por el nombre");
-        }
-    }
+    
 
     @Override
     public List<ClienteFrecuente> consultarTodosClientesFrecuentes() throws PersistenciaException {
@@ -107,4 +95,5 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
             throw new PersistenciaException("No se pudieron obtener los clientes frecuentes");
         }
     }
+
 }

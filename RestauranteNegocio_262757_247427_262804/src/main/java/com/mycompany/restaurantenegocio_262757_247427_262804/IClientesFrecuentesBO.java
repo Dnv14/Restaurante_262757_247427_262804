@@ -5,6 +5,7 @@
 package com.mycompany.restaurantenegocio_262757_247427_262804;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import java.util.List;
 
@@ -14,5 +15,5 @@ import java.util.List;
  */
 public interface IClientesFrecuentesBO {
     public abstract ClienteFrecuente validarRegistroCliente(NuevoClienteFrecuenteDTO clienteFrecuente) throws NegocioException;
-    public abstract List<ClienteFrecuente> validarBarraBusqueda(String texto, String tipoFiltro) throws NegocioException;
+    public List<ClienteFrecuente> validarBarraBusqueda(String texto, String tipoFiltro) throws NegocioException;
 }
