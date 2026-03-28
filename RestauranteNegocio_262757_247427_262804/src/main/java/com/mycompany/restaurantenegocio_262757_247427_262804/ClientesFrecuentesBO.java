@@ -39,10 +39,16 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
                 throw new NegocioException("Correo no válido, use este formato: {diegoPro@gmail.com}.");
             }
         }
-
+        
+        if (!clienteFrecuente.getTelefono().matches("[0-9]+")){
+            throw new NegocioException("El teléfono solamente debe contener números");
+        }
+        
         if (clienteFrecuente.getTelefono() == null || !clienteFrecuente.getTelefono().matches("\\d{10}")) {
             throw new NegocioException("El teléfono debe tener 10 dígitos.");
         }
+        
+        
         try {
             ClienteFrecuente cliente = clientesFrecuentesDAO.crearClienteFrecuente(clienteFrecuente);
             if (cliente == null) {

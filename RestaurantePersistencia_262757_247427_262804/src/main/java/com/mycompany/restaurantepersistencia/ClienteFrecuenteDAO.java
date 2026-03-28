@@ -68,7 +68,7 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
         }
 
         if (Tipofiltro.getCorreo() != null && !Tipofiltro.getCorreo().isEmpty()) {
-            predicados.add(cBuilder.like(root.get("correo_electronico"), "%" + Tipofiltro.getCorreo() + "%"));
+            predicados.add(cBuilder.like(root.get("correoElectronico"), "%" + Tipofiltro.getCorreo() + "%"));
         }
 
         if (!predicados.isEmpty()) {
