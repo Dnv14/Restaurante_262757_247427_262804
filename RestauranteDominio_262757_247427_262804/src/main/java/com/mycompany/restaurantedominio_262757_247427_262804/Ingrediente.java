@@ -1,0 +1,87 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.restaurantedominio_262757_247427_262804;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ *
+ * @author BALAMRUSH
+ */
+@Entity
+@Table(name = "ingredientes")
+public class Ingrediente implements Serializable {
+
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_ingrediente", nullable = false)
+    private Long idIngrediente;
+    
+    @Column(name = "nombre_Ingrediente", nullable = false)
+    private String nombreIngrediente;
+    
+    @Column(name = "stock_ingrediente", nullable = false)
+    private Double stockIngrediente;
+    
+    @Column(name = "unidad_Medida", nullable = false)
+    private String unidadMedida;
+
+    public Ingrediente() {
+    }
+
+    public Ingrediente(Long idIngrediente, String nombreIngrediente, Double stockIngrediente, String unidadMedida) {
+        this.idIngrediente = idIngrediente;
+        this.nombreIngrediente = nombreIngrediente;
+        this.stockIngrediente = stockIngrediente;
+        this.unidadMedida = unidadMedida;
+    }    
+    
+    public Ingrediente(String nombreIngrediente, Double stockIngrediente, String unidadMedida) {
+        this.nombreIngrediente = nombreIngrediente;
+        this.stockIngrediente = stockIngrediente;
+        this.unidadMedida = unidadMedida;
+    }
+
+    public Long getIdIngrediente() {
+        return idIngrediente;
+    }
+
+    public void setIdIngrediente(Long idIngrediente) {
+        this.idIngrediente = idIngrediente;
+    }
+
+    public String getNombreIngrediente() {
+        return nombreIngrediente;
+    }
+
+    public void setNombreIngrediente(String nombreIngrediente) {
+        this.nombreIngrediente = nombreIngrediente;
+    }
+
+    public Double getStockIngrediente() {
+        return stockIngrediente;
+    }
+
+    public void setStockIngrediente(Double stockIngrediente) {
+        this.stockIngrediente = stockIngrediente;
+    }
+
+    public String getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
+    }
+
+   
+}
