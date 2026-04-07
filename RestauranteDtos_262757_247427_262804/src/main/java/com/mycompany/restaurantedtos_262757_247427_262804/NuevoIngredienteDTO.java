@@ -11,9 +11,9 @@ package com.mycompany.restaurantedtos_262757_247427_262804;
 public class NuevoIngredienteDTO {
     private String nombreIngrediente;
     private Double stockIngrediente;
-    private String unidadMedida;
+    private UnidadMedidaDTO unidadMedida;
 
-    public NuevoIngredienteDTO(String nombreIngrediente, Double stockIngrediente, String unidadMedida) {
+    public NuevoIngredienteDTO(String nombreIngrediente, Double stockIngrediente, UnidadMedidaDTO unidadMedida) {
         this.nombreIngrediente = nombreIngrediente;
         this.stockIngrediente = stockIngrediente;
         this.unidadMedida = unidadMedida;
@@ -27,7 +27,7 @@ public class NuevoIngredienteDTO {
         return stockIngrediente;
     }
 
-    public String getUnidadMedida() {
+    public UnidadMedidaDTO getUnidadMedida() {
         return unidadMedida;
     }
     

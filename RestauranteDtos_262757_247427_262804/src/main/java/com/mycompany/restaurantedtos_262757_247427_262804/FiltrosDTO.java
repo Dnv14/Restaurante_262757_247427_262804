@@ -12,11 +12,13 @@ public class FiltrosDTO {
     private String nombre;
     private String telefono;
     private String correo;
+    private String unidadMedida;
 
-    public FiltrosDTO(String nombre, String telefono, String correo) {
+    public FiltrosDTO(String nombre, String telefono, String correo, String unidadMedida) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
+        this.unidadMedida = unidadMedida;
     }
 
     public void setNombre(String nombre) {
@@ -31,6 +33,10 @@ public class FiltrosDTO {
         this.correo = correo;
     }
     
+    public void setUnidadMedida(String unidadMedida){
+        this.unidadMedida = unidadMedida;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -43,5 +49,7 @@ public class FiltrosDTO {
         return correo;
     }
     
-    
+    public String getUnidadMedida(){
+        return unidadMedida;
+    }
 }

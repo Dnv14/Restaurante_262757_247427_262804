@@ -36,7 +36,7 @@ public class Ingrediente implements Serializable {
     private Double stockIngrediente;
     
     @Column(name = "unidad_medida", nullable = false)
-    private String unidadMedida;
+    private UnidadMedida unidadMedida;
     
     @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL)
     private List<Receta> receta;
@@ -44,20 +44,20 @@ public class Ingrediente implements Serializable {
     public Ingrediente() {
     }
 
-    public Ingrediente(Long idIngrediente, String nombreIngrediente, Double stockIngrediente, String unidadMedida) {
+    public Ingrediente(Long idIngrediente, String nombreIngrediente, Double stockIngrediente, UnidadMedida unidadMedida) {
         this.idIngrediente = idIngrediente;
         this.nombreIngrediente = nombreIngrediente;
         this.stockIngrediente = stockIngrediente;
         this.unidadMedida = unidadMedida;
     }    
     
-    public Ingrediente(String nombreIngrediente, Double stockIngrediente, String unidadMedida) {
+    public Ingrediente(String nombreIngrediente, Double stockIngrediente, UnidadMedida unidadMedida) {
         this.nombreIngrediente = nombreIngrediente;
         this.stockIngrediente = stockIngrediente;
         this.unidadMedida = unidadMedida;
     }
 
-    public Ingrediente(String nombreIngrediente, Double stockIngrediente, String unidadMedida, List<Receta> receta) {
+    public Ingrediente(String nombreIngrediente, Double stockIngrediente, UnidadMedida unidadMedida, List<Receta> receta) {
         this.nombreIngrediente = nombreIngrediente;
         this.stockIngrediente = stockIngrediente;
         this.unidadMedida = unidadMedida;
@@ -98,11 +98,11 @@ public class Ingrediente implements Serializable {
         this.stockIngrediente = stockIngrediente;
     }
 
-    public String getUnidadMedida() {
+    public UnidadMedida getUnidadMedida() {
         return unidadMedida;
     }
 
-    public void setUnidadMedida(String unidadMedida) {
+    public void setUnidadMedida(UnidadMedida unidadMedida) {
         this.unidadMedida = unidadMedida;
     }
 
