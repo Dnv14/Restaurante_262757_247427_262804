@@ -6,15 +6,18 @@ package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 /**
  *
- * @author MrGam
+ * @author Diego
  */
-public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
-
+public class MenuProductosFORM extends javax.swing.JFrame {
+    
     private ControlForms control;
 
-    public MenuClientesFrecuentesFORM(ControlForms control) {
+    /**
+     * Creates new form MenuProductos
+     */
+    public MenuProductosFORM(ControlForms control) {
         this.control = control;
-        this.setTitle("Menú Clientes Frecuentes");
+        this.setTitle("Menú Productos");
         initComponents();
     }
 
@@ -31,48 +34,36 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
         lblInstruccion = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         btnVolverAtras = new javax.swing.JButton();
-        btnBuscarFrecuentes = new javax.swing.JButton();
-        btnRegistrarClienteFrecuente = new javax.swing.JButton();
+        btnAdministrarProductos = new javax.swing.JButton();
+        btnRegistrarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         lblInstruccion.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        lblInstruccion.setText("Seleccione una de las opciones de Cliente:");
+        lblInstruccion.setText("Seleccione una de las opciones de Productos:");
 
         lblTitulo.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        lblTitulo.setText("Menú Clientes Frecuentes");
+        lblTitulo.setText("Menú Productos");
 
         btnVolverAtras.setBackground(new java.awt.Color(153, 153, 153));
         btnVolverAtras.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnVolverAtras.setText(">");
         btnVolverAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnVolverAtras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverAtrasActionPerformed(evt);
-            }
-        });
+        btnVolverAtras.addActionListener(this::btnVolverAtrasActionPerformed);
 
-        btnBuscarFrecuentes.setBackground(new java.awt.Color(51, 51, 51));
-        btnBuscarFrecuentes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBuscarFrecuentes.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarFrecuentes.setText("Buscar Clientes Frecuentes");
-        btnBuscarFrecuentes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFrecuentesActionPerformed(evt);
-            }
-        });
+        btnAdministrarProductos.setBackground(new java.awt.Color(51, 51, 51));
+        btnAdministrarProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAdministrarProductos.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdministrarProductos.setText("Administrar Productos");
+        btnAdministrarProductos.addActionListener(this::btnAdministrarProductosActionPerformed);
 
-        btnRegistrarClienteFrecuente.setBackground(new java.awt.Color(51, 51, 51));
-        btnRegistrarClienteFrecuente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegistrarClienteFrecuente.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrarClienteFrecuente.setText("Registrar Cliente Frecuente");
-        btnRegistrarClienteFrecuente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarClienteFrecuenteActionPerformed(evt);
-            }
-        });
+        btnRegistrarProducto.setBackground(new java.awt.Color(51, 51, 51));
+        btnRegistrarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarProducto.setText("Añadir Producto");
+        btnRegistrarProducto.addActionListener(this::btnRegistrarProductoActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,9 +71,9 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnVolverAtras)
-                .addGap(143, 143, 143)
+                .addGap(177, 177, 177)
                 .addComponent(lblTitulo)
-                .addGap(0, 160, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,9 +81,9 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRegistrarClienteFrecuente, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                            .addComponent(btnBuscarFrecuentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnRegistrarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                            .addComponent(btnAdministrarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +94,9 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(lblInstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
-                .addComponent(btnRegistrarClienteFrecuente, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
-                .addComponent(btnBuscarFrecuentes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAdministrarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
@@ -127,22 +118,22 @@ public class MenuClientesFrecuentesFORM extends javax.swing.JFrame {
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
-    public void volverAtras() {
+    private void volverAtras(){
         control.navegarMenuPrincipal();
     }
+    
+    private void btnAdministrarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarProductosActionPerformed
+        control.navegarAdministrarProductos();
+    }//GEN-LAST:event_btnAdministrarProductosActionPerformed
 
-    private void btnBuscarFrecuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFrecuentesActionPerformed
-        control.navegarConsultaClientes();
-    }//GEN-LAST:event_btnBuscarFrecuentesActionPerformed
+    private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
+        
+    }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
-    private void btnRegistrarClienteFrecuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteFrecuenteActionPerformed
-        control.navegarAgregarCliente();
-    }//GEN-LAST:event_btnRegistrarClienteFrecuenteActionPerformed
-
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarFrecuentes;
-    private javax.swing.JButton btnRegistrarClienteFrecuente;
+    private javax.swing.JButton btnAdministrarProductos;
+    private javax.swing.JButton btnRegistrarProducto;
     private javax.swing.JButton btnVolverAtras;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblInstruccion;

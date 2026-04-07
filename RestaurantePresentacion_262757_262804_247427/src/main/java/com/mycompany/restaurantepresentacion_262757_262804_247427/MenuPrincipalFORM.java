@@ -171,7 +171,7 @@ public class MenuPrincipalFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesFrecuentesActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        // TODO add your handling code here:
+        control.navegarMenuProductos();
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngredientesActionPerformed
