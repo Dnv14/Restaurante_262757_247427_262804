@@ -46,11 +46,11 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOMBRE", "CORREO", "TELEFONO", "CONTEO DE VISITAS", "GASTO TOTAL", "PUNTOS FIDELIDAD"
+                "ID", "NOMBRE", "TIPO", "ESTADO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

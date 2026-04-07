@@ -67,7 +67,7 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
                 return clientesFrecuentesDAO.consultarTodosClientesFrecuentes();
             }
             
-            FiltrosDTO filtros = new FiltrosDTO(null, null, null);
+            FiltrosDTO filtros = new FiltrosDTO(null, null, null,null);
             switch (tipoFiltro) {
                 case "Nombre":
                     filtros.setNombre(texto);
