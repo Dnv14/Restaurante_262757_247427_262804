@@ -5,11 +5,14 @@
 package com.mycompany.restaurantedominio_262757_247427_262804;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,14 +29,17 @@ public class Ingrediente implements Serializable {
     @Column(name = "id_ingrediente", nullable = false)
     private Long idIngrediente;
     
-    @Column(name = "nombre_Ingrediente", nullable = false)
+    @Column(name = "nombre_ingrediente", nullable = false)
     private String nombreIngrediente;
     
     @Column(name = "stock_ingrediente", nullable = false)
     private Double stockIngrediente;
     
-    @Column(name = "unidad_Medida", nullable = false)
+    @Column(name = "unidad_medida", nullable = false)
     private String unidadMedida;
+    
+    @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL)
+    private List<Receta> receta;
 
     public Ingrediente() {
     }
@@ -50,6 +56,23 @@ public class Ingrediente implements Serializable {
         this.stockIngrediente = stockIngrediente;
         this.unidadMedida = unidadMedida;
     }
+
+    public Ingrediente(String nombreIngrediente, Double stockIngrediente, String unidadMedida, List<Receta> receta) {
+        this.nombreIngrediente = nombreIngrediente;
+        this.stockIngrediente = stockIngrediente;
+        this.unidadMedida = unidadMedida;
+        this.receta = receta;
+    }
+
+    public List<Receta> getReceta() {
+        return receta;
+    }
+
+    public void setReceta(List<Receta> receta) {
+        this.receta = receta;
+    }
+    
+    
 
     public Long getIdIngrediente() {
         return idIngrediente;
