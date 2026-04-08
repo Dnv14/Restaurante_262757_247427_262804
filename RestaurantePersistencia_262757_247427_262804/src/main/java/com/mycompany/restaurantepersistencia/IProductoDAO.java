@@ -16,4 +16,6 @@ public interface IProductoDAO {
     public abstract Producto agregarProducto(NuevoProductoDTO producto)throws PersistenciaException;
     
     public abstract List<Producto> consultarProductosNombre(String nombre)throws PersistenciaException;
+    
+    public abstract List<Producto> consultarTodosLosProductos()throws PersistenciaException;
 }

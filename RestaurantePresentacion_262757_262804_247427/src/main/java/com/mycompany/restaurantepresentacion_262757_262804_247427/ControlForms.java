@@ -5,6 +5,7 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
 import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
@@ -101,14 +102,23 @@ public class ControlForms {
             TipoProductoDTO tipoDTO = TipoProductoDTO.valueOf(tipoProducto.toUpperCase());
             EstadoDTO estado = EstadoDTO.ACTIVO;
             NuevoProductoDTO productoDTO = new NuevoProductoDTO(nombre, descripcion, precio, tipoDTO, estado);
-            
+
             objetosBO.getProductosBO().validarRegistroProducto(productoDTO);
             JOptionPane.showMessageDialog(frameActual, "Producto registrado con éxito");
             navegarMenuProductos();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
+    }
 
+    public void buscarProductos(String nombre) {
+        try {
+            List<Producto> lista = objetosBO.getProductosBO().validarBarraBusquedaProductos(nombre);
+            ((AdministrarProductosFORM) frameActual).mostrarResultados(lista);
+
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void MenuReportes() {

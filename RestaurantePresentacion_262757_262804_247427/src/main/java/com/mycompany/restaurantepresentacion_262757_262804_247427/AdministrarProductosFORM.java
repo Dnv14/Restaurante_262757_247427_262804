@@ -4,6 +4,9 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import java.util.List;
+
 /**
  *
  * @author Diego
@@ -14,6 +17,7 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
 
     public AdministrarProductosFORM(ControlForms control) {
         this.control = control;
+        this.cargarProductos();
         initComponents();
     }
 
@@ -28,9 +32,9 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        clientesFrecuentesTable = new javax.swing.JTable();
+        productosTABLE = new javax.swing.JTable();
         botonBuscar = new javax.swing.JButton();
-        busquedaTextField = new javax.swing.JTextField();
+        txtBusqueda = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnVolverAtras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -41,32 +45,32 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(703, 573));
 
-        clientesFrecuentesTable.setModel(new javax.swing.table.DefaultTableModel(
+        productosTABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NOMBRE", "TIPO", "ESTADO"
+                "ID", "NOMBRE", "PRECIO", "TIPO", "ESTADO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        clientesFrecuentesTable.setAutoscrolls(false);
-        clientesFrecuentesTable.getTableHeader().setResizingAllowed(false);
-        clientesFrecuentesTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(clientesFrecuentesTable);
+        productosTABLE.setAutoscrolls(false);
+        productosTABLE.getTableHeader().setResizingAllowed(false);
+        productosTABLE.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(productosTABLE);
 
         botonBuscar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         botonBuscar.setText("Buscar");
         botonBuscar.addActionListener(this::botonBuscarActionPerformed);
 
-        busquedaTextField.addActionListener(this::busquedaTextFieldActionPerformed);
+        txtBusqueda.addActionListener(this::txtBusquedaActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -99,7 +103,7 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(busquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -118,7 +122,7 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(busquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -143,13 +147,32 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void cargarProductos(){
+        control.buscarProductos("");
+    }
+    
+    public void mostrarResultados(List<Producto> productos) {
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) productosTABLE.getModel();
+        modelo.setRowCount(0);
+        for (Producto p : productos) {
+            modelo.addRow(new Object[]{
+                p.getId(),
+                p.getNombre(),
+                p.getPrecio(),
+                p.getTipoProducto(),
+                p.getEstado()
+            });
+        }
+    }
+    
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        String nombreProducto = txtBusqueda.getText();
         
     }//GEN-LAST:event_botonBuscarActionPerformed
 
-    private void busquedaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaTextFieldActionPerformed
+    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_busquedaTextFieldActionPerformed
+    }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
@@ -162,11 +185,11 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton btnVolverAtras;
-    private javax.swing.JTextField busquedaTextField;
-    private javax.swing.JTable clientesFrecuentesTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable productosTABLE;
+    private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }

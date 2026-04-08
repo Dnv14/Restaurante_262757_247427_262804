@@ -50,9 +50,9 @@ public class ProductosDAO implements IProductoDAO {
 
             Predicate where = cb.like(root.get("nombre"), "%" + nombre + "%");
             criteria.select(root).where(where);
-            
+
             TypedQuery<Producto> query = em.createQuery(criteria);
-            
+
             List<Producto> productosConsultados = query.getResultList();
             return productosConsultados;
         } catch (PersistenceException ex) {
@@ -61,4 +61,21 @@ public class ProductosDAO implements IProductoDAO {
         }
     }
 
+    @Override
+    public List<Producto> consultarTodosLosProductos() throws PersistenciaException {
+        try {
+            EntityManager em = ManejadorConexiones.crearEntityManager();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery criteria = cb.createQuery(Producto.class);
+            Root<Producto> root = criteria.from(Producto.class);
+
+            criteria.select(root);
+            TypedQuery<Producto> query = em.createQuery(criteria);
+            List<Producto> productosConsultados = query.getResultList();
+            return productosConsultados;
+        } catch (PersistenceException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se puedo consultar los productos");
+        }
+    }
 }

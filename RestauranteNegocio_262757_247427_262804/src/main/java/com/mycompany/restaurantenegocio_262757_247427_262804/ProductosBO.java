@@ -8,6 +8,7 @@ import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import com.mycompany.restaurantepersistencia.IProductoDAO;
 import com.mycompany.restaurantepersistencia.PersistenciaException;
+import java.util.List;
 
 /**
  *
@@ -23,16 +24,32 @@ public class ProductosBO implements IProductosBO {
 
     @Override
     public Producto validarRegistroProducto(NuevoProductoDTO productoDTO) throws NegocioException {
-        
+        //TODO validaciones
+
         try {
             Producto producto = productosDAO.agregarProducto(productoDTO);
-            
+
             if (producto == null) {
                 throw new NegocioException("Producto no encontrado.", null);
             }
             return producto;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al intentar validar el Producto.", ex);
+        }
+    }
+
+    @Override
+    public List<Producto> validarBarraBusquedaProductos(String nombre) throws NegocioException {
+        //TODO validaciones
+        try {
+            if (nombre == null || nombre.isEmpty()) {
+                return productosDAO.consultarTodosLosProductos();
+            }else {
+                return productosDAO.consultarProductosNombre(nombre);
+            }
+
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo buscar los productos", ex);
         }
     }
 
