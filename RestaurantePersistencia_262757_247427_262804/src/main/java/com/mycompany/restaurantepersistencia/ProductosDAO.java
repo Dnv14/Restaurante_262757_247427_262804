@@ -6,7 +6,6 @@ package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;

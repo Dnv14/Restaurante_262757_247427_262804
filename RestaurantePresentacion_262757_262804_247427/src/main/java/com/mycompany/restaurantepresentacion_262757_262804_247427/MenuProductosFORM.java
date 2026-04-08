@@ -127,7 +127,7 @@ public class MenuProductosFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministrarProductosActionPerformed
 
     private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
-        
+        control.navegarAniadirProducto();
     }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
  

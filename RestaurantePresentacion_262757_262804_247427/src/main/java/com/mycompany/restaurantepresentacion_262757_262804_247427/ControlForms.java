@@ -66,6 +66,10 @@ public class ControlForms {
     public void navegarAdministrarProductos(){
         mostrarPantalla(new AdministrarProductosFORM(this));
     }
+    
+    public void navegarAniadirProducto(){
+        mostrarPantalla(new AniadirProductoFORM(this));
+    }
 
     //logica de botones 
     public void registrarCliente(String nombre, String apellidos, String telefono, String correo) {
