@@ -14,9 +14,12 @@ import java.util.List;
  * @author BALAMRUSH
  */
 public interface IIngredienteDAO {
+    
     public abstract Ingrediente agregarIngrediente(NuevoIngredienteDTO nuevoIngrediente)throws PersistenciaException;
     
     public abstract List<Ingrediente> consultarIngredientesFiltro (FiltrosDTO tipoFiltro)throws PersistenciaException;
     
     public abstract List<Ingrediente> consultarTodosIngredientes()throws PersistenciaException;
+    
+    public abstract Ingrediente consultarPorNombreyUnidad(String nombre, String unidadMedida) throws PersistenciaException;
 }

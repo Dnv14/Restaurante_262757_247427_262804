@@ -4,7 +4,6 @@
  */
 package com.mycompany.restaurantepersistencia;
 
-import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
 import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
 import com.mycompany.restaurantedominio_262757_247427_262804.UnidadMedida;
 import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
@@ -14,6 +13,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -50,16 +50,58 @@ public class IngredienteDAO implements IIngredienteDAO {
     public List<Ingrediente> consultarIngredientesFiltro(FiltrosDTO tipoFiltro) throws PersistenciaException {
         EntityManager entityManager = ManejadorConexiones.crearEntityManager();
         CriteriaBuilder cBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<ClienteFrecuente> cQuery = cBuilder.createQuery(ClienteFrecuente.class);
-        Root<ClienteFrecuente> root = cQuery.from(ClienteFrecuente.class);
+        CriteriaQuery<Ingrediente> cQuery = cBuilder.createQuery(Ingrediente.class);
+        Root<Ingrediente> root = cQuery.from(Ingrediente.class);
         List<Predicate> predicados = new LinkedList<>();
-        
-       return null;
+
+        if (tipoFiltro.getNombre() != null && !tipoFiltro.getNombre().isEmpty()) {
+            predicados.add(cBuilder.like(root.get("nombre"), "%" + tipoFiltro.getTelefono() + "%"));
+        }
+
+        if (tipoFiltro.getUnidadMedida() != null && !tipoFiltro.getUnidadMedida().isEmpty()) {
+            predicados.add(cBuilder.like(root.get("nombre"), "%" + tipoFiltro.getTelefono() + "%"));
+        }
+        if (!predicados.isEmpty()) {
+            cQuery.where(predicados.toArray(new Predicate[predicados.size()]));
+        }
+        return entityManager.createQuery(cQuery).getResultList();
+
     }
 
     @Override
     public List<Ingrediente> consultarTodosIngredientes() throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+            String queryJPQL = """
+                               SELECT i FROM Ingredientes i
+                               """;
+            TypedQuery<Ingrediente> query = entityManager.createQuery(queryJPQL, Ingrediente.class);
+            return query.getResultList();
+        } catch (PersistenceException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudieron obtener los ingredientes");
+        }
     }
+
+    @Override
+    public Ingrediente consultarPorNombreyUnidad(String nombre, String unidadMedida) throws PersistenciaException {
+        EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+        CriteriaBuilder cBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Ingrediente> cQuery = cBuilder.createQuery(Ingrediente.class);
+        Root<Ingrediente> root = cQuery.from(Ingrediente.class);
+        
+        cQuery.where(
+            cBuilder.and(
+                cBuilder.equal(root.get("nombre"), nombre),
+                cBuilder.equal(root.get("unidadMedida"), unidadMedida)));
+        
+        List<Ingrediente> resultado = entityManager.createQuery(cQuery).getResultList();
+        if(resultado.isEmpty()){
+            return null;
+        }
+        return resultado.get(0);
+    }
+    
+    
 
 }
