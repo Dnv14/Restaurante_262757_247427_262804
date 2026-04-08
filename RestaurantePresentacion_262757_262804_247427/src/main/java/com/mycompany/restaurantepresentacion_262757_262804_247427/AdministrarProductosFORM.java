@@ -12,13 +12,15 @@ import java.util.List;
  * @author Diego
  */
 public class AdministrarProductosFORM extends javax.swing.JFrame {
-    
+
     private ControlForms control;
 
     public AdministrarProductosFORM(ControlForms control) {
         this.control = control;
-        this.cargarProductos();
         initComponents();
+        java.awt.EventQueue.invokeLater(() -> {
+            cargarProductos(); 
+        });
     }
 
     /**
@@ -147,10 +149,10 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cargarProductos(){
+    public void cargarProductos() {
         control.buscarProductos("");
     }
-    
+
     public void mostrarResultados(List<Producto> productos) {
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) productosTABLE.getModel();
         modelo.setRowCount(0);
@@ -164,10 +166,10 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
             });
         }
     }
-    
+
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         String nombreProducto = txtBusqueda.getText();
-        
+        control.buscarProductos(nombreProducto);
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
@@ -178,7 +180,7 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
-    private void volverAtras(){
+    private void volverAtras() {
         control.navegarMenuProductos();
     }
 
