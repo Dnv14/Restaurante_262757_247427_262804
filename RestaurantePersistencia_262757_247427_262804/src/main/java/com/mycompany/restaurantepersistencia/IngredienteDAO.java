@@ -52,11 +52,11 @@ public class IngredienteDAO implements IIngredienteDAO {
         List<Predicate> predicados = new LinkedList<>();
 
         if (tipoFiltro.getNombre() != null && !tipoFiltro.getNombre().isEmpty()) {
-            predicados.add(cBuilder.like(root.get("nombre_ingrediente"), "%" + tipoFiltro.getTelefono() + "%"));
+            predicados.add(cBuilder.like(root.get("nombreIngrediente"), "%" + tipoFiltro.getNombre() + "%"));
         }
 
         if (tipoFiltro.getUnidadMedida() != null && !tipoFiltro.getUnidadMedida().isEmpty()) {
-            predicados.add(cBuilder.like(root.get("unidad_medida"), "%" + tipoFiltro.getTelefono() + "%"));
+            predicados.add(cBuilder.like(root.get("unidadMedida"), "%" + tipoFiltro.getUnidadMedida() + "%"));
         }
         if (!predicados.isEmpty()) {
             cQuery.where(predicados.toArray(new Predicate[predicados.size()]));
