@@ -5,6 +5,7 @@
 package com.mycompany.restaurantenegocio_262757_247427_262804;
 
 import com.mycompany.restaurantepersistencia.ClienteFrecuenteDAO;
+import com.mycompany.restaurantepersistencia.ProductosDAO;
 
 /**
  *
@@ -13,14 +14,19 @@ import com.mycompany.restaurantepersistencia.ClienteFrecuenteDAO;
 public class ObjetosBO {
 
     private IClientesFrecuentesBO clientesFrecuentesBO;
-    
+    private IProductosBO productosBO;
+
     public ObjetosBO() {
-        
         this.clientesFrecuentesBO = new ClientesFrecuentesBO(new ClienteFrecuenteDAO());
+        this.productosBO = new ProductosBO(new ProductosDAO());
     }
 
     public IClientesFrecuentesBO getClientesFrecuentesBO() {
         return clientesFrecuentesBO;
+    }
+
+    public IProductosBO getProductosBO() {
+        return productosBO;
     }
 
 }

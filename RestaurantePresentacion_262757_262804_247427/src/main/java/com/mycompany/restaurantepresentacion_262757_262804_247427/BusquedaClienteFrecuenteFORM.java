@@ -103,6 +103,11 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         jScrollPane1.setViewportView(clientesFrecuentesTable);
 
         filtrosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtrosComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrosComboBoxActionPerformed(evt);
+            }
+        });
 
         botonBuscar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         botonBuscar.setText("Buscar");
@@ -182,11 +187,11 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -206,6 +211,10 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
+
+    private void filtrosComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrosComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filtrosComboBoxActionPerformed
 
     public void volverAtras() {
         control.navegarMenuClientesFrecuentes();

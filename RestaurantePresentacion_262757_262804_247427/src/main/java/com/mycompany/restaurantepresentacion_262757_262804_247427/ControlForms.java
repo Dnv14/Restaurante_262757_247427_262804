@@ -5,8 +5,10 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
-import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.TipoProductoDTO;
 import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
 import com.mycompany.restaurantenegocio_262757_247427_262804.ObjetosBO;
 import java.util.List;
@@ -58,16 +60,16 @@ public class ControlForms {
     public void navegarConsultaClientes() {
         mostrarPantalla(new BusquedaClienteFrecuenteFORM(this));
     }
-    
-    public void navegarMenuProductos(){
+
+    public void navegarMenuProductos() {
         mostrarPantalla(new MenuProductosFORM(this));
     }
-    
-    public void navegarAdministrarProductos(){
+
+    public void navegarAdministrarProductos() {
         mostrarPantalla(new AdministrarProductosFORM(this));
     }
-    
-    public void navegarAniadirProducto(){
+
+    public void navegarAniadirProducto() {
         mostrarPantalla(new AniadirProductoFORM(this));
     }
 
@@ -88,6 +90,21 @@ public class ControlForms {
             List<ClienteFrecuente> lista = objetosBO.getClientesFrecuentesBO().validarBarraBusqueda(texto, tipoFiltro);
             ((BusquedaClienteFrecuenteFORM) frameActual).mostrarResultados(lista);
 
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    public void agregarProducto(String nombre, Double precio, String descripcion, String tipoProducto) {
+        try {
+            TipoProductoDTO tipoDTO = TipoProductoDTO.valueOf(tipoProducto.toUpperCase());
+            EstadoDTO estado = EstadoDTO.ACTIVO;
+            NuevoProductoDTO productoDTO = new NuevoProductoDTO(nombre, descripcion, precio, tipoDTO, estado);
+            
+            objetosBO.getProductosBO().validarRegistroProducto(productoDTO);
+            JOptionPane.showMessageDialog(frameActual, "Producto registrado con éxito");
+            navegarMenuProductos();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }

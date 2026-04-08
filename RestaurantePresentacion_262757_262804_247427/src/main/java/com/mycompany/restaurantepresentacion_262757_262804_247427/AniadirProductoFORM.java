@@ -30,26 +30,26 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblInstruccion = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         btnVolverAtras = new javax.swing.JButton();
         btnAñadirIngredientes = new javax.swing.JButton();
         btnAñadirProducto = new javax.swing.JButton();
         txtPrecio = new javax.swing.JTextField();
-        lblInstruccion1 = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
-        lblInstruccion2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        lblTipo = new javax.swing.JLabel();
         tipoComboBox = new javax.swing.JComboBox<>();
-        lblInstruccion3 = new javax.swing.JLabel();
-        txtNombre2 = new javax.swing.JTextField();
+        lbldescp = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
-        lblInstruccion.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblInstruccion.setForeground(new java.awt.Color(0, 0, 0));
-        lblInstruccion.setText("Precio:");
+        lblPrecio.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblPrecio.setForeground(new java.awt.Color(0, 0, 0));
+        lblPrecio.setText("Precio:");
 
         lblTitulo.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lblTitulo.setText("Añadir Producto");
@@ -74,23 +74,24 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
 
         txtPrecio.addActionListener(this::txtPrecioActionPerformed);
 
-        lblInstruccion1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblInstruccion1.setForeground(new java.awt.Color(0, 0, 0));
-        lblInstruccion1.setText("Nombre:");
+        lblNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombre.setText("Nombre:");
 
-        txtNombre1.addActionListener(this::txtNombre1ActionPerformed);
+        txtNombre.addActionListener(this::txtNombreActionPerformed);
 
-        lblInstruccion2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblInstruccion2.setForeground(new java.awt.Color(0, 0, 0));
-        lblInstruccion2.setText("Tipo:");
+        lblTipo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTipo.setForeground(new java.awt.Color(0, 0, 0));
+        lblTipo.setText("Tipo:");
 
-        tipoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PLATILLO", "BEBIDA", "POSTRE" }));
+        tipoComboBox.addActionListener(this::tipoComboBoxActionPerformed);
 
-        lblInstruccion3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblInstruccion3.setForeground(new java.awt.Color(0, 0, 0));
-        lblInstruccion3.setText("Descripción:");
+        lbldescp.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbldescp.setForeground(new java.awt.Color(0, 0, 0));
+        lbldescp.setText("Descripción:");
 
-        txtNombre2.addActionListener(this::txtNombre2ActionPerformed);
+        txtDescripcion.addActionListener(this::txtDescripcionActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,19 +110,19 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblInstruccion3)
+                        .addComponent(lbldescp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNombre2))
+                        .addComponent(txtDescripcion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblInstruccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(lblInstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)
-                        .addComponent(lblInstruccion2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(88, Short.MAX_VALUE))
@@ -139,15 +140,15 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInstruccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInstruccion2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblInstruccion3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbldescp, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAñadirIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
@@ -169,6 +170,9 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
@@ -182,20 +186,29 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAñadirIngredientesActionPerformed
 
     private void btnAñadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirProductoActionPerformed
-
+        String nombre = txtNombre.getText();
+        Double precio = Double.parseDouble(txtPrecio.getText());
+        String descripcion = txtDescripcion.getText();
+        String tipoSeleccionado = String.valueOf(tipoComboBox.getSelectedItem());
+        
+        control.agregarProducto(nombre, precio, descripcion, tipoSeleccionado);
     }//GEN-LAST:event_btnAñadirProductoActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioActionPerformed
 
-    private void txtNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre1ActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre1ActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void txtNombre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre2ActionPerformed
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre2ActionPerformed
+    }//GEN-LAST:event_txtDescripcionActionPerformed
+
+    private void tipoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoComboBoxActionPerformed
 
     
 
@@ -204,14 +217,14 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
     private javax.swing.JButton btnAñadirProducto;
     private javax.swing.JButton btnVolverAtras;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblInstruccion;
-    private javax.swing.JLabel lblInstruccion1;
-    private javax.swing.JLabel lblInstruccion2;
-    private javax.swing.JLabel lblInstruccion3;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lbldescp;
     private javax.swing.JComboBox<String> tipoComboBox;
-    private javax.swing.JTextField txtNombre1;
-    private javax.swing.JTextField txtNombre2;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
