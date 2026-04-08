@@ -8,6 +8,7 @@ import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
 import com.mycompany.restaurantedominio_262757_247427_262804.UnidadMedida;
 import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoIngredienteDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,13 +30,9 @@ public class IngredienteDAO implements IIngredienteDAO {
 
     @Override
     public Ingrediente agregarIngrediente(NuevoIngredienteDTO nuevoIngrediente) throws PersistenciaException {
-        Ingrediente ingrediente = new Ingrediente();
-        ingrediente.setNombreIngrediente(nuevoIngrediente.getNombreIngrediente());
-        ingrediente.setStockIngrediente(nuevoIngrediente.getStockIngrediente());
-        UnidadMedida unidadMedida = UnidadMedida.valueOf(nuevoIngrediente.getUnidadMedida().name());
-        ingrediente.setUnidadMedida(unidadMedida);
         try {
             EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+            Ingrediente ingrediente = NuevoIngredienteDTOAIngredienteAdapter.adaptar(nuevoIngrediente);
             entityManager.getTransaction().begin();
             entityManager.persist(ingrediente);
             entityManager.getTransaction().commit();
@@ -55,11 +52,11 @@ public class IngredienteDAO implements IIngredienteDAO {
         List<Predicate> predicados = new LinkedList<>();
 
         if (tipoFiltro.getNombre() != null && !tipoFiltro.getNombre().isEmpty()) {
-            predicados.add(cBuilder.like(root.get("nombre"), "%" + tipoFiltro.getTelefono() + "%"));
+            predicados.add(cBuilder.like(root.get("nombre_ingrediente"), "%" + tipoFiltro.getTelefono() + "%"));
         }
 
         if (tipoFiltro.getUnidadMedida() != null && !tipoFiltro.getUnidadMedida().isEmpty()) {
-            predicados.add(cBuilder.like(root.get("nombre"), "%" + tipoFiltro.getTelefono() + "%"));
+            predicados.add(cBuilder.like(root.get("unidad_medida"), "%" + tipoFiltro.getTelefono() + "%"));
         }
         if (!predicados.isEmpty()) {
             cQuery.where(predicados.toArray(new Predicate[predicados.size()]));
@@ -73,7 +70,7 @@ public class IngredienteDAO implements IIngredienteDAO {
         try {
             EntityManager entityManager = ManejadorConexiones.crearEntityManager();
             String queryJPQL = """
-                               SELECT i FROM Ingredientes i
+                               SELECT i FROM ingredientes i
                                """;
             TypedQuery<Ingrediente> query = entityManager.createQuery(queryJPQL, Ingrediente.class);
             return query.getResultList();
@@ -84,7 +81,7 @@ public class IngredienteDAO implements IIngredienteDAO {
     }
 
     @Override
-    public Ingrediente consultarPorNombreyUnidad(String nombre, String unidadMedida) throws PersistenciaException {
+    public Ingrediente consultarPorNombreyUnidad(String nombre, UnidadMedidaDTO unidadMedida) throws PersistenciaException {
         EntityManager entityManager = ManejadorConexiones.crearEntityManager();
         CriteriaBuilder cBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Ingrediente> cQuery = cBuilder.createQuery(Ingrediente.class);
@@ -92,8 +89,8 @@ public class IngredienteDAO implements IIngredienteDAO {
         
         cQuery.where(
             cBuilder.and(
-                cBuilder.equal(root.get("nombre"), nombre),
-                cBuilder.equal(root.get("unidadMedida"), unidadMedida)));
+                cBuilder.equal(root.get("nombre_ingrediente"), nombre),
+                cBuilder.equal(root.get("unidad_Medida"), unidadMedida)));
         
         List<Ingrediente> resultado = entityManager.createQuery(cQuery).getResultList();
         if(resultado.isEmpty()){

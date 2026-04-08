@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,10 +27,12 @@ public class Receta implements Serializable {
     @Column(name = "id_receta")
     private Long id;
     
+    @ManyToOne
     @JoinColumn(name = "id_producto",nullable = false)
     private Producto producto;
     
-    @JoinColumn(name = "ingrediente", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_ingrediente", nullable = false)
     private Ingrediente ingrediente;
     
     @Column(name = "cantidad_ingrediente")

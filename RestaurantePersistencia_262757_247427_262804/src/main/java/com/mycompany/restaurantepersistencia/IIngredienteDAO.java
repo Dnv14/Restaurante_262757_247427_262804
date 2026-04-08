@@ -5,8 +5,10 @@
 package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
+import com.mycompany.restaurantedominio_262757_247427_262804.UnidadMedida;
 import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoIngredienteDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
 import java.util.List;
 
 /**
@@ -21,5 +23,5 @@ public interface IIngredienteDAO {
     
     public abstract List<Ingrediente> consultarTodosIngredientes()throws PersistenciaException;
     
-    public abstract Ingrediente consultarPorNombreyUnidad(String nombre, String unidadMedida) throws PersistenciaException;
+    public abstract Ingrediente consultarPorNombreyUnidad(String nombre, UnidadMedidaDTO unidadMedida) throws PersistenciaException;
 }
