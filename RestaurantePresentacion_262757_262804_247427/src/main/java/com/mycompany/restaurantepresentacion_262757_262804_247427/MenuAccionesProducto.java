@@ -41,7 +41,7 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         btnVolverAtras = new javax.swing.JButton();
         btnEditarProducto = new javax.swing.JButton();
         btnCambiarEstado = new javax.swing.JButton();
-        btnDescripcionProducto = new javax.swing.JButton();
+        btnDetallesProducto = new javax.swing.JButton();
         btnEliminarProducto = new javax.swing.JButton();
         lblProductoSeleccionado = new javax.swing.JLabel();
 
@@ -74,11 +74,11 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         btnCambiarEstado.setText("Cambiar Estado");
         btnCambiarEstado.addActionListener(this::btnCambiarEstadoActionPerformed);
 
-        btnDescripcionProducto.setBackground(new java.awt.Color(51, 51, 51));
-        btnDescripcionProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnDescripcionProducto.setForeground(new java.awt.Color(255, 255, 255));
-        btnDescripcionProducto.setText("Descripción del Producto");
-        btnDescripcionProducto.addActionListener(this::btnDescripcionProductoActionPerformed);
+        btnDetallesProducto.setBackground(new java.awt.Color(51, 51, 51));
+        btnDetallesProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDetallesProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnDetallesProducto.setText("Detalles del Producto");
+        btnDetallesProducto.addActionListener(this::btnDetallesProductoActionPerformed);
 
         btnEliminarProducto.setBackground(new java.awt.Color(51, 51, 51));
         btnEliminarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -104,9 +104,9 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEditarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnDescripcionProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDetallesProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCambiarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(91, 91, 91))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -135,7 +135,7 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDescripcionProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDetallesProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48))
         );
 
@@ -195,9 +195,9 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
-    private void btnDescripcionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescripcionProductoActionPerformed
+    private void btnDetallesProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDescripcionProductoActionPerformed
+    }//GEN-LAST:event_btnDetallesProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
 
@@ -236,7 +236,7 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCambiarEstado;
-    private javax.swing.JButton btnDescripcionProducto;
+    private javax.swing.JButton btnDetallesProducto;
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnVolverAtras;

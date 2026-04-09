@@ -4,24 +4,34 @@
  */
 package com.mycompany.restaurantedtos_262757_247427_262804;
 
+import java.util.List;
+
 /**
  *
  * @author Diego
  */
 public class NuevoProductoDTO {
-    
+
     private Long id;
     private String nombre;
     private String descripcion;
     private Double precio;
     private TipoProductoDTO tipoProducto;
     private EstadoDTO estado;
+    private List<NuevaRecetaDTO> recetas;
 
     public NuevoProductoDTO() {
     }
 
-    
-    
+    public NuevoProductoDTO(String nombre, String descripcion, Double precio, TipoProductoDTO tipoProducto, EstadoDTO estado, List<NuevaRecetaDTO> recetas) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.tipoProducto = tipoProducto;
+        this.estado = estado;
+        this.recetas = recetas;
+    }
+
     public NuevoProductoDTO(String nombre, String descripcion, Double precio, TipoProductoDTO tipoProducto, EstadoDTO estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -38,8 +48,6 @@ public class NuevoProductoDTO {
         this.tipoProducto = tipoProducto;
         this.estado = estado;
     }
-    
-    
 
     public String getNombre() {
         return nombre;
@@ -88,7 +96,14 @@ public class NuevoProductoDTO {
     public void setEstado(EstadoDTO estado) {
         this.estado = estado;
     }
-    
+
+    public List<NuevaRecetaDTO> getRecetas() {
+        return recetas;
+    }
+
+    public void setRecetas(List<NuevaRecetaDTO> recetas) {
+        this.recetas = recetas;
+    }
     
     
 }

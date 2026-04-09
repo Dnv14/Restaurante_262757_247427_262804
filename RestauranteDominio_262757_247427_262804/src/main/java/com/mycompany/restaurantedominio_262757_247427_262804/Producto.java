@@ -47,7 +47,7 @@ public class Producto implements Serializable {
     @Enumerated(EnumType.STRING)
     private Estado estado;
 
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     private List<Receta> receta;
 
     public Producto() {

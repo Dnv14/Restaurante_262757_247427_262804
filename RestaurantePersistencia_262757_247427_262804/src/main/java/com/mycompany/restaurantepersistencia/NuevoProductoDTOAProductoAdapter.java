@@ -5,11 +5,16 @@
 package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Estado;
+import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedominio_262757_247427_262804.Receta;
 import com.mycompany.restaurantedominio_262757_247427_262804.TipoProducto;
 import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevaRecetaDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.TipoProductoDTO;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -35,6 +40,23 @@ public class NuevoProductoDTOAProductoAdapter {
                 productoDTO.getDescripcion(), productoDTO.getPrecio(),
                 tipoProductoDominio,
                 estadoDominio);
+
+        if (productoDTO.getRecetas() != null || !productoDTO.getRecetas().isEmpty()) {
+            List<Receta> listaRecetas = new LinkedList<>();
+
+            for (NuevaRecetaDTO recetaDTO : productoDTO.getRecetas()) {
+                Receta recetaDominio = new Receta();
+                recetaDominio.setCantidadIngrediente(recetaDTO.getCantidad());
+                recetaDominio.setProducto(productoNuevo);
+
+                Ingrediente ingrediente = new Ingrediente();
+                ingrediente.setIdIngrediente(recetaDTO.getId());
+                recetaDominio.setIngrediente(ingrediente);
+
+                listaRecetas.add(recetaDominio);
+            }
+            productoNuevo.setReceta(listaRecetas);
+        }
 
         return productoNuevo;
     }
