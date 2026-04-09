@@ -24,9 +24,7 @@ public class ControlForms {
 
     private ObjetosBO objetosBO;
     private JFrame frameActual;
-    private MenuReportes menuReportes;
-    private FiltroReportesClientes filtroReportesClientes;
-    private FiltroReportesComandas filtroReporteComandas;
+    
 
     public ControlForms() {
         this.objetosBO = new ObjetosBO();
@@ -157,15 +155,5 @@ public class ControlForms {
     }
 }
 
-    public void MenuReportes() {
-        menuReportes.setVisible(true);
-    }
-
-    public void friltroComandas() {
-        filtroReporteComandas.setVisible(true);
-    }
-
-    public void filtroClientes() {
-        filtroReportesClientes.setVisible(true);
-    }
+    
 }
