@@ -79,6 +79,12 @@ public class ControlForms {
     public void navegarAniadirProducto() {
         mostrarPantalla(new AniadirProductoFORM(this));
     }
+    
+    public void navegarEditarProducto(Long id) {
+        EditarProductoFORM editarProducto = new EditarProductoFORM(frameActual, true, this, id);
+        editarProducto.setLocationRelativeTo(frameActual);
+        editarProducto.setVisible(true);
+    }
 
     //logica de botones 
     public void registrarCliente(String nombre, String apellidos, String telefono, String correo) {
@@ -126,6 +132,14 @@ public class ControlForms {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void actualizarProducto(NuevoProductoDTO productoActualizar){
+        try {
+            objetosBO.getProductosBO().validacionProductoActualizado(productoActualizar);
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     //utileria
     public Producto consultaProductoPorID(Long id) throws NegocioException {
@@ -136,6 +150,12 @@ public class ControlForms {
         }
         return null;
     }
+    
+    public void reiniciarTablaProductos() {
+    if (frameActual instanceof AdministrarProductosFORM administrarProductosFrom) {
+        administrarProductosFrom.cargarProductos(); 
+    }
+}
 
     public void MenuReportes() {
         menuReportes.setVisible(true);

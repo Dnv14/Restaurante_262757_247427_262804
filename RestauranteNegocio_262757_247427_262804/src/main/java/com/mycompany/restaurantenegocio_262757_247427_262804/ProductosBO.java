@@ -67,7 +67,14 @@ public class ProductosBO implements IProductosBO {
 
     @Override
     public Producto validacionProductoActualizado(NuevoProductoDTO productoActualizar) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (productoActualizar.getId() == null) {
+            throw new NegocioException("El ID del producto es nulo");
+        }
+        try {
+            return productosDAO.actualizarProducto(productoActualizar);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo actualizar el producto solicitado");
+        }
     }
 
 }

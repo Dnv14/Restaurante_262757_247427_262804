@@ -23,4 +23,6 @@ public interface IProductoDAO {
     public abstract Producto consultarProductoPorId(Long id) throws PersistenciaException;
 
     public abstract Producto actualizarProducto(NuevoProductoDTO producto) throws PersistenciaException;
+    
+    public abstract void eliminarProducto(Long id) throws PersistenciaException;
 }

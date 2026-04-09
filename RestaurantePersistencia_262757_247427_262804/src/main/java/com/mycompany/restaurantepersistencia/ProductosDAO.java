@@ -107,4 +107,18 @@ public class ProductosDAO implements IProductoDAO {
             throw new PersistenciaException("No se pudo actualizar el producto");
         }
     }
+
+    @Override
+    public void eliminarProducto(Long id) throws PersistenciaException {
+        try {
+            EntityManager em = ManejadorConexiones.crearEntityManager();
+            em.getTransaction().begin();
+            Producto productoEliminar = em.find(Producto.class,id);
+            em.remove(productoEliminar);
+            em.getTransaction().commit();
+            
+        } catch (PersistenceException ex) {
+            throw new PersistenciaException("No se pudo eliminar el producto");
+        }
+    }
 }

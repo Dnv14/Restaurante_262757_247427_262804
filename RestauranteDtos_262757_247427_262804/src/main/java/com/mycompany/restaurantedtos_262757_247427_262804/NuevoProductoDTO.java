@@ -17,6 +17,11 @@ public class NuevoProductoDTO {
     private TipoProductoDTO tipoProducto;
     private EstadoDTO estado;
 
+    public NuevoProductoDTO() {
+    }
+
+    
+    
     public NuevoProductoDTO(String nombre, String descripcion, Double precio, TipoProductoDTO tipoProducto, EstadoDTO estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -63,6 +68,27 @@ public class NuevoProductoDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public void setTipoProducto(TipoProductoDTO tipoProducto) {
+        this.tipoProducto = tipoProducto;
+    }
+
+    public void setEstado(EstadoDTO estado) {
+        this.estado = estado;
+    }
+    
     
     
 }

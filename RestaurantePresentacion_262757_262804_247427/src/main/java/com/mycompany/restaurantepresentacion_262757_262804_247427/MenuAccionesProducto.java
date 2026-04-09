@@ -20,6 +20,8 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         super(parent, modal);
         this.control = control;
         this.idProducto = idProducto;
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.setTitle("Menú Acciones Producto");
         initComponents();
         lblCargarNombreProducto();
@@ -149,14 +151,12 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
-        volverAtras();
+        dispose();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
-    private void volverAtras() {
-        control.navegarAdministrarProductos();
-    }
-    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
 
+    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+        control.navegarEditarProducto(idProducto);
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
