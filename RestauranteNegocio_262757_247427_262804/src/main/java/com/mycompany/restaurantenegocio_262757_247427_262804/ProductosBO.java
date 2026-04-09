@@ -5,6 +5,7 @@
 package com.mycompany.restaurantenegocio_262757_247427_262804;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import com.mycompany.restaurantepersistencia.IProductoDAO;
 import com.mycompany.restaurantepersistencia.PersistenciaException;
@@ -79,13 +80,26 @@ public class ProductosBO implements IProductosBO {
 
     @Override
     public void validarEliminarProducto(Long id) throws NegocioException {
-         if (id == null) {
+        if (id == null) {
             throw new NegocioException("El ID del producto es nulo");
         }
         try {
             productosDAO.eliminarProducto(id);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudo eliminar el producto solicitado");
+        }
+    }
+
+    @Override
+    public void validarCambiarEstado(Long id, EstadoDTO estadoDTO) throws NegocioException {
+        if (id == null) {
+            throw new NegocioException("El ID del producto es nulo");
+        }
+        
+        try {
+            productosDAO.actualizarEstadoProducto(id, estadoDTO);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo cambiar el estado del producto solicitado");
         }
     }
 

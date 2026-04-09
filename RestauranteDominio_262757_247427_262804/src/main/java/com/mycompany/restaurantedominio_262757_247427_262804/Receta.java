@@ -36,15 +36,15 @@ public class Receta implements Serializable {
     private Ingrediente ingrediente;
     
     @Column(name = "cantidad_ingrediente")
-    private Double cantidadInregidente;
+    private Double cantidadIngrediente;
 
     public Receta() {
     }
 
-    public Receta(Producto producto, Ingrediente ingrediente, Double cantidadInregidente) {
+    public Receta(Producto producto, Ingrediente ingrediente, Double cantidadIngrediente) {
         this.producto = producto;
         this.ingrediente = ingrediente;
-        this.cantidadInregidente = cantidadInregidente;
+        this.cantidadIngrediente = cantidadIngrediente;
     }
 
     public Producto getProducto() {
@@ -63,12 +63,12 @@ public class Receta implements Serializable {
         this.ingrediente = ingrediente;
     }
 
-    public Double getCantidadInregidente() {
-        return cantidadInregidente;
+    public Double getCantidadIngrediente() {
+        return cantidadIngrediente;
     }
 
     public void setCantidadInregidente(Double cantidadInregidente) {
-        this.cantidadInregidente = cantidadInregidente;
+        this.cantidadIngrediente = cantidadInregidente;
     }
     
     public Long getId() {

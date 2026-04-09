@@ -134,11 +134,23 @@ public class ControlForms {
     public void actualizarProducto(NuevoProductoDTO productoActualizar)throws NegocioException{
         try {
             objetosBO.getProductosBO().validacionProductoActualizado(productoActualizar);
+            this.reiniciarTablaProductos();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    public void eliminarProducto(Long id){
+        try {
+            objetosBO.getProductosBO().validarEliminarProducto(id);
+            this.reiniciarTablaProductos();
+            
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
     //utileria
     public Producto consultaProductoPorID(Long id) throws NegocioException {
         try {

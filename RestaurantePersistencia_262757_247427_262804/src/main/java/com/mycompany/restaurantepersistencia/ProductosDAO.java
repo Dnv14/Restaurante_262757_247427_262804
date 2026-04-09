@@ -135,7 +135,7 @@ public class ProductosDAO implements IProductoDAO {
             em.getTransaction().commit();
             
         } catch (PersistenceException ex) {
-            throw new PersistenciaException("No se pudo eliminar el producto");
+            throw new PersistenciaException("No se pudo actualizar el estado del producto");
         }
     }
 }

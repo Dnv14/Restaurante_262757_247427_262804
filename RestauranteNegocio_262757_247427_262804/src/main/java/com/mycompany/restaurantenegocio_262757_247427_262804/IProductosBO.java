@@ -5,6 +5,7 @@
 package com.mycompany.restaurantenegocio_262757_247427_262804;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface IProductosBO {
     public abstract Producto validacionProductoActualizado(NuevoProductoDTO productoActualizar) throws NegocioException;
     
     public abstract void validarEliminarProducto(Long id)throws NegocioException;
+    
+    public abstract void validarCambiarEstado(Long id, EstadoDTO estadoDTO)throws NegocioException;
 }
