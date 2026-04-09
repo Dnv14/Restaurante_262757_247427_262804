@@ -5,11 +5,15 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
 import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteFrecuenteDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevoIngredienteDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.TipoProductoDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
 import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
 import com.mycompany.restaurantenegocio_262757_247427_262804.ObjetosBO;
 import java.util.List;
@@ -66,6 +70,18 @@ public class ControlForms {
     public void navegarAdministrarProductos() {
         mostrarPantalla(new AdministrarProductosFORM(this));
     }
+    
+    public void navegarMenuIngredientes(){
+        mostrarPantalla(new MenuIngredientesFORM(this));
+    }
+    
+    public void navegarAgregarIngrediente(){
+        mostrarPantalla(new AgregarIngredientesFORM(this));
+    }
+    
+    public void navegarBusquedaIngrediente(){
+        mostrarPantalla(new BusquedaIngredienteFORM(this));
+    }
 
     public void navegarMenuAccionesProducto(Long id) {
         MenuAccionesProducto menuAccionesProducto = new MenuAccionesProducto(frameActual, true, this, id);
@@ -82,6 +98,8 @@ public class ControlForms {
         editarProducto.setLocationRelativeTo(frameActual);
         editarProducto.setVisible(true);
     }
+    
+    
 
     //logica de botones 
     public void registrarCliente(String nombre, String apellidos, String telefono, String correo) {
@@ -172,6 +190,27 @@ public class ControlForms {
     public void reiniciarTablaProductos() {
         if (frameActual instanceof AdministrarProductosFORM administrarProductosFrom) {
             administrarProductosFrom.cargarProductos();
+        }
+    }
+    
+    public void registrarIngrediente(String nombre, Double stock, String unidadMedida){
+        try{
+            UnidadMedidaDTO unidadDTO = UnidadMedidaDTO.valueOf(unidadMedida.toUpperCase());
+            NuevoIngredienteDTO ingredienteDTO = new NuevoIngredienteDTO(nombre, stock, unidadDTO);
+            objetosBO.getIngredientesBO().validarRegistroIngrediente(ingredienteDTO);
+            JOptionPane.showMessageDialog(frameActual, "El ingrediente ha sido registrado con éxito.");
+            navegarMenuIngredientes();
+        }catch(NegocioException ex){
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void buscarIngredientes(String texto, String tipoFiltro){
+        try{
+            List<Ingrediente> lista = objetosBO.getIngredientesBO().validarBarraBusqueda(texto, tipoFiltro);
+            ((BusquedaIngredienteFORM)frameActual).mostrarResultados(lista);
+        }catch(NegocioException ex){
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }
 

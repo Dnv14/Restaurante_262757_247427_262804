@@ -5,7 +5,6 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
-import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import java.util.List;
 
 /**
