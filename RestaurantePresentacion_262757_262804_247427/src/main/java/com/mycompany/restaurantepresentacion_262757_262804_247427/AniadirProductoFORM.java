@@ -4,13 +4,18 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevaRecetaDTO;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author Diego
  */
 public class AniadirProductoFORM extends javax.swing.JFrame {
-    
+
     private ControlForms control;
+    private List<NuevaRecetaDTO> ingredientesReceta = new LinkedList<>();
 
     /**
      * Creates new form AniadirProductoFORM
@@ -19,7 +24,6 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
         this.control = control;
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,8 +104,6 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnVolverAtras)
-                .addGap(242, 242, 242)
-                .addComponent(lblTitulo)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -115,13 +117,16 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDescripcion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(lblPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTitulo)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(lblPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(43, 43, 43)
                         .addComponent(lblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -170,20 +175,21 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     
-    
+    public void agregarIngredienteLista(NuevaRecetaDTO nuevaReceta) {
+        this.ingredientesReceta.add(nuevaReceta);
+    }
     
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
-    public void volverAtras(){
+    public void volverAtras() {
         control.navegarMenuProductos();
     }
-    
+
     private void btnAñadirIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirIngredientesActionPerformed
-        control.navegarAdministrarProductos();
+        control.agregarIngredientesProducto();
     }//GEN-LAST:event_btnAñadirIngredientesActionPerformed
 
     private void btnAñadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirProductoActionPerformed
@@ -191,8 +197,9 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
         Double precio = Double.parseDouble(txtPrecio.getText());
         String descripcion = txtDescripcion.getText();
         String tipoSeleccionado = String.valueOf(tipoComboBox.getSelectedItem());
-        
-        control.agregarProducto(nombre, precio, descripcion, tipoSeleccionado);
+
+       
+        control.agregarProducto(nombre, precio, descripcion, tipoSeleccionado,this.ingredientesReceta);
     }//GEN-LAST:event_btnAñadirProductoActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -211,8 +218,13 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tipoComboBoxActionPerformed
 
-    
+    public List<NuevaRecetaDTO> getIngredientesReceta() {
+        return ingredientesReceta;
+    }
 
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAñadirIngredientes;
     private javax.swing.JButton btnAñadirProducto;

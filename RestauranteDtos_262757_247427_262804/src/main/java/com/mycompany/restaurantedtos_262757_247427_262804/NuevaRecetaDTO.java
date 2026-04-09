@@ -8,8 +8,8 @@ package com.mycompany.restaurantedtos_262757_247427_262804;
  *
  * @author Diego
  */
-
 public class NuevaRecetaDTO {
+
     private Long idIngrediente;
     private String nombre;
     private Double cantidad;
@@ -23,12 +23,12 @@ public class NuevaRecetaDTO {
         this.cantidad = cantidad;
     }
 
-    public Long getId() {
+    public Long getIdIngrediente() {
         return idIngrediente;
     }
 
-    public void setId(Long id) {
-        this.idIngrediente = id;
+    public void setIdIngrediente(Long idIngrediente) {
+        this.idIngrediente = idIngrediente;
     }
 
     public String getNombre() {
@@ -46,7 +46,5 @@ public class NuevaRecetaDTO {
     public void setCantidad(Double cantidad) {
         this.cantidad = cantidad;
     }
-    
-    
-}
 
+}

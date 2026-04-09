@@ -50,7 +50,7 @@ public class NuevoProductoDTOAProductoAdapter {
                 recetaDominio.setProducto(productoNuevo);
 
                 Ingrediente ingrediente = new Ingrediente();
-                ingrediente.setIdIngrediente(recetaDTO.getId());
+                ingrediente.setIdIngrediente(recetaDTO.getIdIngrediente());
                 recetaDominio.setIngrediente(ingrediente);
 
                 listaRecetas.add(recetaDominio);

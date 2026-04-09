@@ -196,7 +196,7 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
     private void btnDetallesProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesProductoActionPerformed
-        // TODO add your handling code here:
+        control.navegarDetallesProducto(idProducto);
     }//GEN-LAST:event_btnDetallesProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
