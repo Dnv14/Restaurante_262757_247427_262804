@@ -5,6 +5,7 @@
 package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
+import com.mycompany.restaurantedominio_262757_247427_262804.UnidadMedida;
 import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoIngredienteDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
@@ -55,7 +56,12 @@ public class IngredienteDAO implements IIngredienteDAO {
         }
 
         if (tipoFiltro.getUnidadMedida() != null && !tipoFiltro.getUnidadMedida().isEmpty()) {
-            predicados.add(cBuilder.like(root.get("unidadMedida"), "%" + tipoFiltro.getUnidadMedida() + "%"));
+            try{
+                UnidadMedida unidad = UnidadMedida.valueOf(tipoFiltro.getUnidadMedida().toUpperCase());
+                predicados.add(cBuilder.equal(root.get("unidadMedida"), unidad));
+            }catch(IllegalArgumentException ex){
+                
+            }
         }
         if (!predicados.isEmpty()) {
             cQuery.where(predicados.toArray(new Predicate[predicados.size()]));
@@ -69,7 +75,7 @@ public class IngredienteDAO implements IIngredienteDAO {
         try {
             EntityManager entityManager = ManejadorConexiones.crearEntityManager();
             String queryJPQL = """
-                               SELECT i FROM ingredientes i
+                               SELECT i FROM Ingrediente i
                                """;
             TypedQuery<Ingrediente> query = entityManager.createQuery(queryJPQL, Ingrediente.class);
             return query.getResultList();
@@ -88,8 +94,8 @@ public class IngredienteDAO implements IIngredienteDAO {
         
         cQuery.where(
             cBuilder.and(
-                cBuilder.equal(root.get("nombre_ingrediente"), nombre),
-                cBuilder.equal(root.get("unidad_Medida"), unidadMedida)));
+                cBuilder.equal(root.get("nombreIngrediente"), nombre),
+                cBuilder.equal(root.get("unidadMedida"), unidadMedida)));
         
         List<Ingrediente> resultado = entityManager.createQuery(cQuery).getResultList();
         if(resultado.isEmpty()){
@@ -117,6 +123,21 @@ public class IngredienteDAO implements IIngredienteDAO {
         }catch(PersistenceException ex){
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("No se pudo actualizar el stock de ingredientes");
+        }
+    }
+
+    @Override
+    public Ingrediente consultarPorId(Long idIngrediente) throws PersistenciaException {
+        try{
+            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+            Ingrediente ingrediente = entityManager.find(Ingrediente.class, idIngrediente);
+            if(ingrediente == null){
+                throw new PersistenciaException("No se encontró el ingrediente");
+            }
+            return ingrediente;
+        }catch(PersistenceException ex){
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudo consultar el ingrediente.");
         }
     }
     

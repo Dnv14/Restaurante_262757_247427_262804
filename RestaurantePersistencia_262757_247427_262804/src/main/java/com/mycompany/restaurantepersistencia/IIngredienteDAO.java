@@ -26,4 +26,6 @@ public interface IIngredienteDAO {
     public abstract List<Ingrediente> consultarTodosIngredientes()throws PersistenciaException;
     
     public abstract Ingrediente consultarPorNombreyUnidad(String nombre, UnidadMedidaDTO unidadMedida) throws PersistenciaException;
+    
+    public abstract Ingrediente consultarPorId(Long idIngrediente) throws PersistenciaException;
 }

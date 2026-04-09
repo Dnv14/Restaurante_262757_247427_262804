@@ -213,5 +213,15 @@ public class ControlForms {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void actualizarStockIngrediente(Long idIngrediente,  String cantidad){
+        try{
+            objetosBO.getIngredientesBO().actualizarStockIngrediente(idIngrediente, cantidad);
+            JOptionPane.showMessageDialog(frameActual, "El stock ha sido actualizado correctamente");
+            buscarIngredientes("", "");
+        }catch(NegocioException ex){
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 }

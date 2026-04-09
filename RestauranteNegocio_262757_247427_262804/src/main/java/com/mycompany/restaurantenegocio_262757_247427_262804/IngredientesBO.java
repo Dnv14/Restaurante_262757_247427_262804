@@ -68,7 +68,7 @@ public class IngredientesBO implements IIngredientesBO{
                     break;
 
                 case "Unidad de Medida":
-                    filtros.setUnidadMedida(tipoFiltro);
+                    filtros.setUnidadMedida(texto);
                     break;
             }
 
@@ -78,5 +78,31 @@ public class IngredientesBO implements IIngredientesBO{
             throw new NegocioException("Error al buscar: " + ex.getMessage());
         }
     }
+
+    @Override
+    public void actualizarStockIngrediente(Long idIngrediente, String cantidadTexto) throws NegocioException {
+       double cantidadStock;
+       try{
+           cantidadStock = Double.parseDouble(cantidadTexto);
+       }catch(NumberFormatException ex){
+           throw new NegocioException("La ccantidad que se ha ingresado no es válida");
+       }
+       if(cantidadStock == 0){
+           throw new NegocioException("La cantidad ingresada no puede ser igual a 0");
+       }
+       try{
+           Ingrediente ingrediente = ingredientesDAO.consultarPorId(idIngrediente);
+           if(ingrediente.getStockIngrediente() + cantidadStock < 0){
+               throw new NegocioException("El stock no puede ser negativo.");        
+           }
+           ingredientesDAO.acualizarIngrediente(idIngrediente, cantidadStock);
+       }catch(PersistenciaException ex){
+           throw new NegocioException(ex.getMessage());
+       }
+        
+        
+    }
+    
+    
     
 }

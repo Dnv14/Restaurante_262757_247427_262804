@@ -38,7 +38,6 @@ public class MenuIngredientesFORM extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         botonAgregarIngrediente = new javax.swing.JButton();
         botonBusquedaIngrediente = new javax.swing.JButton();
-        botonCambiarStockIngrediente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         botonAtras = new javax.swing.JButton();
 
@@ -67,9 +66,6 @@ public class MenuIngredientesFORM extends javax.swing.JFrame {
             }
         });
 
-        botonCambiarStockIngrediente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonCambiarStockIngrediente.setLabel("Cambiar Stock Ingrediente");
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Seleccione una de las siguientes opciones:");
 
@@ -92,8 +88,7 @@ public class MenuIngredientesFORM extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonBusquedaIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonCambiarStockIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(136, 136, 136))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -112,18 +107,15 @@ public class MenuIngredientesFORM extends javax.swing.JFrame {
                     .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
                 .addComponent(jLabel1)
-                .addGap(57, 57, 57)
+                .addGap(95, 95, 95)
                 .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(62, 62, 62)
                 .addComponent(botonBusquedaIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(botonCambiarStockIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         botonAgregarIngrediente.getAccessibleContext().setAccessibleName("botonAgregarIngrediente");
         botonBusquedaIngrediente.getAccessibleContext().setAccessibleName("botonBusquedaIngrediente");
-        botonCambiarStockIngrediente.getAccessibleContext().setAccessibleName("botonCambioStockIngrediente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +151,6 @@ public class MenuIngredientesFORM extends javax.swing.JFrame {
     private javax.swing.JButton botonAgregarIngrediente;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonBusquedaIngrediente;
-    private javax.swing.JButton botonCambiarStockIngrediente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

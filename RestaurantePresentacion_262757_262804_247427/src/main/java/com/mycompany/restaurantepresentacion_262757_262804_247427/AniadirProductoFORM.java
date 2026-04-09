@@ -19,6 +19,7 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
         this.control = control;
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

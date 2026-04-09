@@ -66,10 +66,14 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         controlFiltroBusqueda = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         botonAtras = new javax.swing.JButton();
+        botonModificarStock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Búsqueda Ingrediente");
+        setSize(new java.awt.Dimension(595, 552));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setMaximumSize(new java.awt.Dimension(595, 552));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Búsqueda Ingrediente");
@@ -98,6 +102,8 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaIngredientes.getTableHeader().setResizingAllowed(false);
+        tablaIngredientes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaIngredientes);
 
         jLabel2.setText("Filltro Búsqueda ");
@@ -108,6 +114,14 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
+            }
+        });
+
+        botonModificarStock.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        botonModificarStock.setText("Modificar Stock");
+        botonModificarStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarStockActionPerformed(evt);
             }
         });
 
@@ -132,7 +146,8 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
                                     .addGap(36, 36, 36)
                                     .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(26, 26, 26)
-                                    .addComponent(textFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(textFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonModificarStock, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -151,8 +166,10 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
                     .addComponent(textFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(controlFiltroBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(botonModificarStock, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         botonBuscar.getAccessibleContext().setAccessibleName("botonBuscar");
@@ -183,6 +200,22 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         volverAtras();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
+    private void botonModificarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarStockActionPerformed
+        int fila = tablaIngredientes.getSelectedRow();
+        if(fila < 0){
+            return;
+        }
+        Long id = (Long) tablaIngredientes.getValueAt(fila, 0);
+        String nombre = tablaIngredientes.getValueAt(fila, 1).toString();
+        Double stockActual = (Double) tablaIngredientes.getValueAt(fila, 2);
+        
+        String input = javax.swing.JOptionPane.showInputDialog(this,"Ingresar la cantidad que quiera suma (+) o restar (-) del stock.");
+        if(input != null && !input.trim().isEmpty()){
+            control.actualizarStockIngrediente(id, input.trim());
+        }
+                
+    }//GEN-LAST:event_botonModificarStockActionPerformed
+
      public void volverAtras() {
         control.navegarMenuIngredientes();
     }
@@ -193,6 +226,7 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonModificarStock;
     private javax.swing.JComboBox<String> controlFiltroBusqueda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

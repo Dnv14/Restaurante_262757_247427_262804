@@ -4,6 +4,8 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
+
 /**
  *
  * @author BALAMRUSH
@@ -16,6 +18,17 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
         this.control = control;
         this.setTitle("Agregar Ingrediente");
         initComponents();
+        inicilizarComboBox();
+    }
+    
+    public void inicilizarComboBox(){
+        unidadMedidaCombo.removeAllItems();
+        for(UnidadMedidaDTO unidad: UnidadMedidaDTO.values()){
+            unidadMedidaCombo.addItem(unidad.name());
+        }
+        if(unidadMedidaCombo.getItemCount()> 0){
+            unidadMedidaCombo.setSelectedItem(0);
+        }
     }
 
     /**
@@ -133,7 +146,7 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(114, 114, 114))
         );
@@ -166,7 +179,10 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAgregarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarIngredienteActionPerformed
-        
+        String nombre = nombreTextField.getText();
+        Double precio = Double.parseDouble(stockTextField.getText());
+        String tipoSeleccionado = String.valueOf(unidadMedidaCombo.getSelectedItem());
+        control.registrarIngrediente(nombre, precio, tipoSeleccionado);
     }//GEN-LAST:event_botonAgregarIngredienteActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
