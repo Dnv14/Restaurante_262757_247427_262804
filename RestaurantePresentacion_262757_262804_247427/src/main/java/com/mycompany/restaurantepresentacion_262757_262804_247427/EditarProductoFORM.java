@@ -268,7 +268,7 @@ public class EditarProductoFORM extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 

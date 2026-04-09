@@ -67,7 +67,7 @@ public class Receta implements Serializable {
         return cantidadIngrediente;
     }
 
-    public void setCantidadInregidente(Double cantidadInregidente) {
+    public void setCantidadIngrediente(Double cantidadInregidente) {
         this.cantidadIngrediente = cantidadInregidente;
     }
     
