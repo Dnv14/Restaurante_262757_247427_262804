@@ -9,7 +9,8 @@ package com.mycompany.restaurantedtos_262757_247427_262804;
  * @author Diego
  */
 public class NuevoProductoDTO {
-
+    
+    private Long id;
     private String nombre;
     private String descripcion;
     private Double precio;
@@ -23,6 +24,17 @@ public class NuevoProductoDTO {
         this.tipoProducto = tipoProducto;
         this.estado = estado;
     }
+
+    public NuevoProductoDTO(Long id, String nombre, String descripcion, Double precio, TipoProductoDTO tipoProducto, EstadoDTO estado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.tipoProducto = tipoProducto;
+        this.estado = estado;
+    }
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -43,4 +55,14 @@ public class NuevoProductoDTO {
     public EstadoDTO getEstado() {
         return estado;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
 }

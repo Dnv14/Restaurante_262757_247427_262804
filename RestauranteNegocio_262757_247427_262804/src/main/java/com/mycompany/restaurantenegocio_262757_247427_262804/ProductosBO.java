@@ -44,13 +44,30 @@ public class ProductosBO implements IProductosBO {
         try {
             if (nombre == null || nombre.isEmpty()) {
                 return productosDAO.consultarTodosLosProductos();
-            }else {
+            } else {
                 return productosDAO.consultarProductosNombre(nombre);
             }
 
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudo buscar los productos", ex);
         }
+    }
+
+    @Override
+    public Producto validarBusquedaPorId(Long id) throws NegocioException {
+        if (id == null) {
+            throw new NegocioException("El ID del producto es nulo");
+        }
+        try {
+            return productosDAO.consultarProductoPorId(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo consultar el Producto por su ID");
+        }
+    }
+
+    @Override
+    public Producto validacionProductoActualizado(NuevoProductoDTO productoActualizar) throws NegocioException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

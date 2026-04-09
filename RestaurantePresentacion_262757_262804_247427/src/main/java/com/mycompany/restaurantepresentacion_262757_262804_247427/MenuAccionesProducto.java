@@ -4,23 +4,28 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
+
 /**
  *
  * @author Diego
  */
 public class MenuAccionesProducto extends javax.swing.JDialog {
-    
-    private ControlForms control;
 
-   
-    public MenuAccionesProducto(java.awt.Frame parent, boolean modal, ControlForms control) {
+    private ControlForms control;
+    private Long idProducto;
+
+    public MenuAccionesProducto(java.awt.Frame parent, boolean modal, ControlForms control, Long idProducto) {
         super(parent, modal);
         this.control = control;
+        this.idProducto = idProducto;
         this.setTitle("Menú Acciones Producto");
         initComponents();
+        lblCargarNombreProducto();
+        this.setLocationRelativeTo(parent);
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,6 +38,7 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         btnCambiarEstado = new javax.swing.JButton();
         btnDescripcionProducto = new javax.swing.JButton();
         btnEliminarProducto = new javax.swing.JButton();
+        lblProductoSeleccionado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,19 +81,19 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         btnEliminarProducto.setText("Eliminar Producto");
         btnEliminarProducto.addActionListener(this::btnEliminarProductoActionPerformed);
 
+        lblProductoSeleccionado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblProductoSeleccionado.setForeground(new java.awt.Color(0, 0, 0));
+        lblProductoSeleccionado.setText("*************************");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnVolverAtras)
-                .addGap(167, 167, 167)
+                .addGap(177, 177, 177)
                 .addComponent(lblTitulo)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(lblInstruccion)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -98,6 +104,14 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
                     .addComponent(btnDescripcionProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCambiarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(91, 91, 91))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(lblInstruccion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblProductoSeleccionado)
+                .addGap(226, 226, 226))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,17 +119,19 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolverAtras)
                     .addComponent(lblTitulo))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblInstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblProductoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDescripcionProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDescripcionProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,13 +151,12 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
-    
-    private void volverAtras(){
+
+    private void volverAtras() {
         control.navegarAdministrarProductos();
     }
-    
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
-    
+
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
@@ -156,7 +171,15 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
-   
+    private void lblCargarNombreProducto() {
+        try {
+            Producto productoID = control.consultaProductoPorID(this.idProducto);
+            lblProductoSeleccionado.setText(productoID.getNombre());
+
+        } catch (NegocioException ex) {
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCambiarEstado;
@@ -166,6 +189,7 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
     private javax.swing.JButton btnVolverAtras;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblInstruccion;
+    private javax.swing.JLabel lblProductoSeleccionado;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

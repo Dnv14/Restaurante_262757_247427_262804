@@ -19,7 +19,7 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
         this.control = control;
         initComponents();
         java.awt.EventQueue.invokeLater(() -> {
-            cargarProductos(); 
+            cargarProductos();
         });
     }
 
@@ -66,6 +66,11 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
         productosTABLE.setAutoscrolls(false);
         productosTABLE.getTableHeader().setResizingAllowed(false);
         productosTABLE.getTableHeader().setReorderingAllowed(false);
+        productosTABLE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productosTABLEMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(productosTABLE);
 
         botonBuscar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -179,6 +184,16 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
+
+    private void productosTABLEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosTABLEMouseClicked
+
+        int fila = productosTABLE.getSelectedRow();
+
+        if (evt.getClickCount() == 1) {
+            Long id = (Long) productosTABLE.getValueAt(fila, 0);
+            control.navegarMenuAccionesProducto(id);
+        }
+    }//GEN-LAST:event_productosTABLEMouseClicked
 
     private void volverAtras() {
         control.navegarMenuProductos();

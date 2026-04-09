@@ -75,7 +75,36 @@ public class ProductosDAO implements IProductoDAO {
             return productosConsultados;
         } catch (PersistenceException ex) {
             LOGGER.severe(ex.getMessage());
-            throw new PersistenciaException("No se puedo consultar los productos");
+            throw new PersistenciaException("No se pudo consultar los productos");
+        }
+    }
+
+    @Override
+    public Producto consultarProductoPorId(Long id) throws PersistenciaException {
+        try {
+            EntityManager em = ManejadorConexiones.crearEntityManager();
+            Producto productoId = em.find(Producto.class, id);
+            return productoId;
+        } catch (PersistenceException ex) {
+            throw new PersistenciaException("No se encontró el producto con ID: " + id);
+        }
+    }
+    
+    @Override
+    public Producto actualizarProducto(NuevoProductoDTO productoActualizado)throws PersistenciaException{
+        try {
+            EntityManager em = ManejadorConexiones.crearEntityManager();
+            em.getTransaction().begin();
+            
+            Producto productoGuardado = em.find(Producto.class, productoActualizado.getId());
+            
+            productoGuardado.setDescripcion(productoActualizado.getDescripcion());
+            productoGuardado.setPrecio(productoActualizado.getPrecio());
+            
+            em.getTransaction().commit();
+            return productoGuardado;
+        } catch (PersistenceException ex) {
+            throw new PersistenciaException("No se pudo actualizar el producto");
         }
     }
 }

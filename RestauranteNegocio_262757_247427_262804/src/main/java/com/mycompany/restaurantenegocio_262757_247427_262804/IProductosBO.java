@@ -16,4 +16,8 @@ public interface IProductosBO {
     public abstract Producto validarRegistroProducto(NuevoProductoDTO productoDTO) throws NegocioException;
     
     public abstract List<Producto> validarBarraBusquedaProductos(String nombre) throws NegocioException;
+    
+    public abstract Producto validarBusquedaPorId(Long id)throws NegocioException;
+    
+    public abstract Producto validacionProductoActualizado(NuevoProductoDTO productoActualizar) throws NegocioException;
 }
