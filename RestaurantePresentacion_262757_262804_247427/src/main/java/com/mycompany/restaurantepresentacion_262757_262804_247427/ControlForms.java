@@ -24,7 +24,6 @@ public class ControlForms {
 
     private ObjetosBO objetosBO;
     private JFrame frameActual;
-    
 
     public ControlForms() {
         this.objetosBO = new ObjetosBO();
@@ -69,7 +68,7 @@ public class ControlForms {
     }
 
     public void navegarMenuAccionesProducto(Long id) {
-        MenuAccionesProducto menuAccionesProducto = new MenuAccionesProducto(frameActual, true, this,id);
+        MenuAccionesProducto menuAccionesProducto = new MenuAccionesProducto(frameActual, true, this, id);
         menuAccionesProducto.setLocationRelativeTo(frameActual);
         menuAccionesProducto.setVisible(true);
     }
@@ -77,7 +76,7 @@ public class ControlForms {
     public void navegarAniadirProducto() {
         mostrarPantalla(new AniadirProductoFORM(this));
     }
-    
+
     public void navegarEditarProducto(Long id) {
         EditarProductoFORM editarProducto = new EditarProductoFORM(frameActual, true, this, id);
         editarProducto.setLocationRelativeTo(frameActual);
@@ -130,8 +129,8 @@ public class ControlForms {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void actualizarProducto(NuevoProductoDTO productoActualizar)throws NegocioException{
+
+    public void actualizarProducto(NuevoProductoDTO productoActualizar) throws NegocioException {
         try {
             objetosBO.getProductosBO().validacionProductoActualizado(productoActualizar);
             this.reiniciarTablaProductos();
@@ -140,17 +139,26 @@ public class ControlForms {
         }
     }
 
-    public void eliminarProducto(Long id){
+    public void eliminarProducto(Long id) {
         try {
             objetosBO.getProductosBO().validarEliminarProducto(id);
+            this.reiniciarTablaProductos();
+
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void cambiarEstadoProducto(Long id, EstadoDTO estadoDTO){
+        try {
+            objetosBO.getProductosBO().validarCambiarEstado(id, estadoDTO);
             this.reiniciarTablaProductos();
             
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
     //utileria
     public Producto consultaProductoPorID(Long id) throws NegocioException {
         try {
@@ -160,12 +168,11 @@ public class ControlForms {
         }
         return null;
     }
-    
-    public void reiniciarTablaProductos() {
-    if (frameActual instanceof AdministrarProductosFORM administrarProductosFrom) {
-        administrarProductosFrom.cargarProductos(); 
-    }
-}
 
-    
+    public void reiniciarTablaProductos() {
+        if (frameActual instanceof AdministrarProductosFORM administrarProductosFrom) {
+            administrarProductosFrom.cargarProductos();
+        }
+    }
+
 }

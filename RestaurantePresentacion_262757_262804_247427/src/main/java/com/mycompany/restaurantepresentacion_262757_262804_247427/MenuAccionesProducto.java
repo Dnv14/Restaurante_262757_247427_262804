@@ -4,7 +4,9 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.Estado;
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
 import javax.swing.JOptionPane;
 
@@ -166,7 +168,31 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
+        try {
+            Estado estadoActual = productoActual().getEstado();
+            EstadoDTO nuevoEstado;
+            
+            if (estadoActual == Estado.ACTIVO) {
+                nuevoEstado = EstadoDTO.INACTIVO;
+            } else {
+                nuevoEstado = EstadoDTO.ACTIVO;
+            }
 
+            int respuesta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Estado Actual: " + productoActual().getEstado() + "\n" + " Deseas Cambiarlo?",
+                    "Gestión de Estado",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (respuesta == JOptionPane.YES_OPTION) {
+                control.cambiarEstadoProducto(idProducto, nuevoEstado);
+                JOptionPane.showMessageDialog(this, "Cambio Exitosa");
+                this.dispose();
+            }
+        } catch (NegocioException ex) {
+        }
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
     private void btnDescripcionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescripcionProductoActionPerformed
@@ -182,15 +208,15 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
                     "Confirmar Eliminación",
                     JOptionPane.YES_NO_OPTION
             );
-            
-            if(respuesta == JOptionPane.YES_OPTION){
+
+            if (respuesta == JOptionPane.YES_OPTION) {
                 control.eliminarProducto(idProducto);
                 JOptionPane.showMessageDialog(this, "Eliminación Exitosa");
                 this.dispose();
-                
-            }else{
+
+            } else {
                 JOptionPane.showMessageDialog(this, "Eliminación Cancelada");
-                
+
             }
         } catch (NegocioException ex) {
         }
