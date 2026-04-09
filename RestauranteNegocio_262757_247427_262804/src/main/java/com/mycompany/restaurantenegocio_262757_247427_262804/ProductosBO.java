@@ -77,4 +77,16 @@ public class ProductosBO implements IProductosBO {
         }
     }
 
+    @Override
+    public void validarEliminarProducto(Long id) throws NegocioException {
+         if (id == null) {
+            throw new NegocioException("El ID del producto es nulo");
+        }
+        try {
+            productosDAO.eliminarProducto(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo eliminar el producto solicitado");
+        }
+    }
+
 }

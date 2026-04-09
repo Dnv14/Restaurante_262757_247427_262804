@@ -20,4 +20,6 @@ public interface IProductosBO {
     public abstract Producto validarBusquedaPorId(Long id)throws NegocioException;
     
     public abstract Producto validacionProductoActualizado(NuevoProductoDTO productoActualizar) throws NegocioException;
+    
+    public abstract void validarEliminarProducto(Long id)throws NegocioException;
 }

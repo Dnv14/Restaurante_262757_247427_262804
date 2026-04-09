@@ -236,16 +236,23 @@ public class EditarProductoFORM extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAñadirIngredientesActionPerformed
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
-        String descipcion = txtDescripcion.getText();
-        String precio = txtPrecio.getText();
-        NuevoProductoDTO productoActualizar = new NuevoProductoDTO();
-        productoActualizar.setId(this.idProducto);
-        productoActualizar.setDescripcion(descipcion);
-        productoActualizar.setPrecio(Double.valueOf(precio));
-        control.actualizarProducto(productoActualizar);
-        control.reiniciarTablaProductos();
-        JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
-        dispose();
+        try {
+            String descipcion = txtDescripcion.getText();
+            String precio = txtPrecio.getText();
+
+            NuevoProductoDTO productoActualizar = new NuevoProductoDTO();
+            productoActualizar.setId(this.idProducto);
+            productoActualizar.setDescripcion(descipcion);
+            productoActualizar.setPrecio(Double.valueOf(precio));
+
+            control.actualizarProducto(productoActualizar);
+            control.reiniciarTablaProductos();
+
+            JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
+            dispose();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 

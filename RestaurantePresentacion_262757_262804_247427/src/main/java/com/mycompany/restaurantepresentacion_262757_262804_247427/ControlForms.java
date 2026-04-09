@@ -133,7 +133,7 @@ public class ControlForms {
         }
     }
     
-    public void actualizarProducto(NuevoProductoDTO productoActualizar){
+    public void actualizarProducto(NuevoProductoDTO productoActualizar)throws NegocioException{
         try {
             objetosBO.getProductosBO().validacionProductoActualizado(productoActualizar);
         } catch (NegocioException ex) {

@@ -5,6 +5,7 @@
 package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import java.util.List;
 import java.util.logging.Logger;
@@ -115,6 +116,22 @@ public class ProductosDAO implements IProductoDAO {
             em.getTransaction().begin();
             Producto productoEliminar = em.find(Producto.class,id);
             em.remove(productoEliminar);
+            em.getTransaction().commit();
+            
+        } catch (PersistenceException ex) {
+            throw new PersistenciaException("No se pudo eliminar el producto");
+        }
+    }
+
+    @Override
+    public void actualizarEstadoProducto(Long id, EstadoDTO nuevoEstado) throws PersistenciaException {
+        try {
+            EntityManager em = ManejadorConexiones.crearEntityManager();
+            em.getTransaction().begin();
+            Producto productoEstado = em.find(Producto.class,id);
+            
+            NuevoProductoDTOAProductoAdapter.actualizarEstado(productoEstado, nuevoEstado);
+            
             em.getTransaction().commit();
             
         } catch (PersistenceException ex) {

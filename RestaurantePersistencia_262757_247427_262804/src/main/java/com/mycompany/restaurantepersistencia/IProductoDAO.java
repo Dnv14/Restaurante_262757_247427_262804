@@ -5,6 +5,7 @@
 package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface IProductoDAO {
     public abstract Producto actualizarProducto(NuevoProductoDTO producto) throws PersistenciaException;
     
     public abstract void eliminarProducto(Long id) throws PersistenciaException;
+    
+    public abstract void actualizarEstadoProducto(Long id,EstadoDTO nuevoEstado) throws PersistenciaException;
 }

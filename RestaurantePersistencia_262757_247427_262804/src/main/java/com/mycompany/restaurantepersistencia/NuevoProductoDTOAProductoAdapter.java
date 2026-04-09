@@ -20,24 +20,34 @@ public class NuevoProductoDTOAProductoAdapter {
     public static Producto adaptar(NuevoProductoDTO productoDTO) {
         TipoProducto tipoProductoDominio = TipoProducto.PLATILLO;
         Estado estadoDominio = Estado.ACTIVO;
-        
+
         if (productoDTO.getTipoProducto() == TipoProductoDTO.BEBIDA) {
             tipoProductoDominio = TipoProducto.BEBIDA;
-        } else if(productoDTO.getTipoProducto() == TipoProductoDTO.POSTRE){
+        } else if (productoDTO.getTipoProducto() == TipoProductoDTO.POSTRE) {
             tipoProductoDominio = TipoProducto.POSTRE;
         }
-        
-        if(productoDTO.getEstado() == EstadoDTO.INACTIVO){
+
+        if (productoDTO.getEstado() == EstadoDTO.INACTIVO) {
             estadoDominio = Estado.INACTIVO;
         }
-        
-        Producto productoNuevo = new Producto(productoDTO.getNombre(), 
-                productoDTO.getDescripcion(), productoDTO.getPrecio(), 
-                tipoProductoDominio, 
+
+        Producto productoNuevo = new Producto(productoDTO.getNombre(),
+                productoDTO.getDescripcion(), productoDTO.getPrecio(),
+                tipoProductoDominio,
                 estadoDominio);
-        
+
         return productoNuevo;
     }
-    
-}
 
+    public static Producto actualizarEstado(Producto productoExistente, EstadoDTO nuevoEstadoDTO) {
+        Estado estadoDominio = Estado.ACTIVO;
+
+        if (nuevoEstadoDTO == EstadoDTO.INACTIVO) {
+            estadoDominio = Estado.INACTIVO;
+        }
+
+        productoExistente.setEstado(estadoDominio);
+
+        return productoExistente;
+    }
+}
