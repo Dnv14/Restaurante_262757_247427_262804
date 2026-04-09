@@ -246,7 +246,7 @@ public class EditarProductoFORM extends javax.swing.JDialog {
             productoActualizar.setPrecio(Double.valueOf(precio));
 
             control.actualizarProducto(productoActualizar);
-            control.reiniciarTablaProductos();
+            
 
             JOptionPane.showMessageDialog(this, "Producto actualizado correctamente");
             dispose();

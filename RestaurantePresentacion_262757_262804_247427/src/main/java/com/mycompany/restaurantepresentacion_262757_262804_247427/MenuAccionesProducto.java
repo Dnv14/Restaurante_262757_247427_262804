@@ -6,6 +6,7 @@ package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
 import com.mycompany.restaurantenegocio_262757_247427_262804.NegocioException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -150,6 +151,11 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private Producto productoActual() throws NegocioException {
+        return control.consultaProductoPorID(idProducto);
+    }
+
+
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         dispose();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
@@ -168,12 +174,33 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDescripcionProductoActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            int respuesta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseas Eliminar el Producto: " + productoActual().getNombre(),
+                    "Confirmar Eliminación",
+                    JOptionPane.YES_NO_OPTION
+            );
+            
+            if(respuesta == JOptionPane.YES_OPTION){
+                control.eliminarProducto(idProducto);
+                JOptionPane.showMessageDialog(this, "Eliminación Exitosa");
+                this.dispose();
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Eliminación Cancelada");
+                
+            }
+        } catch (NegocioException ex) {
+        }
+
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
 
     private void lblCargarNombreProducto() {
         try {
-            Producto productoID = control.consultaProductoPorID(this.idProducto);
+//            Producto productoID = control.consultaProductoPorID(this.idProducto);
+            Producto productoID = productoActual();
             lblProductoSeleccionado.setText(productoID.getNombre());
 
         } catch (NegocioException ex) {
