@@ -19,6 +19,8 @@ public interface IIngredienteDAO {
     
     public abstract Ingrediente agregarIngrediente(NuevoIngredienteDTO nuevoIngrediente)throws PersistenciaException;
     
+    public abstract void acualizarIngrediente(Long idIngrediente, Double cantidad) throws PersistenciaException;
+    
     public abstract List<Ingrediente> consultarIngredientesFiltro (FiltrosDTO tipoFiltro)throws PersistenciaException;
     
     public abstract List<Ingrediente> consultarTodosIngredientes()throws PersistenciaException;

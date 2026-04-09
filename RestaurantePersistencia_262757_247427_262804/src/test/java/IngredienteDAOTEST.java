@@ -52,4 +52,32 @@ public class IngredienteDAOTEST {
             assertEquals("KILOGRAMO", resultadoEsperado.get(0).getUnidadMedida());
         });   
     }
+    
+    @Test
+    public void actualizarStockIngredienteSumaFuncionaOK(){
+        assertDoesNotThrow(() -> {
+            FiltrosDTO filtro = new FiltrosDTO("Sal", null, null, null);
+            List<Ingrediente> ingredientes = dao.consultarIngredientesFiltro(filtro);
+            Double stockAntes = ingredientes.get(0).getStockIngrediente();
+            
+            dao.acualizarIngrediente(ingredientes.get(0).getIdIngrediente(), 5.0);
+            FiltrosDTO filtroActu = new FiltrosDTO("Sal", null, null, null);
+            List<Ingrediente> ingredientesActu = dao.consultarIngredientesFiltro(filtroActu);
+            assertEquals(stockAntes + 5.0, ingredientesActu.get(0).getStockIngrediente());
+        });
+    }
+    
+    @Test
+    public void actualizarStockIngredienteRestaFuncionaOK(){
+        assertDoesNotThrow(() -> {
+            FiltrosDTO filtro = new FiltrosDTO("Sal", null, null, null);
+            List<Ingrediente> ingredientes = dao.consultarIngredientesFiltro(filtro);
+            Double stockAntes = ingredientes.get(0).getStockIngrediente();
+            
+            dao.acualizarIngrediente(ingredientes.get(0).getIdIngrediente(), -1.0);
+            FiltrosDTO filtroActu = new FiltrosDTO("Sal", null, null, null);
+            List<Ingrediente> ingredientesActu = dao.consultarIngredientesFiltro(filtroActu);
+            assertEquals(stockAntes - 1.0, ingredientesActu.get(0).getStockIngrediente());
+        });
+    }
 }

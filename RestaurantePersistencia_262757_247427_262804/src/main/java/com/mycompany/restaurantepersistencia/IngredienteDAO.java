@@ -5,7 +5,6 @@
 package com.mycompany.restaurantepersistencia;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
-import com.mycompany.restaurantedominio_262757_247427_262804.UnidadMedida;
 import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoIngredienteDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
@@ -97,6 +96,28 @@ public class IngredienteDAO implements IIngredienteDAO {
             return null;
         }
         return resultado.get(0);
+    }
+
+    @Override
+    public void acualizarIngrediente(Long idIngrediente, Double cantidad) throws PersistenciaException {
+        try{
+            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+            entityManager.getTransaction().begin();
+            
+            Ingrediente ingrediente = entityManager.find(Ingrediente.class, idIngrediente);
+            if(ingrediente == null){
+                throw new PersistenciaException("El ingrediente que se está buscando no existe.");
+            }
+            Double stockNuevo = ingrediente.getStockIngrediente() + cantidad;
+            ingrediente.setStockIngrediente(stockNuevo);
+            
+            entityManager.merge(ingrediente);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+        }catch(PersistenceException ex){
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudo actualizar el stock de ingredientes");
+        }
     }
     
     
