@@ -28,6 +28,12 @@ public class IngredienteDAO implements IIngredienteDAO {
 
     private static final Logger LOGGER = Logger.getLogger(IngredienteDAO.class.getName());
 
+    /**
+     * 
+     * @param nuevoIngrediente
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public Ingrediente agregarIngrediente(NuevoIngredienteDTO nuevoIngrediente) throws PersistenciaException {
         try {
@@ -43,6 +49,12 @@ public class IngredienteDAO implements IIngredienteDAO {
         }
     }
 
+    /**
+     * 
+     * @param tipoFiltro
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<Ingrediente> consultarIngredientesFiltro(FiltrosDTO tipoFiltro) throws PersistenciaException {
         EntityManager entityManager = ManejadorConexiones.crearEntityManager();
@@ -70,6 +82,11 @@ public class IngredienteDAO implements IIngredienteDAO {
 
     }
 
+    /**
+     * 
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<Ingrediente> consultarTodosIngredientes() throws PersistenciaException {
         try {
@@ -85,6 +102,13 @@ public class IngredienteDAO implements IIngredienteDAO {
         }
     }
 
+    /**
+     * 
+     * @param nombre
+     * @param unidadMedida
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public Ingrediente consultarPorNombreyUnidad(String nombre, UnidadMedidaDTO unidadMedida) throws PersistenciaException {
         EntityManager entityManager = ManejadorConexiones.crearEntityManager();
@@ -104,6 +128,12 @@ public class IngredienteDAO implements IIngredienteDAO {
         return resultado.get(0);
     }
 
+    /**
+     * 
+     * @param idIngrediente
+     * @param cantidad
+     * @throws PersistenciaException 
+     */
     @Override
     public void acualizarIngrediente(Long idIngrediente, Double cantidad) throws PersistenciaException {
         try{
@@ -126,6 +156,12 @@ public class IngredienteDAO implements IIngredienteDAO {
         }
     }
 
+    /**
+     * 
+     * @param idIngrediente
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public Ingrediente consultarPorId(Long idIngrediente) throws PersistenciaException {
         try{
@@ -140,7 +176,4 @@ public class IngredienteDAO implements IIngredienteDAO {
             throw new PersistenciaException("No se pudo consultar el ingrediente.");
         }
     }
-    
-    
-
 }

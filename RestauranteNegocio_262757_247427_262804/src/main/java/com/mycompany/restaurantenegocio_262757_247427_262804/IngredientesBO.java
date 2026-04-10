@@ -24,6 +24,12 @@ public class IngredientesBO implements IIngredientesBO{
         this.ingredientesDAO = ingredientesDAO;
     }
 
+    /**
+     * 
+     * @param nuevoIngrediente
+     * @return
+     * @throws NegocioException 
+     */
     @Override
     public Ingrediente validarRegistroIngrediente(NuevoIngredienteDTO nuevoIngrediente) throws NegocioException {
         if(nuevoIngrediente.getNombreIngrediente() == null || nuevoIngrediente.getNombreIngrediente().isEmpty()){
@@ -34,9 +40,14 @@ public class IngredientesBO implements IIngredientesBO{
             throw new NegocioException("El ingrediente no puede tener más de 100 letras.");
         }
         
+        if(!nuevoIngrediente.getNombreIngrediente().matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]+")){
+            throw new NegocioException("El ingrediente solamente puede tener letras.");
+        }
+        
         if(nuevoIngrediente.getStockIngrediente()< 0){
             throw new NegocioException("El stock del ingrediente no puede ser menor a 0.");
         }       
+        
               
         if(nuevoIngrediente.getUnidadMedida() == null){
             throw new NegocioException("La unidad de medida no puede ser nula ");
@@ -54,6 +65,13 @@ public class IngredientesBO implements IIngredientesBO{
         }
     }
 
+    /**
+     * 
+     * @param texto
+     * @param tipoFiltro
+     * @return
+     * @throws NegocioException 
+     */
     @Override
     public List<Ingrediente> validarBarraBusqueda(String texto, String tipoFiltro) throws NegocioException {
         try {
@@ -79,6 +97,12 @@ public class IngredientesBO implements IIngredientesBO{
         }
     }
 
+    /**
+     * 
+     * @param idIngrediente
+     * @param cantidadTexto
+     * @throws NegocioException 
+     */
     @Override
     public void actualizarStockIngrediente(Long idIngrediente, String cantidadTexto) throws NegocioException {
        double cantidadStock;
