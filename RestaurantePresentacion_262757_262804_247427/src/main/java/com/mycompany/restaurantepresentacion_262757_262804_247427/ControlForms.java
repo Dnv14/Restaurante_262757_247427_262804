@@ -100,7 +100,7 @@ public class ControlForms {
             Producto producto = objetosBO.getProductosBO().validarBusquedaPorId(id);
             EditarProductoFORM editarProducto = new EditarProductoFORM(frameActual, true, this, id);
             List<NuevaRecetaDTO> recetasTemporales = new LinkedList<>();
-            
+
             for (Receta recetas : producto.getReceta()) {
                 recetasTemporales.add(new NuevaRecetaDTO(
                         recetas.getIngrediente().getIdIngrediente(),
@@ -108,7 +108,7 @@ public class ControlForms {
                         recetas.getCantidadIngrediente()
                 ));
             }
-            
+
             editarProducto.setIngredientesReceta(recetasTemporales);
             editarProducto.setLocationRelativeTo(frameActual);
             editarProducto.setVisible(true);
@@ -292,14 +292,13 @@ public class ControlForms {
         return null;
     }
 
-    public List<NuevaRecetaDTO> obtenerListaTemporalParaAniadir() {
-        return ((AniadirProductoFORM) frameActual).getIngredientesReceta();
-    }
-    
-    public List<NuevaRecetaDTO> obtenerListaTemporalParaEditar(EditarProductoFORM dialog) {
-        return dialog.getIngredientesReceta();
-    }
-
+//    public List<NuevaRecetaDTO> obtenerListaTemporalParaAniadir() {
+//        return ((AniadirProductoFORM) frameActual).getIngredientesReceta();
+//    }
+//    
+//    public List<NuevaRecetaDTO> obtenerListaTemporalParaEditar(EditarProductoFORM dialog) {
+//        return dialog.getIngredientesReceta();
+//    }
     //utileria
     public Producto consultaProductoPorID(Long id) throws NegocioException {
         try {

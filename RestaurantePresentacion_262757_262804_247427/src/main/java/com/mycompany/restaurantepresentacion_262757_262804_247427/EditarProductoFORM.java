@@ -125,17 +125,17 @@ public class EditarProductoFORM extends javax.swing.JDialog {
 
         tablaIngredientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Nombre"
+                "ID", "Nombre", "Unidad de Medida"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -306,7 +306,8 @@ public class EditarProductoFORM extends javax.swing.JDialog {
         for (Ingrediente i : ingrediente) {
             modelo.addRow(new Object[]{
                 i.getIdIngrediente(),
-                i.getNombreIngrediente()
+                i.getNombreIngrediente(),
+                i.getUnidadMedida()
             });
         }
     }
@@ -335,7 +336,6 @@ public class EditarProductoFORM extends javax.swing.JDialog {
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -369,7 +369,7 @@ public class EditarProductoFORM extends javax.swing.JDialog {
         int fila = tablaIngredientes.getSelectedRow();
         Long idSeleccionado = (Long) tablaIngredientes.getValueAt(fila, 0);
         String nombre = (String) tablaIngredientes.getValueAt(fila, 1);
-        List<NuevaRecetaDTO> lista = control.obtenerListaTemporalParaEditar(this);
+        List<NuevaRecetaDTO> lista = this.ingredientesReceta;
 
         Double cantidadNueva = null;
         try {
@@ -400,7 +400,7 @@ public class EditarProductoFORM extends javax.swing.JDialog {
             }
             int respuesta = JOptionPane.showConfirmDialog(this, "¿Agregar " + nombre + "?", "Editar Receta", JOptionPane.YES_NO_OPTION);
             if (respuesta == JOptionPane.YES_OPTION) {
-                lista.add(new NuevaRecetaDTO(idSeleccionado, nombre, null));
+                lista.add(new NuevaRecetaDTO(idSeleccionado, nombre, cantidadNueva));
                 txtCantidadProducto.setText("");
             }
 

@@ -4,8 +4,11 @@
  */
 package com.mycompany.restaurantepersistencia;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedominio_262757_247427_262804.Receta;
 import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
+import com.mycompany.restaurantedtos_262757_247427_262804.NuevaRecetaDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
 import java.util.List;
 import java.util.logging.Logger;
@@ -90,17 +93,28 @@ public class ProductosDAO implements IProductoDAO {
             throw new PersistenciaException("No se encontró el producto con ID: " + id);
         }
     }
-    
+
     @Override
-    public Producto actualizarProducto(NuevoProductoDTO productoActualizado)throws PersistenciaException{
+    public Producto actualizarProducto(NuevoProductoDTO productoActualizado) throws PersistenciaException {
         try {
             EntityManager em = ManejadorConexiones.crearEntityManager();
             em.getTransaction().begin();
-            
             Producto productoGuardado = em.find(Producto.class, productoActualizado.getId());
-            
+
             productoGuardado.setDescripcion(productoActualizado.getDescripcion());
             productoGuardado.setPrecio(productoActualizado.getPrecio());
+            
+            productoGuardado.getReceta().clear();
+            for (NuevaRecetaDTO recetaDTO : productoActualizado.getRecetas()) {
+                Receta nuevaReceta = new Receta();
+
+                Ingrediente ingrediente = em.find(Ingrediente.class, recetaDTO.getIdIngrediente());
+
+                nuevaReceta.setIngrediente(ingrediente);
+                nuevaReceta.setProducto(productoGuardado);
+                nuevaReceta.setCantidadIngrediente(recetaDTO.getCantidad());
+                productoGuardado.getReceta().add(nuevaReceta);
+            }
             
             em.getTransaction().commit();
             return productoGuardado;
@@ -114,10 +128,10 @@ public class ProductosDAO implements IProductoDAO {
         try {
             EntityManager em = ManejadorConexiones.crearEntityManager();
             em.getTransaction().begin();
-            Producto productoEliminar = em.find(Producto.class,id);
+            Producto productoEliminar = em.find(Producto.class, id);
             em.remove(productoEliminar);
             em.getTransaction().commit();
-            
+
         } catch (PersistenceException ex) {
             throw new PersistenciaException("No se pudo eliminar el producto");
         }
@@ -128,12 +142,12 @@ public class ProductosDAO implements IProductoDAO {
         try {
             EntityManager em = ManejadorConexiones.crearEntityManager();
             em.getTransaction().begin();
-            Producto productoEstado = em.find(Producto.class,id);
-            
+            Producto productoEstado = em.find(Producto.class, id);
+
             NuevoProductoDTOAProductoAdapter.actualizarEstado(productoEstado, nuevoEstado);
-            
+
             em.getTransaction().commit();
-            
+
         } catch (PersistenceException ex) {
             throw new PersistenciaException("No se pudo actualizar el estado del producto");
         }
