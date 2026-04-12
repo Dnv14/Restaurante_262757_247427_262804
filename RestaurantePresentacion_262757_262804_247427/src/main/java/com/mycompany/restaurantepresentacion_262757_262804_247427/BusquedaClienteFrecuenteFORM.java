@@ -5,6 +5,7 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
+import enriquemadridalvarez.utilidades_262757_247427_262804.Encriptador;
 import java.util.List;
 
 /**
@@ -41,6 +42,12 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         modelo.setRowCount(0);
 
         for (ClienteFrecuente c : clientes) {
+            String visibilidadTelefono;
+            try{
+                visibilidadTelefono = Encriptador.deseencriptar(c.getTelefono());
+            }catch(Exception ex){
+                visibilidadTelefono = "Existió un error al deseencriptar el teléfono";
+            }
             modelo.addRow(new Object[]{
                 c.getId(),
                 c.getNombres() + " " + c.getApellidos(),

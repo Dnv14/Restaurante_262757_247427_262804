@@ -57,6 +57,8 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
             return cliente;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al intentar validar el usuario.", ex);
+        } catch (Exception ex){
+            throw new NegocioException("Error al querer encriptar el teléfono.", ex);
         }
     }
 

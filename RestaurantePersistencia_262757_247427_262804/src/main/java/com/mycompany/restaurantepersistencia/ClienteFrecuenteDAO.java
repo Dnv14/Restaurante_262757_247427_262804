@@ -7,6 +7,7 @@ package com.mycompany.restaurantepersistencia;
 import com.mycompany.restaurantedominio_262757_247427_262804.ClienteFrecuente;
 import com.mycompany.restaurantedtos_262757_247427_262804.FiltrosDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoClienteDTO;
+import enriquemadridalvarez.utilidades_262757_247427_262804.Encriptador;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,12 +29,12 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
     private static final Logger LOGGER = Logger.getLogger(ClienteFrecuenteDAO.class.getName());
 
     @Override
-    public ClienteFrecuente crearClienteFrecuente(NuevoClienteDTO nuevoClienteFrecuente) throws PersistenciaException {
+    public ClienteFrecuente crearClienteFrecuente(NuevoClienteDTO nuevoClienteFrecuente) throws PersistenciaException, Exception {
         ClienteFrecuente clienteFrecuente = new ClienteFrecuente();
         clienteFrecuente.setNombres(nuevoClienteFrecuente.getNombres());
         clienteFrecuente.setApellidos(nuevoClienteFrecuente.getApellidos());
         clienteFrecuente.setCorreoElectronico(nuevoClienteFrecuente.getCorreoElectronico());
-        clienteFrecuente.setTelefono(nuevoClienteFrecuente.getTelefono());
+        clienteFrecuente.setTelefono(Encriptador.encriptar(nuevoClienteFrecuente.getTelefono()));
         clienteFrecuente.setFechaRegistro(LocalDate.now());
         try {
             EntityManager entityManager = ManejadorConexiones.crearEntityManager();
@@ -44,6 +45,9 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
         } catch (PersistenceException ex) {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("No fue posbile crear el cliente.");
+        } catch (Exception ex){
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("Existió un error al enciptar el teléfono");
         }
     }
 

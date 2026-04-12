@@ -11,6 +11,7 @@
         <module>../RestaurantePresentacion_262757_262804_247427</module>
         <module>../RestauranteDtos_262757_247427_262804</module>
         <module>../RestauranteNegocio_262757_247427_262804</module>
+        <module>../../../NetBeansProjects/Utilidades_262757_247427_262804</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
