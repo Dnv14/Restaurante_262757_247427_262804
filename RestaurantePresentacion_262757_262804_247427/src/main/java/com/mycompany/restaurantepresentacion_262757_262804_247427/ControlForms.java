@@ -204,7 +204,7 @@ public class ControlForms {
             JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+   
     public void registrarIngrediente(String nombre, Double stock, String unidadMedida) {
         try {
             UnidadMedidaDTO unidadDTO = UnidadMedidaDTO.valueOf(unidadMedida.toUpperCase());
@@ -217,6 +217,14 @@ public class ControlForms {
         }
     }
 
+    public void eliminarIngrediente(Long idIngrediente){
+        try{
+            objetosBO.getIngredientesBO().eliminarIngrediente(idIngrediente);
+            JOptionPane.showMessageDialog(null,"Ingrediente eliminado correctamente.");          
+        }catch(NegocioException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public void buscarIngredientes(String texto, String tipoFiltro) {
         try {
             List<Ingrediente> lista = objetosBO.getIngredientesBO().validarBarraBusqueda(texto, tipoFiltro);

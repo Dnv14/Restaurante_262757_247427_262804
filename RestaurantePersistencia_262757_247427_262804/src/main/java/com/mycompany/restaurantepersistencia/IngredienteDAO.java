@@ -176,4 +176,18 @@ public class IngredienteDAO implements IIngredienteDAO {
             throw new PersistenciaException("No se pudo consultar el ingrediente.");
         }
     }
+
+    @Override
+    public void eliminarIngrediente(Long ideIngrediente) throws PersistenciaException {
+        try{
+            EntityManager entityManager = ManejadorConexiones.crearEntityManager();
+            entityManager.getTransaction().begin();
+            Ingrediente ingrediente = entityManager.find(Ingrediente.class, ideIngrediente);
+            entityManager.remove(ingrediente);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+        }catch(PersistenceException ex){
+            throw new PersistenciaException("No se pudo eliminar el ingrediente");
+        }
+    }
 }

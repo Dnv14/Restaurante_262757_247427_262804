@@ -16,6 +16,8 @@ public interface IIngredientesBO {
     
     public abstract Ingrediente validarRegistroIngrediente(NuevoIngredienteDTO nuevoIngrediente)throws NegocioException;
     
+    public void eliminarIngrediente(Long idIngrediente) throws NegocioException;
+    
     public List<Ingrediente> validarBarraBusqueda(String texto, String tipoFiltro) throws NegocioException;
     
     public void actualizarStockIngrediente(Long idIngrediente, String cantidadTexto) throws NegocioException;

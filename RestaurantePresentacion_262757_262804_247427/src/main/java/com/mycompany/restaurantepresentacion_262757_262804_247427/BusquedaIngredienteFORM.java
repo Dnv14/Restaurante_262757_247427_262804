@@ -6,6 +6,7 @@ package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +67,7 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         botonAtras = new javax.swing.JButton();
         botonModificarStock = new javax.swing.JButton();
+        buttonEliminarIngrediente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Búsqueda Ingrediente");
@@ -125,6 +127,14 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
             }
         });
 
+        buttonEliminarIngrediente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        buttonEliminarIngrediente.setText("Eliminar Ingrediente");
+        buttonEliminarIngrediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEliminarIngredienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,7 +157,10 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
                                     .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(26, 26, 26)
                                     .addComponent(textFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(botonModificarStock, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(buttonEliminarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(botonModificarStock))))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,7 +181,9 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(botonModificarStock, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonEliminarIngrediente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonModificarStock, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                 .addGap(26, 26, 26))
         );
 
@@ -216,6 +231,23 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_botonModificarStockActionPerformed
 
+    private void buttonEliminarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarIngredienteActionPerformed
+        int fila = tablaIngredientes.getSelectedRow();
+        if(fila < 0){
+            JOptionPane.showMessageDialog(this, "Selecciona un ingrediente de la tabla antes de hacer alguna acción.", "Alerta", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Long id = (Long) tablaIngredientes.getValueAt(fila, 0);
+        String nombre = tablaIngredientes.getValueAt(fila, 1).toString();
+        
+        int confirmarEliminacion = JOptionPane.showConfirmDialog(this, "¿Deseas eliminar este ingrediente?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if(confirmarEliminacion == JOptionPane.YES_OPTION){
+            control.eliminarIngrediente(id);
+            cargarTodosLosIngredientes();
+        }
+        
+    }//GEN-LAST:event_buttonEliminarIngredienteActionPerformed
+
      public void volverAtras() {
         control.navegarMenuIngredientes();
     }
@@ -227,6 +259,7 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonModificarStock;
+    private javax.swing.JButton buttonEliminarIngrediente;
     private javax.swing.JComboBox<String> controlFiltroBusqueda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

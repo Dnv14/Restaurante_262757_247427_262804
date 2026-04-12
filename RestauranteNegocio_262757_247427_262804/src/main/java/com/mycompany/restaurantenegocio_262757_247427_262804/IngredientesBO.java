@@ -126,6 +126,24 @@ public class IngredientesBO implements IIngredientesBO{
         
         
     }
+
+    @Override
+    public void eliminarIngrediente(Long idIngrediente) throws NegocioException {
+        try{
+            Ingrediente ingrediente = ingredientesDAO.consultarPorId(idIngrediente);
+            if(ingrediente == null){
+                throw new NegocioException("El ingrediente no existe");
+            }
+            
+            if(ingrediente.getReceta() != null && !ingrediente.getReceta().isEmpty()){
+                throw new NegocioException("No se puede eliminar el ingrediente ya que este se encuentra en un producto.");
+            }
+            
+            ingredientesDAO.eliminarIngrediente(idIngrediente);
+        }catch(PersistenciaException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
     
     
     
