@@ -52,7 +52,7 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
                 c.getId(),
                 c.getNombres() + " " + c.getApellidos(),
                 c.getCorreoElectronico(),
-                c.getTelefono(),
+                visibilidadTelefono,
                 c.getConteoVisitas(),
                 String.format("$%.2f", c.getGastoTotal()),
                 c.getPuntosAcumulables()
