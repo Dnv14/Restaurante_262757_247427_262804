@@ -18,7 +18,7 @@ public class Encriptador {
     
     public static String encriptar(String texto) throws Exception{
         SecretKeySpec clave = new SecretKeySpec(claveSecreta.getBytes("UTF-8"), "AES");
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS55Padding");
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, clave);
         byte[] encriptado = cipher.doFinal(texto.getBytes("UTF-8"));
         return Base64.getEncoder().encodeToString(encriptado);
@@ -26,7 +26,7 @@ public class Encriptador {
     
     public static String deseencriptar(String textoEncriptado)throws Exception{
         SecretKeySpec clave = new SecretKeySpec(claveSecreta.getBytes("UTF-8"), "AES");
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS55Padding");
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, clave);
         byte[] deseencriptado = cipher.doFinal(Base64.getDecoder().decode(textoEncriptado));
         return new String(deseencriptado, "UTF-8");
