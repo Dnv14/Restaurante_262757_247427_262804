@@ -22,6 +22,12 @@ import java.util.List;
  */
 public class NuevoProductoDTOAProductoAdapter {
 
+    
+    /**
+     * Convierte un NuevoProductoDTO a un producto del dominio.
+     * @param productoDTO DTO con los datos del producto a transformar.
+     * @return Un nuevo Producto con los datos DTO adaptados.
+     */
     public static Producto adaptar(NuevoProductoDTO productoDTO) {
         TipoProducto tipoProductoDominio = TipoProducto.PLATILLO;
         Estado estadoDominio = Estado.ACTIVO;
@@ -60,7 +66,14 @@ public class NuevoProductoDTOAProductoAdapter {
 
         return productoNuevo;
     }
+    
 
+    /**
+     * Actualiza el estado de un Producto existente de un EstadoDTO.
+     * @param productoExistente Producto al cual se le actualizará el estado.
+     * @param nuevoEstadoDTO Estado nuevo que se asignará al producto.
+     * @return Producto con el estado actualizado.
+     */
     public static Producto actualizarEstado(Producto productoExistente, EstadoDTO nuevoEstadoDTO) {
         Estado estadoDominio = Estado.ACTIVO;
 

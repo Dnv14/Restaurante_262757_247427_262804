@@ -25,12 +25,23 @@ public class ProductosBO implements IProductosBO {
         this.productosDAO = productosDAO;
     }
 
+    /**
+     * Valida que el texto que se escribió solamente tenga letras.
+     * @param texto Texto a validar.
+     * @return True si el texto contiene letras, False si el texto tiene algún caractér que no sea una letra.
+     */
     private boolean soloLetras(String texto) {
         Pattern pattern = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
         Matcher matcher = pattern.matcher(texto);
         return matcher.matches();
     }
 
+    /**
+     * Valida los datos de un nuevo producto y los valida dentro del sistema.
+     * @param productoDTO DTO con los datos del nuevo producto.
+     * @return Producto registrado correctamente.
+     * @throws NegocioException Si algún dato es inválido o existe un error al regsitrar en la base de datos.
+     */
     @Override
     public Producto validarRegistroProducto(NuevoProductoDTO productoDTO) throws NegocioException {
         if (productoDTO == null) {
@@ -73,6 +84,13 @@ public class ProductosBO implements IProductosBO {
         }
     }
 
+    /**
+     * Valida y ejecuta una búsqueda de producto mediante el nombre.
+     * @param nombre Nombre del producto a buscar.
+     * @return Lista de productos que coincide con la búsqueda.
+     * @throws NegocioException Si el nombre contiene caracteres no válidos o existe un error 
+     * al consultar en la base de datos.
+     */
     @Override
     public List<Producto> validarBarraBusquedaProductos(String nombre) throws NegocioException {
         if (nombre != null && !nombre.isEmpty()) {
@@ -93,6 +111,13 @@ public class ProductosBO implements IProductosBO {
         }
     }
 
+    /**
+     * Valida y busca un producto por su ID.
+     * @param id ID del producto a buscar .
+     * @return Lista de producto que coincide con la búsqueda.
+     * @throws NegocioException Si el ID contiene caracteres no válidos y si exsite un 
+     * error al consultar en la base de datos.
+     */
     @Override
     public Producto validarBusquedaPorId(Long id) throws NegocioException {
         if (id == null) {
@@ -105,6 +130,12 @@ public class ProductosBO implements IProductosBO {
         }
     }
 
+    /**
+     * Valida los cambios del producto actualizado y aplica los cambios en el sistema.
+     * @param productoActualizar DTO con los nuevos datos del prodcuto actualizado.
+     * @return El producto actualizado exitosamente.
+     * @throws NegocioException Si algún dato es inválido o existe un error al actualizar en la base de datos.
+     */
     @Override
     public Producto validacionProductoActualizado(NuevoProductoDTO productoActualizar) throws NegocioException {
         if (productoActualizar.getId() == null) {
@@ -125,6 +156,11 @@ public class ProductosBO implements IProductosBO {
         }
     }
 
+    /**
+     * Valida y elimina un producto del sistema mediante su ID.
+     * @param id ID del producto a eliminar.
+     * @throws NegocioException Si no se puede eliminar el producto o el ID sea inválido.
+     */
     @Override
     public void validarEliminarProducto(Long id) throws NegocioException {
         if (id == null) {
@@ -137,6 +173,12 @@ public class ProductosBO implements IProductosBO {
         }
     }
 
+    /**
+     * Valida y actualiza el estado de un producto.
+     * @param id ID del producto que se quiere cambiar el estado.
+     * @param estadoDTO Nuevo estado que se va a asignar al producto.
+     * @throws NegocioException Si no se pudo actualizar el producto o el ID y el nuevo estado es nulo.
+     */
     @Override
     public void validarCambiarEstado(Long id, EstadoDTO estadoDTO) throws NegocioException {
         if (id == null) {

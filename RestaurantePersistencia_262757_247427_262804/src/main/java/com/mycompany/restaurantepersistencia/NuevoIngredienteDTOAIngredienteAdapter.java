@@ -15,6 +15,11 @@ import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
  */
 public class NuevoIngredienteDTOAIngredienteAdapter {
     
+    /**
+     * Convierte un NuevoIngredienteDATO un Ingrediente en dominio.
+     * @param ingredienteDTO DTo con los datos del ingrediente que se quiere convertir.
+     * @return Un nuevo ingrediente con los datos de la DTO ya convertidos.
+     */
     public static Ingrediente adaptar(NuevoIngredienteDTO ingredienteDTO){
         UnidadMedida unidadMediaDominio = UnidadMedida.GRAMO;
         
@@ -28,8 +33,6 @@ public class NuevoIngredienteDTOAIngredienteAdapter {
             unidadMediaDominio = UnidadMedida.GRAMO;
         }
         
-        return new Ingrediente(ingredienteDTO.getNombreIngrediente(), ingredienteDTO.getStockIngrediente(), unidadMediaDominio);
-        
-        
+        return new Ingrediente(ingredienteDTO.getNombreIngrediente(), ingredienteDTO.getStockIngrediente(), unidadMediaDominio);     
     }
 }

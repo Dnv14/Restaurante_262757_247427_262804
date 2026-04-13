@@ -15,8 +15,9 @@ import javax.persistence.Persistence;
 public class ManejadorConexiones {
 
     /**
-     * 
-     * @return 
+     * Crea y retorna un nuevo EntityManager a partir de la unidad de de 
+     * persistencia que se ha configurado.
+     * @return Un nuevo EntityManager que servirá para hacer operaciones con la base de datos.
      */
     public static EntityManager crearEntityManager() {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("com.mycompany_RestauranteDominio_262757_247427_262804_jar_1.0-SNAPSHOTPU");

@@ -23,6 +23,13 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
         this.clientesFrecuentesDAO = clientesFrecuentesDAO;
     }
 
+    /**
+     * Valida los datos de un cliente frecuente y lo agrega al sistema.
+     * @param clienteFrecuente DTO con las datos del cliente frecuente que se va a validar y a registrar.
+     * @return El cliente frecuente registrado.
+     * @throws NegocioException Si cliente no pudo ser validado, si existe algún problema al registrar 
+     * o si el teléfono no se pudo encriptar correctamente.
+     */
     @Override
     public ClienteFrecuente validarRegistroCliente(NuevoClienteFrecuenteDTO clienteFrecuente) throws NegocioException {
         if (clienteFrecuente.getNombres() == null || clienteFrecuente.getNombres().isEmpty()) {
@@ -62,6 +69,13 @@ public class ClientesFrecuentesBO implements IClientesFrecuentesBO {
         }
     }
 
+    /**
+     * Valida y ejecuta una búsqueda clientes frecuentes dependiendo del texto y tipo de filtro seleccionado.
+     * @param texto Texto a con el que se va a buscar el cliente frecuente.
+     * @param tipoFiltro Tipo de filtro seleccionado con el cual se realizará la búsqueda del cliente frecuente.
+     * @return Retorna la lista de cliente frecuente que coinciden con los datos colocados.
+     * @throws NegocioException Si ocurre un error al consultar en la base de datos.
+     */
     @Override
     public List<ClienteFrecuente> validarBarraBusqueda(String texto, String tipoFiltro) throws NegocioException {
         try {

@@ -25,10 +25,10 @@ public class IngredientesBO implements IIngredientesBO{
     }
 
     /**
-     * 
-     * @param nuevoIngrediente
-     * @return
-     * @throws NegocioException 
+     * Valida los datos de un nuevo ingrediente y lo registra en el sistema.
+     * @param nuevoIngrediente DTO con los datos del ingrediente que se quiere validar y registrar.
+     * @return El ingrediente registrado correctamente.
+     * @throws NegocioException Si alguno de los datos no es válido.
      */
     @Override
     public Ingrediente validarRegistroIngrediente(NuevoIngredienteDTO nuevoIngrediente) throws NegocioException {
@@ -66,11 +66,11 @@ public class IngredientesBO implements IIngredientesBO{
     }
 
     /**
-     * 
-     * @param texto
-     * @param tipoFiltro
-     * @return
-     * @throws NegocioException 
+     * Valida y ejecuta una búsqueda de ingrediente mediante un texto y un filtro seleccionado.
+     * @param texto Texto que se utilizará para buscar el ingrediente.
+     * @param tipoFiltro Tipo de filtro que se utilizará para buscar el ingrediente.
+     * @return Lista de ingredientes que coinciden con el el texto y el filtro seleccionado.
+     * @throws NegocioException Si ocurre un error al buscar en la base de datos.
      */
     @Override
     public List<Ingrediente> validarBarraBusqueda(String texto, String tipoFiltro) throws NegocioException {
@@ -98,10 +98,10 @@ public class IngredientesBO implements IIngredientesBO{
     }
 
     /**
-     * 
-     * @param idIngrediente
-     * @param cantidadTexto
-     * @throws NegocioException 
+     * Valida y actualiza el stock de un ingrediente dependiendo de la cantidad a sumar.
+     * @param idIngrediente ID del ingrediente a actualizar.
+     * @param cantidadTexto Cantidad a sumar al stock del ingrediente.
+     * @throws NegocioException Si hay datos inválidos o existe un error al actualizar.
      */
     @Override
     public void actualizarStockIngrediente(Long idIngrediente, String cantidadTexto) throws NegocioException {
@@ -126,7 +126,12 @@ public class IngredientesBO implements IIngredientesBO{
         
         
     }
-
+    
+    /**
+     * Valida y elimina un ingrediente del sistema mediante su ID.
+     * @param idIngrediente ID del ingrediente a validar y eliminar.
+     * @throws NegocioException Si hay datos inválidos o existe un error al eliminar.
+     */
     @Override
     public void eliminarIngrediente(Long idIngrediente) throws NegocioException {
         try{

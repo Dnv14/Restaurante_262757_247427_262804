@@ -129,7 +129,7 @@ public class IngredienteDAO implements IIngredienteDAO {
     }
 
     /**
-     * Actializa el stock de un ingrediente dependiendo de la cantidad que se quiera sumar.
+     * Actualiza el stock de un ingrediente dependiendo de la cantidad que se quiera sumar.
      * @param idIngrediente El identificador único del ingrediente a modificar el stock.
      * @param cantidad La cantidad de stock que se desea modificar .
      * @throws PersistenciaException Si ocurre algún error al acceder a la base de datos.
