@@ -14,6 +14,10 @@ import javax.persistence.Persistence;
  */
 public class ManejadorConexiones {
 
+    /**
+     * 
+     * @return 
+     */
     public static EntityManager crearEntityManager() {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("com.mycompany_RestauranteDominio_262757_247427_262804_jar_1.0-SNAPSHOTPU");
         EntityManager em = emFactory.createEntityManager();

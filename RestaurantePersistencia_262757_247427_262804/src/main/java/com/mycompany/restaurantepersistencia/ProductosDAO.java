@@ -28,6 +28,12 @@ public class ProductosDAO implements IProductoDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ProductosDAO.class.getName());
 
+    /**
+     * Crea y agrega un nuevo producto a la base de datos.
+     * @param productoDTO DTO con los datos del producto que se quiere agregar.
+     * @return El producto agregado.
+     * @throws PersistenciaException Si ocurre un error al agregar el producto a la base de datos.
+     */
     @Override
     public Producto agregarProducto(NuevoProductoDTO productoDTO) throws PersistenciaException {
         try {
@@ -44,6 +50,12 @@ public class ProductosDAO implements IProductoDAO {
         }
     }
 
+    /**
+     * Consulta una lista de productos mediante su nombre.
+     * @param nombre Nombre exacto del ingrediente que se está buscando.
+     * @return Retorna el producto que coincide con el nombre colocado.
+     * @throws PersistenciaException Si ocurre un error al momento de consultar en la base de datos.
+     */
     @Override
     public List<Producto> consultarProductosNombre(String nombre) throws PersistenciaException {
         try {
@@ -65,6 +77,11 @@ public class ProductosDAO implements IProductoDAO {
         }
     }
 
+    /**
+     * Consulta una lista de productos con todos los productos que se encuentran en ella.
+     * @return Retorna todos los productos.
+     * @throws PersistenciaException Si ocurre un error al consultar lso productos en la base de datos.
+     */
     @Override
     public List<Producto> consultarTodosLosProductos() throws PersistenciaException {
         try {
@@ -83,6 +100,12 @@ public class ProductosDAO implements IProductoDAO {
         }
     }
 
+    /**
+     * Consulta un producto mediante su identificador único.
+     * @param id Identificador único del producto a consultar.
+     * @return Retorna el prducto que coincide con el ID especificado.
+     * @throws PersistenciaException Si ocurre un error al consultar el producto en la Baase de datos.
+     */
     @Override
     public Producto consultarProductoPorId(Long id) throws PersistenciaException {
         try {
@@ -94,6 +117,12 @@ public class ProductosDAO implements IProductoDAO {
         }
     }
 
+    /**
+     * Actualiza los datos de un producto existente en la base de datos.
+     * @param productoActualizado DTO con los nuevos datos del producto que se quiere actualizar.
+     * @return El producto ya actualizado.
+     * @throws PersistenciaException Si ocurre un error al actualizar el producto en la base de datos.
+     */
     @Override
     public Producto actualizarProducto(NuevoProductoDTO productoActualizado) throws PersistenciaException {
         try {
@@ -123,6 +152,11 @@ public class ProductosDAO implements IProductoDAO {
         }
     }
 
+    /**
+     * Elimina un producto de la base de datos mediante su ID.
+     * @param id ID del producto que se quiere eliminar.
+     * @throws PersistenciaException Si ocurre un error al momento de eliminar el producto en la base de datos.
+     */
     @Override
     public void eliminarProducto(Long id) throws PersistenciaException {
         try {
@@ -137,6 +171,12 @@ public class ProductosDAO implements IProductoDAO {
         }
     }
 
+    /**
+     * Actualiza el estado de un producto en la base de datos.
+     * @param id ID del producto que se quiere actualizar.
+     * @param nuevoEstado Nuevo estado que se le asignará al producto.
+     * @throws PersistenciaException Si ocurre un error al actualizar el producto en la base de datos.
+     */
     @Override
     public void actualizarEstadoProducto(Long id, EstadoDTO nuevoEstado) throws PersistenciaException {
         try {

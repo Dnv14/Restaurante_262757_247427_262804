@@ -28,6 +28,13 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ClienteFrecuenteDAO.class.getName());
 
+    /**
+     * Crea  y agrega un nuevo cliente frecuente a la base de datos.
+     * @param nuevoClienteFrecuente DTO con los datos del cliente que se quiere registrar.
+     * @return Retorna el cliente frecuente que se creo.
+     * @throws PersistenciaException Si ocurre un error al querer agregar cliente frecuente a la base de datos.
+     * @throws Exception Si ocurre algún error durante el proceso.
+     */
     @Override
     public ClienteFrecuente crearClienteFrecuente(NuevoClienteDTO nuevoClienteFrecuente) throws PersistenciaException, Exception {
         ClienteFrecuente clienteFrecuente = new ClienteFrecuente();
@@ -51,6 +58,12 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
         }
     }
 
+    /**
+     * Consulta una lista de clientes frecuentes dependiendo del filtro que se le asigne.
+     * @param Tipofiltro Filtro con el cual se podrán hacer las búsquedas personalizadas.
+     * @return Retorna el cliente frecuente dependiendo del filtro utilizado.
+     * @throws PersistenciaException Si ocurre un error al acceder a la base de datos.
+     */
     @Override
     public List<ClienteFrecuente> consultarClientesFiltros(FiltrosDTO Tipofiltro) throws PersistenciaException {
         EntityManager entityManager = ManejadorConexiones.crearEntityManager();
@@ -76,7 +89,6 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
         }
 
         if (!predicados.isEmpty()) {
-            //aqui usamos el arreglo pq con las listas tira error :p
             Predicate[] filtrosFinales = predicados.toArray(new Predicate[predicados.size()]);
             cQuery.where(cBuilder.and(filtrosFinales));
         }
@@ -85,6 +97,11 @@ public class ClienteFrecuenteDAO implements IClienteFrecuenteDAO {
 
     
 
+    /**
+     * Consulta una lista con todos los clientes frecuentes.
+     * @return Retorna una lista con todos los clientes frecuentes.
+     * @throws PersistenciaException Si ocurre un error al acceder a la base de datos.
+     */
     @Override
     public List<ClienteFrecuente> consultarTodosClientesFrecuentes() throws PersistenciaException {
         try {

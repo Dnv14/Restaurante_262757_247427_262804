@@ -50,10 +50,10 @@ public class IngredienteDAO implements IIngredienteDAO {
     }
 
     /**
-     * 
-     * @param tipoFiltro
-     * @return
-     * @throws PersistenciaException 
+     * Consulta una lista de ingredientes dependiendo del filtro que se le asigne.
+     * @param tipoFiltro Filtro con el cual se podrán realizar las búsquedas personalizadas.
+     * @return Lista de ingredientes que coinciden con el filtro seleccionado.
+     * @throws PersistenciaException Si ocurre un error al acceder a la base de datos.
      */
     @Override
     public List<Ingrediente> consultarIngredientesFiltro(FiltrosDTO tipoFiltro) throws PersistenciaException {
@@ -83,9 +83,9 @@ public class IngredienteDAO implements IIngredienteDAO {
     }
 
     /**
-     * 
-     * @return
-     * @throws PersistenciaException 
+     * Consulta una lista de todos los ingredientes existentes.
+     * @return La la lista de los ingredientes encontrados. 
+     * @throws PersistenciaException Si ocurre algún error al acceder a la base de datos.
      */
     @Override
     public List<Ingrediente> consultarTodosIngredientes() throws PersistenciaException {
@@ -103,11 +103,11 @@ public class IngredienteDAO implements IIngredienteDAO {
     }
 
     /**
-     * 
-     * @param nombre
-     * @param unidadMedida
-     * @return
-     * @throws PersistenciaException 
+     * Consulta un ingrediente por su nombre y unidad medida.
+     * @param nombre Nombre del ingrediente que se quiere buscar.
+     * @param unidadMedida Unidad de medida del ingrediente que se quiere buscar.
+     * @return Retorna el ingrediente que coincide con los datos puestos.
+     * @throws PersistenciaException Si ocurre un error al acceder a la base de datos.
      */
     @Override
     public Ingrediente consultarPorNombreyUnidad(String nombre, UnidadMedidaDTO unidadMedida) throws PersistenciaException {
@@ -129,10 +129,10 @@ public class IngredienteDAO implements IIngredienteDAO {
     }
 
     /**
-     * 
-     * @param idIngrediente
-     * @param cantidad
-     * @throws PersistenciaException 
+     * Actializa el stock de un ingrediente dependiendo de la cantidad que se quiera sumar.
+     * @param idIngrediente El identificador único del ingrediente a modificar el stock.
+     * @param cantidad La cantidad de stock que se desea modificar .
+     * @throws PersistenciaException Si ocurre algún error al acceder a la base de datos.
      */
     @Override
     public void acualizarIngrediente(Long idIngrediente, Double cantidad) throws PersistenciaException {
