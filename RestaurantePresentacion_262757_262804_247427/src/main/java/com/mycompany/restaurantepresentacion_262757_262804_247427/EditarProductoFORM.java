@@ -276,6 +276,10 @@ public class EditarProductoFORM extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * cargamos los productos para setearlos en el frame por si el usuario
+     * quiere editar las cosas que tiene
+     */
     private void CargarProducto() {
         try {
             Producto productoID = control.consultaProductoPorID(this.idProducto);
@@ -291,14 +295,30 @@ public class EditarProductoFORM extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
+    /**
+     * aqui es principalmente para que el usuario sepa q listas tenia o tiene
+     * usamos el set por si el usuario cambio algo
+     *
+     * @param lista
+     */
     public void setIngredientesReceta(List<NuevaRecetaDTO> lista) {
         this.ingredientesReceta = lista;
     }
 
+    /**
+     * usamos el get para obtener las listas previas de recetas
+     *
+     * @return
+     */
     public List<NuevaRecetaDTO> getIngredientesReceta() {
         return ingredientesReceta;
     }
 
+    /**
+     * mostramos al usuario en tabla lo que teneos en ingredientes y los ponemos
+     *
+     * @param ingrediente
+     */
     public void mostrarResultados(List<Ingrediente> ingrediente) {
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tablaIngredientes.getModel();
         modelo.setRowCount(0);
@@ -312,21 +332,40 @@ public class EditarProductoFORM extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * como el buscador esta definido por si no hay nada en los buscadores
+     * traiga todo lo inicializamos vacio para que jale todo lo que tenga
+     */
     private void cargarTodosLosIngredientes() {
         control.buscarIngredientesParaProductoEditar("", "", this);
     }
 
-
+    /**
+     * para guardar los cambios ocupamos setear todo lo que obtuvimos en este
+     * form para poder llenar el nuevo producto, entonces vamos a llenar dicho
+     * nuevo producto
+     *
+     * @param evt
+     */
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         try {
             String descipcion = txtDescripcion.getText();
-            String precio = txtPrecio.getText();
+            String precioTexto = txtPrecio.getText();
+
+            Double precioValido;
+
+            try {
+                precioValido = Double.parseDouble(precioTexto);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "El precio debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             NuevoProductoDTO productoActualizar = new NuevoProductoDTO();
             productoActualizar.setId(this.idProducto);
             productoActualizar.setNombre(lblProductoSeleccionado.getText());
             productoActualizar.setDescripcion(descipcion);
-            productoActualizar.setPrecio(Double.valueOf(precio));
+            productoActualizar.setPrecio(precioValido);
             productoActualizar.setRecetas(this.ingredientesReceta);
 
             control.actualizarProducto(productoActualizar);
@@ -365,6 +404,16 @@ public class EditarProductoFORM extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscadorIngredienteActionPerformed
 
+    /**
+     * aqui la logica para poder cambiar ingredietes es que detecta si el
+     * ingrediente ya esta en la receta o no, si ya esta indicara que se puede
+     * eliminar si no, el usuario debera escoger una cantidad y clickear el
+     * ingrediente para poder setearla, para poder agregar diferente cantidad de
+     * ingrediente deberia eliminarse y volverse a agregar pero con la mimsma
+     * cantidad
+     *
+     * @param evt
+     */
     private void tablaIngredientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaIngredientesMouseClicked
         int fila = tablaIngredientes.getSelectedRow();
         Long idSeleccionado = (Long) tablaIngredientes.getValueAt(fila, 0);
@@ -378,7 +427,8 @@ public class EditarProductoFORM extends javax.swing.JDialog {
                 cantidadNueva = Double.valueOf(texto);
             }
         } catch (NumberFormatException e) {
-            
+            JOptionPane.showMessageDialog(this, "La cantidad debe ser un número válido.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         NuevaRecetaDTO RecetaEncontrada = null;
         for (NuevaRecetaDTO receta : lista) {

@@ -22,19 +22,31 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         inicializarComboBox();
         java.awt.EventQueue.invokeLater(() -> {
             cargarTodosLosIngredientes();
-        });
-      
+        }); 
     }
+    
+    /**
+     * Aqui cargamos todos los ingredientes, como esta definido por si esta
+     * vacio algun campo mande a llamar a todo lo que hay en la base de datos
+     * mandamos los parametros vacios
+     */
     private void cargarTodosLosIngredientes() {
         control.buscarIngredientes("","");
     }
     
+    /**
+     * inicializamos el comboBox con las posibles tipos de filtros
+     */
     private void inicializarComboBox() {
         controlFiltroBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(
                 new String[]{"Nombre", "Unidad de Medida"}
         ));
     }
     
+    /**
+     * mostramos los resultados de los ingredientes para ponerlos en tabla
+     * @param ingrediente 
+     */
     public void mostrarResultados(List<Ingrediente> ingrediente) {
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tablaIngredientes.getModel();
         modelo.setRowCount(0);
@@ -215,6 +227,11 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         volverAtras();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
+    /**
+     * Le muestra al usuario la cantidad para sumar o restar pudiendo dar 
+     * numeros negativos para restar, y así actualizar la cantidad
+     * @param evt 
+     */
     private void botonModificarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarStockActionPerformed
         int fila = tablaIngredientes.getSelectedRow();
         if(fila < 0){
@@ -230,7 +247,12 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         }
                 
     }//GEN-LAST:event_botonModificarStockActionPerformed
-
+    
+    /**
+     * elimina el ingrediente seleccionado por el usuario para poder eliminarlo
+     * buscandolo por el id en el metodo eliminar ingrediente
+     * @param evt 
+     */
     private void buttonEliminarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarIngredienteActionPerformed
         int fila = tablaIngredientes.getSelectedRow();
         if(fila < 0){

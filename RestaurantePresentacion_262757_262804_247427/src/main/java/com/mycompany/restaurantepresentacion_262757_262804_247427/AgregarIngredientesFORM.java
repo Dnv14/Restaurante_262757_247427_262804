@@ -21,6 +21,9 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
         inicilizarComboBox();
     }
     
+    /**
+     * inicializa el comboBox el cual tiene el tipo de unidad
+     */
     public void inicilizarComboBox(){
         unidadMedidaCombo.removeAllItems();
         for(UnidadMedidaDTO unidad: UnidadMedidaDTO.values()){
@@ -177,7 +180,12 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCancelarActionPerformed
-
+    
+    /**
+     * agrega el ingrediente llenando los espacios que ocupa
+     * para crearse
+     * @param evt 
+     */
     private void botonAgregarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarIngredienteActionPerformed
         String nombre = nombreTextField.getText();
         Double precio = Double.parseDouble(stockTextField.getText());

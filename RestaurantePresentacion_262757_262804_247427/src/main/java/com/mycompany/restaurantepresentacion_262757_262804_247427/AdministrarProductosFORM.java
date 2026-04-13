@@ -153,11 +153,19 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * carga los productos, marcado que si viene vacio una pues 
+     * jale todo lo que tenga
+     */
     public void cargarProductos() {
         control.buscarProductos("");
     }
-
+    
+    /**
+     * muestra los resultados y los ordena en una tabla
+     * @param productos 
+     */
     public void mostrarResultados(List<Producto> productos) {
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) productosTABLE.getModel();
         modelo.setRowCount(0);
@@ -172,6 +180,10 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * usamos a control para llamar a buscar el producto
+     * @param evt 
+     */
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         String nombreProducto = txtBusqueda.getText();
         control.buscarProductos(nombreProducto);
@@ -184,7 +196,13 @@ public class AdministrarProductosFORM extends javax.swing.JFrame {
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
-
+    
+    /**
+     * si hace click mostramos las acciones que le puede hacer al producto
+     * y lo manejamos por el id dandosela a control para que cree el dialog
+     * con el id previamente dado
+     * @param evt 
+     */
     private void productosTABLEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productosTABLEMouseClicked
 
         int fila = productosTABLE.getSelectedRow();

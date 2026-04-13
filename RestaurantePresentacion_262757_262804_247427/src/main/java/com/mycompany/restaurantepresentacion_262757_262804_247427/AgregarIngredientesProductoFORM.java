@@ -7,6 +7,7 @@ package com.mycompany.restaurantepresentacion_262757_262804_247427;
 import com.mycompany.restaurantedominio_262757_247427_262804.Ingrediente;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevaRecetaDTO;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,11 +62,11 @@ public class AgregarIngredientesProductoFORM extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "NOMBRE"
+                "ID", "NOMBRE", "Unidad de Medida"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -155,6 +156,11 @@ public class AgregarIngredientesProductoFORM extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Muestra los resultados de los ingredientes y los agrega en tabla
+     *
+     * @param ingrediente
+     */
     public void mostrarResultados(List<Ingrediente> ingrediente) {
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tablaIngredientes.getModel();
         modelo.setRowCount(0);
@@ -162,7 +168,9 @@ public class AgregarIngredientesProductoFORM extends javax.swing.JDialog {
         for (Ingrediente i : ingrediente) {
             modelo.addRow(new Object[]{
                 i.getIdIngrediente(),
-                i.getNombreIngrediente(),});
+                i.getNombreIngrediente(),
+                i.getUnidadMedida()
+            });
         }
     }
 
@@ -176,24 +184,52 @@ public class AgregarIngredientesProductoFORM extends javax.swing.JDialog {
         control.buscarIngredientesParaProducto(texto, "Nombre", this);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    /**
+     * si el usuario se va para atras para añadir el producto se le muestra los
+     * ingredientes que tiene seleccionado a lo largo deld ialog para que decida
+     * si todo bien o quiera agregar mas
+     *
+     * @param evt
+     */
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        
-        
+
         int respuesta = javax.swing.JOptionPane.showConfirmDialog(this,
-                "Ingredientes Seleccionados" + "\n"+control.ResumenRecetasProducto() +"\nSalir?",
+                "Ingredientes Seleccionados" + "\n" + control.ResumenRecetasProducto() + "\nSalir?",
                 "Resumen",
                 javax.swing.JOptionPane.YES_NO_OPTION);
 
         if (respuesta == javax.swing.JOptionPane.YES_OPTION) {
             dispose();
         }
-        
+
     }//GEN-LAST:event_botonAtrasActionPerformed
 
+    /**
+     * aqyu la tabla de ingrediente, pues primero se escribe la cantidad para
+     * agregar el ingrediente, despues seteamos todo lo necesario para poder
+     * crear la receta y al final seteamos otra vez la cantidad en 0
+     *
+     * @param evt
+     */
     private void tablaIngredientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaIngredientesMouseClicked
         int fila = tablaIngredientes.getSelectedRow();
 
+        String textoCantidad = txtCantidadIngrediente.getText();
+        if (textoCantidad.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese una cantidad antes de seleccionar ingrediente");
+            return;
+        }
+
         if (evt.getClickCount() == 1) {
+
+            Double cantidadValida;
+            try {
+                cantidadValida = Double.valueOf(textoCantidad);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La cantidad debe ser un número válido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Long id = (Long) tablaIngredientes.getValueAt(fila, 0);
             String nombre = (String) tablaIngredientes.getValueAt(fila, 1);
 
@@ -203,10 +239,18 @@ public class AgregarIngredientesProductoFORM extends javax.swing.JDialog {
                     javax.swing.JOptionPane.YES_NO_OPTION);
 
             if (respuesta == javax.swing.JOptionPane.YES_OPTION) {
-                NuevaRecetaDTO receta = new NuevaRecetaDTO(id, nombre, Double.parseDouble(txtCantidadIngrediente.getText()));
-                control.enviarIngredienteAniadirProducto(receta);
-                txtCantidadIngrediente.setText("");
+                NuevaRecetaDTO receta = new NuevaRecetaDTO(id, nombre, cantidadValida);
+
+                if (control.ValidarIngredienteRepetido(id) == true) {
+                    JOptionPane.showMessageDialog(this, "Ese ingrediente ya está en la receta.");
+                } else {
+                    control.enviarIngredienteAniadirProducto(receta);
+                    txtCantidadIngrediente.setText("");
+                }
             }
+
+//            control.enviarIngredienteAniadirProducto(receta);
+//            txtCantidadIngrediente.setText("");
         }
     }//GEN-LAST:event_tablaIngredientesMouseClicked
 
