@@ -29,10 +29,10 @@ public class IngredienteDAO implements IIngredienteDAO {
     private static final Logger LOGGER = Logger.getLogger(IngredienteDAO.class.getName());
 
     /**
-     * 
-     * @param nuevoIngrediente
-     * @return
-     * @throws PersistenciaException 
+     * Agregar un nuevo ingrediente a la base de datos 
+     * @param nuevoIngrediente DTO que contiene los datos del ingrediente que se quiere agregar.
+     * @return El ingrediente ya creado y agregado en la base de datos.
+     * @throws PersistenciaException Si ocurre un error al agregar el ingrediente u otro error.
      */
     @Override
     public Ingrediente agregarIngrediente(NuevoIngredienteDTO nuevoIngrediente) throws PersistenciaException {
@@ -157,10 +157,10 @@ public class IngredienteDAO implements IIngredienteDAO {
     }
 
     /**
-     * 
-     * @param idIngrediente
-     * @return
-     * @throws PersistenciaException 
+     * Consulta un ingrediente de la base de datos mediante su ID.
+     * @param idIngrediente El identificador único del ingrediente a consultar.
+     * @return El ingrediente encontrado con su ID.
+     * @throws PersistenciaException El ingrediente no se encuentre o exista otro error.
      */
     @Override
     public Ingrediente consultarPorId(Long idIngrediente) throws PersistenciaException {
@@ -177,6 +177,11 @@ public class IngredienteDAO implements IIngredienteDAO {
         }
     }
 
+    /**
+     * Eliminar un ingrediente encontrado en la base de datos mediante su ID.
+     * @param ideIngrediente El identificador único del ingrediente a eliminar
+     * @throws PersistenciaException El ingrediente no se pueda eliminar o exista otro error.
+     */
     @Override
     public void eliminarIngrediente(Long ideIngrediente) throws PersistenciaException {
         try{
