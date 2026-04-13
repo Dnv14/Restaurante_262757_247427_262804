@@ -62,11 +62,11 @@ public class AgregarIngredientesProductoFORM extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "NOMBRE"
+                "ID", "NOMBRE", "Unidad de Medida"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -168,7 +168,9 @@ public class AgregarIngredientesProductoFORM extends javax.swing.JDialog {
         for (Ingrediente i : ingrediente) {
             modelo.addRow(new Object[]{
                 i.getIdIngrediente(),
-                i.getNombreIngrediente(),});
+                i.getNombreIngrediente(),
+                i.getUnidadMedida()
+            });
         }
     }
 
