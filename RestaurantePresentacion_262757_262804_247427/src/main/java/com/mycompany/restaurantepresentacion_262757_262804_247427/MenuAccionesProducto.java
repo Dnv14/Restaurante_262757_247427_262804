@@ -18,7 +18,6 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
 
     private ControlForms control;
     private Long idProducto;
-
     public MenuAccionesProducto(java.awt.Frame parent, boolean modal, ControlForms control, Long idProducto) {
         super(parent, modal);
         this.control = control;
@@ -153,7 +152,13 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * consultamos el producto actual con el id que dio adminsitrar productos
+     * al clickear la tabla para manejarlo en el dialog
+     * @return
+     * @throws NegocioException 
+     */
     private Producto productoActual() throws NegocioException {
         return control.consultaProductoPorID(idProducto);
     }
@@ -163,11 +168,21 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
-
+    
+    /**
+     * manda a llamar el dialog de editar producto
+     * @param evt 
+     */
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
         control.navegarEditarProducto(idProducto);
     }//GEN-LAST:event_btnEditarProductoActionPerformed
-
+    
+    /**
+     * cambia el estado del producto
+     * con mensajes de confirmaciones por si el usuario decide cancelar 
+     * la operacion
+     * @param evt 
+     */
     private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
         try {
             Estado estadoActual = productoActual().getEstado();
@@ -189,17 +204,26 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
 
             if (respuesta == JOptionPane.YES_OPTION) {
                 control.cambiarEstadoProducto(idProducto, nuevoEstado);
-                JOptionPane.showMessageDialog(this, "Cambio Exitosa");
+                JOptionPane.showMessageDialog(this, "Cambio Exitoso");
                 this.dispose();
             }
         } catch (NegocioException ex) {
         }
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
+    /**
+     * manda a llamar el dialog de los detalles del producto
+     * @param evt 
+     */
     private void btnDetallesProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesProductoActionPerformed
         control.navegarDetallesProducto(idProducto);
     }//GEN-LAST:event_btnDetallesProductoActionPerformed
-
+    
+    /**
+     * Elimina el producto, con mensaje de confirmacion por si el usuario decide
+     * cancelar la operacion
+     * @param evt 
+     */
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
 
         try {
@@ -223,7 +247,11 @@ public class MenuAccionesProducto extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnEliminarProductoActionPerformed
-
+    
+    /**
+     * carga el nombre del producto para sobreescribirlo en la pantalla
+     * para que el usuario sepa que producto esta manejando
+     */
     private void lblCargarNombreProducto() {
         try {
 //            Producto productoID = control.consultaProductoPorID(this.idProducto);

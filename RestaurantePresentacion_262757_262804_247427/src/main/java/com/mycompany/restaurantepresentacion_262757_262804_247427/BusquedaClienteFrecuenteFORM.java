@@ -27,7 +27,11 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         });
 //        cargarTodosLosClientes();
     }
-
+    
+    
+    /**
+     * iniciamos los tipos filtros que se pueden poner
+     */
     private void inicializarComboBox() {
         filtrosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(
                 new String[]{"Nombre", "Teléfono", "Correo Electrónico"}
@@ -38,6 +42,10 @@ public class BusquedaClienteFrecuenteFORM extends javax.swing.JFrame {
         control.BuscarClientesFrecuentes("","");
     }
 
+    /**
+     * buscamos todos los cliente frecuente y los ponemos en tabla
+     * @param clientes 
+     */
     public void mostrarResultados(List<ClienteFrecuente> clientes) {
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) clientesFrecuentesTable.getModel();
         modelo.setRowCount(0);

@@ -7,6 +7,7 @@ package com.mycompany.restaurantepresentacion_262757_262804_247427;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevaRecetaDTO;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
      */
     public AniadirProductoFORM(ControlForms control) {
         this.control = control;
+        this.setTitle("Añadir Producto");
         initComponents();
     }
 
@@ -175,11 +177,11 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public void agregarIngredienteLista(NuevaRecetaDTO nuevaReceta) {
         this.ingredientesReceta.add(nuevaReceta);
     }
-    
+
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
@@ -194,12 +196,22 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
 
     private void btnAñadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirProductoActionPerformed
         String nombre = txtNombre.getText();
-        Double precio = Double.parseDouble(txtPrecio.getText());
+        String precioTexto = txtPrecio.getText().trim();
         String descripcion = txtDescripcion.getText();
         String tipoSeleccionado = String.valueOf(tipoComboBox.getSelectedItem());
 
-       
-        control.agregarProducto(nombre, precio, descripcion, tipoSeleccionado,this.ingredientesReceta);
+        if (nombre.isEmpty() || precioTexto.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, llena todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Double precioValido;
+        try {
+            precioValido = Double.parseDouble(precioTexto);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El precio debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        control.agregarProducto(nombre, precioValido, descripcion, tipoSeleccionado, this.ingredientesReceta);
     }//GEN-LAST:event_btnAñadirProductoActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -223,8 +235,6 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
     }
 
 
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAñadirIngredientes;
     private javax.swing.JButton btnAñadirProducto;

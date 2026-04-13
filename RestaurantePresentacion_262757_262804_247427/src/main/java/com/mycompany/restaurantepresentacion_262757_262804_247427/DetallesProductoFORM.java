@@ -136,7 +136,11 @@ public class DetallesProductoFORM extends javax.swing.JDialog {
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         dispose();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
-
+    
+    /**
+     * cargamos los detalles del producto para poder mostrar al usuario
+     * desde la descripcion y las recetas
+     */
     private void cargarDatos() {
         String descripcion = control.mostrarDescripcion(idProducto);
         String receta = control.obtenerReceta(idProducto);

@@ -508,8 +508,6 @@ public class ControlForms {
 //    public List<NuevaRecetaDTO> obtenerListaTemporalParaEditar(EditarProductoFORM dialog) {
 //        return dialog.getIngredientesReceta();
 //    }
-    
-    
     //utileria
     /**
      * Usado en varios metodos para poder consultar al producto por su id y
@@ -529,10 +527,10 @@ public class ControlForms {
     }
 
     /**
-     *  usamos este metodo porque se queda abierta la pantalla mientras el usuario 
-     * hace operaciones como eliminar editar o cambiar el estado a un 
-     * producto que se muestra atras, asi que volvemos a llamar al metodo
-     * el cual carga los productos para que reinice la tabla
+     * usamos este metodo porque se queda abierta la pantalla mientras el
+     * usuario hace operaciones como eliminar editar o cambiar el estado a un
+     * producto que se muestra atras, asi que volvemos a llamar al metodo el
+     * cual carga los productos para que reinice la tabla
      */
     public void reiniciarTablaProductos() {
         if (frameActual instanceof AdministrarProductosFORM administrarProductosFrom) {
@@ -540,4 +538,21 @@ public class ControlForms {
         }
     }
 
+    /**
+     * Mandamos a llamar a el form de añadir producto donde tenemos las recetas
+     * para saber si el ingrediente ya existe o no, y no se puedan añadir mas de
+     * 1
+     *
+     * @param id
+     * @return
+     */
+    public boolean ValidarIngredienteRepetido(Long id) {
+        AniadirProductoFORM frame = (AniadirProductoFORM) frameActual;
+        for (NuevaRecetaDTO receta : frame.getIngredientesReceta()) {
+            if (receta.getIdIngrediente().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
