@@ -476,6 +476,7 @@ public class ControlForms {
             return producto.getDescripcion();
 
         } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }
@@ -493,21 +494,15 @@ public class ControlForms {
             String texto = "";
             for (Receta receta : producto.getReceta()) {
 
-                texto += "- " + receta.getCantidadIngrediente() + "x " + receta.getIngrediente().getNombreIngrediente() + "\n";
+                texto += "- " + receta.getCantidadIngrediente() + " " + receta.getIngrediente().getUnidadMedida() + " de " + receta.getIngrediente().getNombreIngrediente() + "\n";
             }
             return texto;
         } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }
 
-//    public List<NuevaRecetaDTO> obtenerListaTemporalParaAniadir() {
-//        return ((AniadirProductoFORM) frameActual).getIngredientesReceta();
-//    }
-//    
-//    public List<NuevaRecetaDTO> obtenerListaTemporalParaEditar(EditarProductoFORM dialog) {
-//        return dialog.getIngredientesReceta();
-//    }
     //utileria
     /**
      * Usado en varios metodos para poder consultar al producto por su id y
