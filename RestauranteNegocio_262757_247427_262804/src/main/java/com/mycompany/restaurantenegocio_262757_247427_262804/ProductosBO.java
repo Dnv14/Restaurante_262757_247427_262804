@@ -149,6 +149,11 @@ public class ProductosBO implements IProductosBO {
         if (productoActualizar.getPrecio() < 0) {
             throw new NegocioException("El precio debe ser un número positivo.");
         }
+        
+        if (productoActualizar.getRecetas() == null || productoActualizar.getRecetas().isEmpty()) {
+            throw new NegocioException("Un producto debe tener al menos un ingrediente.");
+        }
+        
         try {
             return productosDAO.actualizarProducto(productoActualizar);
         } catch (PersistenciaException ex) {
