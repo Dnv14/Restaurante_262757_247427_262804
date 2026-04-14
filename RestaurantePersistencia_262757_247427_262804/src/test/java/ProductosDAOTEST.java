@@ -4,6 +4,7 @@
  */
 
 import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import com.mycompany.restaurantedominio_262757_247427_262804.Receta;
 import com.mycompany.restaurantedtos_262757_247427_262804.EstadoDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevaRecetaDTO;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevoProductoDTO;
@@ -60,6 +61,40 @@ public class ProductosDAOTEST {
             Producto consultado = dao.consultarProductoPorId(1L);
 
             assertNull(consultado, "El producto con ID 11 aún existe en la base de datos.");
+        });
+    }
+
+    @Test
+    public void actualizarProductoSiActualiza() {
+        Long idExistente = 12L;
+        String nuevaDesc = "Nueva descripción de prueba ";
+
+        assertDoesNotThrow(() -> {
+
+            Producto productoOriginal = dao.consultarProductoPorId(idExistente);
+
+            NuevoProductoDTO productoDTO = new NuevoProductoDTO();
+            productoDTO.setId(idExistente);
+            productoDTO.setNombre(productoOriginal.getNombre());
+            productoDTO.setPrecio(productoOriginal.getPrecio());
+            productoDTO.setTipoProducto(TipoProductoDTO.PLATILLO);
+            productoDTO.setEstado(EstadoDTO.ACTIVO);
+
+            List<NuevaRecetaDTO> recetasActuales = new LinkedList<>();
+
+            for (Receta r : productoOriginal.getReceta()) {
+                recetasActuales.add(new NuevaRecetaDTO(
+                        r.getIngrediente().getIdIngrediente(),
+                        r.getIngrediente().getNombreIngrediente(),
+                        r.getCantidadIngrediente()
+                ));
+            }
+            productoDTO.setRecetas(recetasActuales);
+            productoDTO.setDescripcion(nuevaDesc);
+
+            Producto resultado = dao.actualizarProducto(productoDTO);
+            assertEquals(nuevaDesc, resultado.getDescripcion());
+
         });
     }
 }
