@@ -80,4 +80,29 @@ public class IngredienteDAOTEST {
             assertEquals(stockAntes - 1.0, ingredientesActu.get(0).getStockIngrediente());
         });
     }
+    
+    @Test
+    public void consultarIngredientePorIDFuncionaOK(){
+         assertDoesNotThrow(() -> {
+            FiltrosDTO filtro = new FiltrosDTO("Sal", null, null, null);
+            List<Ingrediente> ingredientes = dao.consultarIngredientesFiltro(filtro);
+            Long idIngrediente = ingredientes.get(0).getIdIngrediente();
+            Ingrediente resultado = dao.consultarPorId(idIngrediente);
+            assertNotNull(resultado);
+            assertEquals("Sal", resultado.getNombreIngrediente());          
+         });
+    }
+    
+    @Test
+    public void eliminarIngredienteFuncionaOK() {
+        assertDoesNotThrow(() -> {
+            NuevoIngredienteDTO nuevoIngredientePrueba = new NuevoIngredienteDTO("Ingrediente Prueba", 1.0, UnidadMedidaDTO.GRAMO);
+            Ingrediente ingrediente = dao.agregarIngrediente(nuevoIngredientePrueba);
+            Long idEliminar = ingrediente.getIdIngrediente();
+            dao.eliminarIngrediente(idEliminar);
+            FiltrosDTO filtroNombre = new FiltrosDTO("Ingrediente Prueba", null, null, null);
+            List<Ingrediente> ingredientes = dao.consultarIngredientesFiltro(filtroNombre);
+            assertTrue(ingredientes.isEmpty());
+        });
+    }
 }
