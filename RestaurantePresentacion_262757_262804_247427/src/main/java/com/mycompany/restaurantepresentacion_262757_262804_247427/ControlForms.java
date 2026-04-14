@@ -332,10 +332,10 @@ public class ControlForms {
      * @param stock
      * @param unidadMedida
      */
-    public void registrarIngrediente(String nombre, Double stock, String unidadMedida) {
+    public void registrarIngrediente(String nombre, Double stock, String unidadMedida, byte[] imagen) {
         try {
             UnidadMedidaDTO unidadDTO = UnidadMedidaDTO.valueOf(unidadMedida.toUpperCase());
-            NuevoIngredienteDTO ingredienteDTO = new NuevoIngredienteDTO(nombre, stock, unidadDTO);
+            NuevoIngredienteDTO ingredienteDTO = new NuevoIngredienteDTO(nombre, stock, unidadDTO, imagen);
             objetosBO.getIngredientesBO().validarRegistroIngrediente(ingredienteDTO);
             JOptionPane.showMessageDialog(frameActual, "El ingrediente ha sido registrado con éxito.");
             navegarMenuIngredientes();

@@ -14,6 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,6 +42,10 @@ public class Ingrediente implements Serializable {
     @Enumerated(EnumType.STRING)
     private UnidadMedida unidadMedida;
     
+    @Lob
+    @Column(name = "imagen")
+    private byte[] imagen;
+    
     @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL)
     private List<Receta> receta;
 
@@ -66,6 +71,15 @@ public class Ingrediente implements Serializable {
         this.unidadMedida = unidadMedida;
         this.receta = receta;
     }
+
+    public Ingrediente(Long idIngrediente, String nombreIngrediente, Double stockIngrediente, UnidadMedida unidadMedida, byte[] imagen, List<Receta> receta) {
+        this.idIngrediente = idIngrediente;
+        this.nombreIngrediente = nombreIngrediente;
+        this.stockIngrediente = stockIngrediente;
+        this.unidadMedida = unidadMedida;
+        this.imagen = imagen;
+        this.receta = receta;
+    }   
 
     public List<Receta> getReceta() {
         return receta;
@@ -108,6 +122,16 @@ public class Ingrediente implements Serializable {
     public void setUnidadMedida(UnidadMedida unidadMedida) {
         this.unidadMedida = unidadMedida;
     }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+    
+    
 
    
 }

@@ -33,6 +33,8 @@ public class NuevoIngredienteDTOAIngredienteAdapter {
             unidadMediaDominio = UnidadMedida.GRAMO;
         }
         
-        return new Ingrediente(ingredienteDTO.getNombreIngrediente(), ingredienteDTO.getStockIngrediente(), unidadMediaDominio);     
+        Ingrediente ingrediente = new Ingrediente(ingredienteDTO.getNombreIngrediente(), ingredienteDTO.getStockIngrediente(), unidadMediaDominio);
+        ingrediente.setImagen(ingredienteDTO.getImagen());
+        return ingrediente;
     }
 }
