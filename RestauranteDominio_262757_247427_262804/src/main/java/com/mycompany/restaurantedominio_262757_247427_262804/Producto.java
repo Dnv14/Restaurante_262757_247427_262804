@@ -49,6 +49,9 @@ public class Producto implements Serializable {
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Receta> receta;
+    
+    @Column(name = "ruta_imagen", length = 500,nullable = true) 
+    private String rutaImagen;
 
     public Producto() {
     }
@@ -68,6 +71,14 @@ public class Producto implements Serializable {
         this.precio = precio;
         this.tipoProducto = tipoProducto;
         this.estado = estado;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
     
     public String getNombre() {

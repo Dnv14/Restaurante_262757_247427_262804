@@ -4,6 +4,12 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import com.mycompany.restaurantedominio_262757_247427_262804.Producto;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Diego
@@ -44,6 +50,7 @@ public class DetallesProductoFORM extends javax.swing.JDialog {
         txtAreaDescripcion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAreaReceta = new javax.swing.JTextArea();
+        btnMostrarImagen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +81,12 @@ public class DetallesProductoFORM extends javax.swing.JDialog {
         txtAreaReceta.setRows(5);
         jScrollPane2.setViewportView(txtAreaReceta);
 
+        btnMostrarImagen.setBackground(new java.awt.Color(51, 51, 51));
+        btnMostrarImagen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMostrarImagen.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrarImagen.setText("Mostrar Imagen");
+        btnMostrarImagen.addActionListener(this::btnMostrarImagenActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,11 +107,15 @@ public class DetallesProductoFORM extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
+                                .addGap(4, 4, 4)
                                 .addComponent(lblReceta)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnMostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(232, 232, 232))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,13 +127,16 @@ public class DetallesProductoFORM extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbldescp1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(lblReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(btnMostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,10 +156,21 @@ public class DetallesProductoFORM extends javax.swing.JDialog {
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         dispose();
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
-    
+
+    private void btnMostrarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarImagenActionPerformed
+        try {
+            
+            Producto producto = control.consultaProductoPorID(this.idProducto);
+            mostrarImagen(producto.getRutaImagen());
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar la imagen: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnMostrarImagenActionPerformed
+
     /**
-     * cargamos los detalles del producto para poder mostrar al usuario
-     * desde la descripcion y las recetas
+     * cargamos los detalles del producto para poder mostrar al usuario desde la
+     * descripcion y las recetas
      */
     private void cargarDatos() {
         String descripcion = control.mostrarDescripcion(idProducto);
@@ -152,7 +183,23 @@ public class DetallesProductoFORM extends javax.swing.JDialog {
         txtAreaReceta.setEditable(false);
     }
 
+    private void mostrarImagen(String ruta) {
+        if (ruta == null || ruta.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Este producto no tiene imagen.");
+            return;
+        }
+
+        JLabel labelImagen = new JLabel();
+        ImageIcon bytesImagen = new ImageIcon(ruta);
+        Image imagen = bytesImagen.getImage();
+        Image imagenTamanio = imagen.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+        labelImagen.setIcon(new ImageIcon(imagenTamanio));
+
+        JOptionPane.showMessageDialog(this, labelImagen, "Imagen del Producto", JOptionPane.PLAIN_MESSAGE);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMostrarImagen;
     private javax.swing.JButton btnVolverAtras;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

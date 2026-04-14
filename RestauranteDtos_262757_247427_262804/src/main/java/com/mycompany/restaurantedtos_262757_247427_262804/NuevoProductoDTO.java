@@ -19,6 +19,7 @@ public class NuevoProductoDTO {
     private TipoProductoDTO tipoProducto;
     private EstadoDTO estado;
     private List<NuevaRecetaDTO> recetas;
+    private String rutaImagen;
 
     public NuevoProductoDTO() {
     }
@@ -49,6 +50,26 @@ public class NuevoProductoDTO {
         this.estado = estado;
     }
 
+    public NuevoProductoDTO(String nombre, String descripcion, Double precio, TipoProductoDTO tipoProducto, EstadoDTO estado, List<NuevaRecetaDTO> recetas, String rutaImagen) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.tipoProducto = tipoProducto;
+        this.estado = estado;
+        this.recetas = recetas;
+        this.rutaImagen = rutaImagen;
+    }
+    
+    
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+    
     public String getNombre() {
         return nombre;
     }

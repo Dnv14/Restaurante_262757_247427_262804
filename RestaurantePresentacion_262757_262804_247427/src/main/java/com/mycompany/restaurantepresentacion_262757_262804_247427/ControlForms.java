@@ -180,7 +180,7 @@ public class ControlForms {
      * en alñadir producto, asi no se satura el form de añadir y puedo añadir
      * los ingredientes desde otro form
      */
-    public void agregarIngredientesProducto() {
+    public void navegarAgregarIngredientesProducto() {
         AgregarIngredientesProductoFORM agregarIngredientesProductoFORM = new AgregarIngredientesProductoFORM(frameActual, true, this);
         agregarIngredientesProductoFORM.setLocationRelativeTo(frameActual);
         agregarIngredientesProductoFORM.setVisible(true);
@@ -245,12 +245,14 @@ public class ControlForms {
      * @param descripcion
      * @param tipoProducto
      * @param recetas
+     * @param ruta
      */
-    public void agregarProducto(String nombre, Double precio, String descripcion, String tipoProducto, List<NuevaRecetaDTO> recetas) {
+    public void agregarProducto(String nombre, Double precio, String descripcion, String tipoProducto, List<NuevaRecetaDTO> recetas, String ruta) {
         try {
             TipoProductoDTO tipoDTO = TipoProductoDTO.valueOf(tipoProducto.toUpperCase());
             EstadoDTO estado = EstadoDTO.ACTIVO;
             NuevoProductoDTO productoDTO = new NuevoProductoDTO(nombre, descripcion, precio, tipoDTO, estado, recetas);
+            productoDTO.setRutaImagen(ruta);
 
             objetosBO.getProductosBO().validarRegistroProducto(productoDTO);
             JOptionPane.showMessageDialog(frameActual, "Producto registrado con éxito");
