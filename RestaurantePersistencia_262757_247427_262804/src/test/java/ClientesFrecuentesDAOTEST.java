@@ -37,7 +37,7 @@ public class ClientesFrecuentesDAOTEST {
     @Test
     public void crearClienteFrecuenteFuncionaOKTest() {
         assertDoesNotThrow(() -> {
-            NuevoClienteDTO nuevoCliente = new NuevoClienteDTO("Harry", "Styles", "6442567876", "harry@gmail.com");
+            NuevoClienteDTO nuevoCliente = new NuevoClienteDTO("Harry", "Styles", "6442567826", "harry@gmail.com");
             ClienteFrecuente clienteFrecuente = dao.crearClienteFrecuente(nuevoCliente);
             assertNotNull(clienteFrecuente);
             assertEquals("Harry", clienteFrecuente.getNombres());

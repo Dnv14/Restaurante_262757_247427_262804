@@ -65,6 +65,10 @@ public class BusquedaIngredienteFORM extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Muestra la imágen elegida en un cuadro de diálogo.
+     * @param imagenBytes 
+     */
     public void mostrarImagen(byte[] imagenBytes) {
         ImageIcon icon = new ImageIcon(imagenBytes);
         Image img = icon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);

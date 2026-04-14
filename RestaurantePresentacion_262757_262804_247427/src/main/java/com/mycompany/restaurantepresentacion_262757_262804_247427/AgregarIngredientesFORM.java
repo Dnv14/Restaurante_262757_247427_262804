@@ -41,6 +41,11 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Convierte una imagen que se encuentra ubicada en una ruta específica en bytes.
+     * @param ruta
+     * @return 
+     */
     public byte[] convertirImagenABytes(String ruta) {
     try {
         File file = new File(ruta);
