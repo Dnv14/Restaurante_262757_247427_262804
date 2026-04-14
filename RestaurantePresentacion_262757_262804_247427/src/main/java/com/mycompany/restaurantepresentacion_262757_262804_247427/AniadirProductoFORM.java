@@ -4,10 +4,13 @@
  */
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
+import java.io.File;
 import com.mycompany.restaurantedtos_262757_247427_262804.NuevaRecetaDTO;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -17,6 +20,7 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
 
     private ControlForms control;
     private List<NuevaRecetaDTO> ingredientesReceta = new LinkedList<>();
+    private String rutaImagenSeleccionada = null;
 
     /**
      * Creates new form AniadirProductoFORM
@@ -49,6 +53,7 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
         tipoComboBox = new javax.swing.JComboBox<>();
         lbldescp = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
+        btnAniadirImagen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +105,12 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
 
         txtDescripcion.addActionListener(this::txtDescripcionActionPerformed);
 
+        btnAniadirImagen.setBackground(new java.awt.Color(51, 51, 51));
+        btnAniadirImagen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAniadirImagen.setForeground(new java.awt.Color(255, 255, 255));
+        btnAniadirImagen.setText("Añadir Imagen");
+        btnAniadirImagen.addActionListener(this::btnAniadirImagenActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,17 +118,9 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnVolverAtras)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAñadirIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(310, 310, 310))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbldescp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDescripcion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblTitulo)
@@ -132,7 +135,17 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(lblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbldescp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAñadirIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119)
+                                .addComponent(btnAniadirImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtDescripcion))))
                 .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,7 +171,9 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
                     .addComponent(lbldescp, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnAñadirIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAñadirIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAniadirImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(btnAñadirProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -191,7 +206,7 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
     }
 
     private void btnAñadirIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirIngredientesActionPerformed
-        control.agregarIngredientesProducto();
+        control.navegarAgregarIngredientesProducto();
     }//GEN-LAST:event_btnAñadirIngredientesActionPerformed
 
     private void btnAñadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirProductoActionPerformed
@@ -211,7 +226,7 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El precio debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        control.agregarProducto(nombre, precioValido, descripcion, tipoSeleccionado, this.ingredientesReceta);
+        control.agregarProducto(nombre, precioValido, descripcion, tipoSeleccionado, this.ingredientesReceta, this.rutaImagenSeleccionada);
     }//GEN-LAST:event_btnAñadirProductoActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
@@ -230,12 +245,28 @@ public class AniadirProductoFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tipoComboBoxActionPerformed
 
+    private void btnAniadirImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAniadirImagenActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+
+        FileNameExtensionFilter filtroArchivo = new FileNameExtensionFilter("Imágenes (JPG y PNG)", "jpg", "png");
+        fileChooser.setFileFilter(filtroArchivo);
+
+        int resultadoOpenDialog = fileChooser.showOpenDialog(this);
+        if (resultadoOpenDialog == JFileChooser.APPROVE_OPTION) {
+            File imagenSeleccionado = fileChooser.getSelectedFile();
+            
+            this.rutaImagenSeleccionada = imagenSeleccionado.getAbsolutePath();
+            JOptionPane.showMessageDialog(this, "Imagen seleccionada: " + imagenSeleccionado.getName());
+        }
+    }//GEN-LAST:event_btnAniadirImagenActionPerformed
+
     public List<NuevaRecetaDTO> getIngredientesReceta() {
         return ingredientesReceta;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAniadirImagen;
     private javax.swing.JButton btnAñadirIngredientes;
     private javax.swing.JButton btnAñadirProducto;
     private javax.swing.JButton btnVolverAtras;

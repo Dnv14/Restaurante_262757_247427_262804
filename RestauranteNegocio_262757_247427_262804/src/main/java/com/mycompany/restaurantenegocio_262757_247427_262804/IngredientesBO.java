@@ -53,6 +53,10 @@ public class IngredientesBO implements IIngredientesBO{
             throw new NegocioException("La unidad de medida no puede ser nula ");
         }
         
+        if(nuevoIngrediente.getStockIngrediente() == null){
+            throw new NegocioException("El stock del ingrediente es obligatorio.");
+        }
+        
         try{
             Ingrediente ingredienteExistente = ingredientesDAO.consultarPorNombreyUnidad(nuevoIngrediente.getNombreIngrediente(), nuevoIngrediente.getUnidadMedida());
             if(ingredienteExistente != null){

@@ -180,7 +180,7 @@ public class ControlForms {
      * en alñadir producto, asi no se satura el form de añadir y puedo añadir
      * los ingredientes desde otro form
      */
-    public void agregarIngredientesProducto() {
+    public void navegarAgregarIngredientesProducto() {
         AgregarIngredientesProductoFORM agregarIngredientesProductoFORM = new AgregarIngredientesProductoFORM(frameActual, true, this);
         agregarIngredientesProductoFORM.setLocationRelativeTo(frameActual);
         agregarIngredientesProductoFORM.setVisible(true);
@@ -245,12 +245,14 @@ public class ControlForms {
      * @param descripcion
      * @param tipoProducto
      * @param recetas
+     * @param ruta
      */
-    public void agregarProducto(String nombre, Double precio, String descripcion, String tipoProducto, List<NuevaRecetaDTO> recetas) {
+    public void agregarProducto(String nombre, Double precio, String descripcion, String tipoProducto, List<NuevaRecetaDTO> recetas, String ruta) {
         try {
             TipoProductoDTO tipoDTO = TipoProductoDTO.valueOf(tipoProducto.toUpperCase());
             EstadoDTO estado = EstadoDTO.ACTIVO;
             NuevoProductoDTO productoDTO = new NuevoProductoDTO(nombre, descripcion, precio, tipoDTO, estado, recetas);
+            productoDTO.setRutaImagen(ruta);
 
             objetosBO.getProductosBO().validarRegistroProducto(productoDTO);
             JOptionPane.showMessageDialog(frameActual, "Producto registrado con éxito");
@@ -332,7 +334,18 @@ public class ControlForms {
      * @param stock
      * @param unidadMedida
      */
-    public void registrarIngrediente(String nombre, Double stock, String unidadMedida, byte[] imagen) {
+    public void registrarIngrediente(String nombre, String stockTexto, String unidadMedida, byte[] imagen) {
+        if (stockTexto == null || stockTexto.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(frameActual,"Debes ingresar un número de stock.","Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Double stock;
+        try {
+            stock = Double.parseDouble(stockTexto.trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frameActual,"Ingrese un núemro de stock válido.","Formato inválido", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         try {
             UnidadMedidaDTO unidadDTO = UnidadMedidaDTO.valueOf(unidadMedida.toUpperCase());
             NuevoIngredienteDTO ingredienteDTO = new NuevoIngredienteDTO(nombre, stock, unidadDTO, imagen);
@@ -340,7 +353,7 @@ public class ControlForms {
             JOptionPane.showMessageDialog(frameActual, "El ingrediente ha sido registrado con éxito.");
             navegarMenuIngredientes();
         } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frameActual, ex.getMessage(), "Error de Validación", JOptionPane.WARNING_MESSAGE);
         }
     }
 

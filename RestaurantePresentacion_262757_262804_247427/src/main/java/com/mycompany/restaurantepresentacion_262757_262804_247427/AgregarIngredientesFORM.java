@@ -5,6 +5,12 @@
 package com.mycompany.restaurantepresentacion_262757_262804_247427;
 
 import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -12,27 +18,42 @@ import com.mycompany.restaurantedtos_262757_247427_262804.UnidadMedidaDTO;
  */
 public class AgregarIngredientesFORM extends javax.swing.JFrame {
 
-    private ControlForms control; 
-    
+    private ControlForms control;
+    private String rutaImagenSeleccionada = null;
+
     public AgregarIngredientesFORM(ControlForms control) {
         this.control = control;
         this.setTitle("Agregar Ingrediente");
         initComponents();
         inicilizarComboBox();
     }
-    
+
     /**
      * inicializa el comboBox el cual tiene el tipo de unidad
      */
-    public void inicilizarComboBox(){
+    public void inicilizarComboBox() {
         unidadMedidaCombo.removeAllItems();
-        for(UnidadMedidaDTO unidad: UnidadMedidaDTO.values()){
+        for (UnidadMedidaDTO unidad : UnidadMedidaDTO.values()) {
             unidadMedidaCombo.addItem(unidad.name());
         }
-        if(unidadMedidaCombo.getItemCount()> 0){
+        if (unidadMedidaCombo.getItemCount() > 0) {
             unidadMedidaCombo.setSelectedItem(0);
         }
     }
+    
+    public byte[] convertirImagenABytes(String ruta) {
+    try {
+        File file = new File(ruta);
+        FileInputStream fis = new FileInputStream(file);
+        byte[] bytes = new byte[(int) file.length()];
+        fis.read(bytes);
+        fis.close();
+        return bytes;
+    } catch (IOException e) {
+        e.printStackTrace();
+        return null;
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,12 +69,12 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        botonCancelar = new javax.swing.JButton();
         nombreTextField = new javax.swing.JTextField();
         stockTextField = new javax.swing.JTextField();
         unidadMedidaCombo = new javax.swing.JComboBox<>();
         botonAgregarIngrediente = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
+        btnAgregarImagen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,14 +91,6 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Unidad de Medida:");
-
-        botonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        botonCancelar.setLabel("Cancelar");
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarActionPerformed(evt);
-            }
-        });
 
         nombreTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +114,14 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
             }
         });
 
+        btnAgregarImagen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarImagen.setText("Agregar Imagen");
+        btnAgregarImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarImagenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,24 +130,23 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(unidadMedidaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(stockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)
-                        .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(137, 137, 137)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,14 +167,13 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(unidadMedidaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(114, 114, 114))
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(botonAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        botonCancelar.getAccessibleContext().setAccessibleName("botonCancelar");
         nombreTextField.getAccessibleContext().setAccessibleName("textFieldNombreIngrediente");
         stockTextField.getAccessibleContext().setAccessibleName("textFieldStockIngrediente");
         botonAgregarIngrediente.getAccessibleContext().setAccessibleName("botonAgregarIngrediente ");
@@ -177,34 +196,51 @@ public class AgregarIngredientesFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreTextFieldActionPerformed
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonCancelarActionPerformed
-    
     /**
-     * agrega el ingrediente llenando los espacios que ocupa
-     * para crearse
-     * @param evt 
+     * agrega el ingrediente llenando los espacios que ocupa para crearse
+     *
+     * @param evt
      */
     private void botonAgregarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarIngredienteActionPerformed
         String nombre = nombreTextField.getText();
-        Double precio = Double.parseDouble(stockTextField.getText());
+        String precio = stockTextField.getText();
+        
         String tipoSeleccionado = String.valueOf(unidadMedidaCombo.getSelectedItem());
-        control.registrarIngrediente(nombre, precio, tipoSeleccionado);
+        byte[] imagen = null;
+        if(rutaImagenSeleccionada != null){
+            imagen = convertirImagenABytes(rutaImagenSeleccionada);
+        }
+        control.registrarIngrediente(nombre, precio, tipoSeleccionado, imagen);
     }//GEN-LAST:event_botonAgregarIngredienteActionPerformed
+
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         volverAtras();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
-    public void volverAtras(){
+    private void btnAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarImagenActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+
+        FileNameExtensionFilter filtroArchivo = new FileNameExtensionFilter("Imágenes (JPG y PNG)", "jpg", "png");
+        fileChooser.setFileFilter(filtroArchivo);
+
+        int resultadoOpenDialog = fileChooser.showOpenDialog(this);
+        if (resultadoOpenDialog == JFileChooser.APPROVE_OPTION) {
+            File imagenSeleccionado = fileChooser.getSelectedFile();
+
+            this.rutaImagenSeleccionada = imagenSeleccionado.getAbsolutePath();
+            JOptionPane.showMessageDialog(this, "Imagen seleccionada: " + imagenSeleccionado.getName());
+        }
+    }//GEN-LAST:event_btnAgregarImagenActionPerformed
+
+    public void volverAtras() {
         control.navegarMenuIngredientes();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarIngrediente;
     private javax.swing.JButton botonAtras;
-    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton btnAgregarImagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

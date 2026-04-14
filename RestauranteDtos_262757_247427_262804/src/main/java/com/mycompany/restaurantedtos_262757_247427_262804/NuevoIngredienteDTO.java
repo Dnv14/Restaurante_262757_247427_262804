@@ -14,13 +14,19 @@ public class NuevoIngredienteDTO {
     private UnidadMedidaDTO unidadMedida;
     private byte[] imagen;
 
+    public NuevoIngredienteDTO(String nombreIngrediente, Double stockIngrediente, UnidadMedidaDTO unidadMedida) {
+        this.nombreIngrediente = nombreIngrediente;
+        this.stockIngrediente = stockIngrediente;
+        this.unidadMedida = unidadMedida;
+    }
+
     public NuevoIngredienteDTO(String nombreIngrediente, Double stockIngrediente, UnidadMedidaDTO unidadMedida, byte[] imagen) {
         this.nombreIngrediente = nombreIngrediente;
         this.stockIngrediente = stockIngrediente;
         this.unidadMedida = unidadMedida;
         this.imagen = imagen;
     }
-
+    
     public String getNombreIngrediente() {
         return nombreIngrediente;
     }
